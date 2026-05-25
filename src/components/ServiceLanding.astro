@@ -53,7 +53,7 @@ const {
           {titleHtml ? <h1 style={`--service-title-width:${titleWidth};`} set:html={titleHtml}></h1> : <h1 style={`--service-title-width:${titleWidth};`}>{title}</h1>}
           {subtitle && <p class="service-form-page__subtitle">{subtitle}</p>}
 
-          <form class="service-form-page__form" method="POST" action="/api/enviar-formulario.php" data-mail-form>
+          <form class="service-form-page__form" method="POST" action="/api/enviar-formulario" data-mail-form>
             <input type="hidden" name="formulario" value={formName} />
             <input type="hidden" name="pagina_origen" value="" />
             <input class="form-honeypot" type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" />

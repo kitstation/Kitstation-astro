@@ -9,6 +9,8 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^6.2.1"
+    "@astrojs/vercel": "^10.0.7",
+    "astro": "^6.2.1",
+    "nodemailer": "^8.0.8"
   }
 }
