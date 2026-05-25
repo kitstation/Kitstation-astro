@@ -87,6 +87,10 @@ function htmlValue(value: string): string {
     .replace(/\n/g, "<br>");
 }
 
+function getSubmitterName(data: Record<string, string>): string {
+  return data.name || data.company || data.nombre_completo || "";
+}
+
 function getEnv(name: string): string {
   const value = process.env[name];
   return typeof value === "string" ? value.trim() : "";
@@ -310,6 +314,24 @@ Navegador: ${userAgent}
 Campos enviados:
 ${plainFields}`;
 
+    const submitterName = getSubmitterName(data);
+    const greetingName = submitterName ? ` ${submitterName}` : "";
+    const autoReplySubject = "Gracias por escribirnos | KitStation";
+    const autoReplyHtml = `<div style="font-family:Arial,sans-serif;color:#111827;line-height:1.6;">
+<p>Hola${htmlValue(greetingName)},</p>
+<p>Gracias por escribirnos. Recibimos tu mensaje correctamente y nos pondremos en contacto contigo a la brevedad.</p>
+<p>Si tu consulta esta relacionada con <strong>${htmlValue(formName)}</strong>, nuestro equipo la revisara para responderte cuanto antes.</p>
+<p>Saludos,<br>Equipo KitStation</p>
+</div>`;
+    const autoReplyText = `Hola${greetingName},
+
+Gracias por escribirnos. Recibimos tu mensaje correctamente y nos pondremos en contacto contigo a la brevedad.
+
+Si tu consulta esta relacionada con ${formName}, nuestro equipo la revisara para responderte cuanto antes.
+
+Saludos,
+Equipo KitStation`;
+
     await transporter.sendMail({
       from: `"${mailFromName}" <${mailFrom}>`,
       to: recipients,
@@ -318,6 +340,17 @@ ${plainFields}`;
       html,
       text
     });
+
+    if (email) {
+      await transporter.sendMail({
+        from: `"${mailFromName}" <${mailFrom}>`,
+        to: email,
+        replyTo: recipients[0] || mailFrom,
+        subject: autoReplySubject,
+        html: autoReplyHtml,
+        text: autoReplyText
+      });
+    }
 
     return jsonResponse(200, {
       success: true,
