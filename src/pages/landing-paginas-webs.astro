@@ -159,27 +159,25 @@ const interactiveProjects = [
           <a class="landing-webs__hero-action landing-webs__hero-action--primary" href="/contactanos/">
             Hablar con un experto
           </a>
-          <a class="landing-webs__hero-action landing-webs__hero-action--secondary" href="#hero-selector">
+          <button
+            class="landing-webs__hero-action landing-webs__hero-action--secondary"
+            type="button"
+            data-hero-selector-toggle
+            aria-controls="hero-selector"
+            aria-expanded="false"
+          >
             <span>Comenzar a crear</span>
             <span class="landing-webs__hero-action-caret" aria-hidden="true"></span>
-          </a>
+          </button>
         </div>
-        <p class="landing-webs__hero-text">
-          Olvídate de las plataformas estándar. Brindamos a tu marca una arquitectura digital única,
-          diseñada y desarrollada estratégicamente para superar lo que imaginaste.
-        </p>
-
-        <div class="landing-webs__hero-selector" id="hero-selector">
+        <div class="landing-webs__hero-selector" id="hero-selector" hidden>
           <p class="landing-webs__hero-question">Qué tipo de <strong>sitio web</strong> te gustaría crear?</p>
           <div class="landing-webs__chips" aria-label="Tipos de sitio">
             {siteTypes.map((item) => (
               <button type="button">{item}</button>
             ))}
           </div>
-
-          <div class="landing-webs__hero-cta">
-            <a href="/contactanos/">Empezar ahora</a>
-          </div>
+        </div>
         </div>
       </div>
     </section>
@@ -380,6 +378,31 @@ const interactiveProjects = [
 ></script>
 
 <script is:inline>
+  document.querySelectorAll("[data-hero-selector-toggle]").forEach((toggle) => {
+    const selectorId = toggle.getAttribute("aria-controls");
+    const selector = selectorId ? document.getElementById(selectorId) : null;
+
+    if (!selector) return;
+
+    toggle.addEventListener("click", () => {
+      const willOpen = selector.hasAttribute("hidden");
+
+      if (willOpen) {
+        selector.removeAttribute("hidden");
+        requestAnimationFrame(() => selector.classList.add("is-visible"));
+      } else {
+        selector.classList.remove("is-visible");
+        selector.setAttribute("hidden", "");
+      }
+
+      toggle.setAttribute("aria-expanded", willOpen ? "true" : "false");
+
+      if (willOpen) {
+        selector.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    });
+  });
+
   document.querySelectorAll("[data-web-carousel]").forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll("[data-carousel-slide]"));
     const prevButton = carousel.querySelector("[data-carousel-prev]");
@@ -556,13 +579,15 @@ const interactiveProjects = [
   }
 
   .landing-webs__hero-action--primary {
-    background: #050505;
+    background: #0553f1;
     color: #fff;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 14px 30px rgba(5, 83, 241, 0.28);
   }
 
   .landing-webs__hero-action--primary:hover {
-    background: #0f0f0f;
+    background: #0b47c7;
   }
 
   .landing-webs__hero-action--secondary {
@@ -721,6 +746,16 @@ const interactiveProjects = [
   .landing-webs__hero-selector {
     width: min(100%, 780px);
     margin-top: 34px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.28s ease,
+      transform 0.28s ease;
+  }
+
+  .landing-webs__hero-selector.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .landing-webs__hero-question {
