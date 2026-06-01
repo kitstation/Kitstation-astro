@@ -6,6 +6,11 @@ import Footer from "../components/Footer.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import "../styles/global.css";
 
+const whatsappNumber = "51901637020";
+
+const buildWhatsAppLink = (message) =>
+  `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
 const siteTypes = [
   "Tienda online",
   "Servicios",
@@ -14,6 +19,18 @@ const siteTypes = [
   "Eventos",
   "Blogs",
   "Otros"
+];
+
+const siteTypeLinks = [
+  { label: "Tienda online", href: buildWhatsAppLink("Hola, quiero mi tienda online") },
+  { label: "Servicios", href: buildWhatsAppLink("Hola, quiero una web de servicios") },
+  { label: "Restaurante", href: buildWhatsAppLink("Hola, quiero una web para mi restaurante") },
+  { label: "ConsultorÃ­as", href: buildWhatsAppLink("Hola, quiero una web para mi consultoría") },
+  { label: "Eventos", href: buildWhatsAppLink("Hola, quiero una web para eventos") },
+  { label: "Blogs", href: buildWhatsAppLink("Hola, quiero mi blog") },
+  { label: "Otros", href: buildWhatsAppLink("Hola, quiero una página web") },
+  { label: "Portafolio", href: buildWhatsAppLink("Hola, quiero mi portafolio") },
+  { label: "Agendar Citas", href: buildWhatsAppLink("Hola, quiero una web para agendar citas") }
 ];
 
 const benefitVisuals = [
@@ -173,8 +190,8 @@ const interactiveProjects = [
         <div class="landing-webs__hero-selector" id="hero-selector" hidden>
           <p class="landing-webs__hero-question">Qué tipo de <strong>sitio web</strong> te gustaría crear?</p>
           <div class="landing-webs__chips" aria-label="Tipos de sitio">
-            {siteTypes.map((item) => (
-              <button type="button">{item}</button>
+            {siteTypeLinks.map((item) => (
+              <a href={item.href} target="_blank" rel="noreferrer">{item.label}</a>
             ))}
           </div>
         </div>
@@ -773,15 +790,19 @@ const interactiveProjects = [
     margin: 0 auto;
   }
 
-  .landing-webs__chips button {
+  .landing-webs__chips a {
     min-height: 38px;
     padding: 0 20px;
     border: 1px solid rgba(255, 255, 255, 0.88);
     border-radius: 999px;
     background: transparent;
     color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 0.98rem;
     font-weight: 500;
+    text-decoration: none;
   }
 
   .landing-webs__hero-cta {
@@ -1490,7 +1511,7 @@ const interactiveProjects = [
   @media (max-width: 768px) {
     .landing-webs__hero-copy {
       padding-top: 0;
-      padding-bottom: 56px;
+      padding-bottom: 20px;
       justify-content: center;
     }
 
@@ -1592,7 +1613,7 @@ const interactiveProjects = [
     .landing-webs__principles,
     .landing-webs__features,
     .landing-webs__closing {
-      padding: 64px 0;
+      padding: 48px 0;
     }
 
     .landing-webs__section-head h2,
@@ -1616,7 +1637,7 @@ const interactiveProjects = [
       gap: 10px;
     }
 
-    .landing-webs__chips button {
+    .landing-webs__chips a {
       min-height: 36px;
       padding: 0 14px;
       font-size: 0.92rem;
@@ -1631,9 +1652,14 @@ const interactiveProjects = [
     }
 
     .landing-webs__benefit-panel {
-      margin-top: 26px;
+      margin-top: 18px;
       padding: 28px 18px 8px;
       border-radius: 32px;
+    }
+
+    .landing-webs__benefits .landing-webs__section-head h2 {
+      max-width: 18ch;
+      line-height: 0.98;
     }
 
     .landing-webs__benefit-node img {
