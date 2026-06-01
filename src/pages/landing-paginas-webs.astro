@@ -25,7 +25,7 @@ const siteTypeLinks = [
   { label: "Tienda online", href: buildWhatsAppLink("Hola, quiero mi tienda online") },
   { label: "Servicios", href: buildWhatsAppLink("Hola, quiero una web de servicios") },
   { label: "Restaurante", href: buildWhatsAppLink("Hola, quiero una web para mi restaurante") },
-  { label: "ConsultorÃ­as", href: buildWhatsAppLink("Hola, quiero una web para mi consultoría") },
+  { label: "Consultorías", href: buildWhatsAppLink("Hola, quiero una web para mi consultoría") },
   { label: "Eventos", href: buildWhatsAppLink("Hola, quiero una web para eventos") },
   { label: "Blogs", href: buildWhatsAppLink("Hola, quiero mi blog") },
   { label: "Otros", href: buildWhatsAppLink("Hola, quiero una página web") },
@@ -308,16 +308,16 @@ const interactiveProjects = [
           <a class="landing-webs__cta-link" href="/contactanos/">Empezar ahora</a>
         </div>
 
-        <div class="landing-webs__chat-widget">
+        <div class="landing-webs__chat-widget" data-sales-chat>
           <div class="landing-webs__chat-header">Prueba nuestra IA para ventas!</div>
-          <div class="landing-webs__chat-messages">
+          <div class="landing-webs__chat-messages" data-chat-messages>
             <div class="landing-webs__chat-bubble landing-webs__chat-bubble--user">Hola</div>
             <div class="landing-webs__chat-bubble landing-webs__chat-bubble--bot">
               Hola. Si, podemos ayudarte a crear una web que venda, informe o automatice procesos.
             </div>
           </div>
           <div class="landing-webs__chat-actions">
-            <button type="button">Hola</button>
+            <button type="button" data-chat-prompt="Hola">Hola</button>
             <button type="button">Cómo funciona este chat?</button>
           </div>
           <div class="landing-webs__chat-input">
@@ -417,6 +417,97 @@ const interactiveProjects = [
       if (willOpen) {
         selector.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
+    });
+  });
+
+  document.querySelectorAll("[data-sales-chat]").forEach((chat) => {
+    const messages = chat.querySelector("[data-chat-messages]");
+    const input = chat.querySelector(".landing-webs__chat-input input");
+    const sendButton = chat.querySelector("[data-chat-send]") || chat.querySelector(".landing-webs__chat-input button");
+    const promptButtons = Array.from(chat.querySelectorAll(".landing-webs__chat-actions button"));
+
+    if (!messages || !input || !sendButton) return;
+
+    const history = [
+      {
+        role: "assistant",
+        content: "Hola. Si, podemos ayudarte a crear una web que venda, informe o automatice procesos."
+      }
+    ];
+
+    const appendBubble = (role, content) => {
+      const bubble = document.createElement("div");
+      bubble.className = `landing-webs__chat-bubble landing-webs__chat-bubble--${role}`;
+      bubble.textContent = content;
+      messages.appendChild(bubble);
+      messages.scrollTop = messages.scrollHeight;
+    };
+
+    const setSending = (sending) => {
+      sendButton.disabled = sending;
+      input.disabled = sending;
+      promptButtons.forEach((button) => {
+        button.disabled = sending;
+      });
+      sendButton.textContent = sending ? "Enviando..." : "Enviar";
+    };
+
+    const sendMessage = async (text) => {
+      const message = text.trim();
+      if (!message) return;
+
+      appendBubble("user", message);
+      history.push({ role: "user", content: message });
+      input.value = "";
+      setSending(true);
+
+      try {
+        const response = await fetch("/api/chat-web", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            message,
+            history: history.slice(-10)
+          })
+        });
+
+        const result = await response.json().catch(() => null);
+        const reply =
+          response.ok && result?.success && typeof result.reply === "string"
+            ? result.reply.trim()
+            : "Ahora mismo no puedo responder desde el chat. Si quieres, escríbenos y te orientamos sobre la web que necesitas.";
+
+        appendBubble("bot", reply);
+        history.push({ role: "assistant", content: reply });
+      } catch (_error) {
+        const fallback =
+          "Hubo un problema de conexión. Si quieres, cuéntanos qué tipo de web necesitas y te ayudamos por WhatsApp o por contacto.";
+        appendBubble("bot", fallback);
+        history.push({ role: "assistant", content: fallback });
+      } finally {
+        setSending(false);
+        input.focus();
+      }
+    };
+
+    sendButton.addEventListener("click", () => {
+      sendMessage(input.value);
+    });
+
+    input.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage(input.value);
+      }
+    });
+
+    promptButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        sendMessage(button.dataset.chatPrompt || button.textContent || "");
+      });
     });
   });
 
@@ -567,7 +658,7 @@ const interactiveProjects = [
     flex-wrap: wrap;
     justify-content: center;
     gap: 14px 18px;
-    margin-top: 24px;
+    margin-top: 34px;
     position: relative;
     z-index: 2;
   }
@@ -1265,6 +1356,8 @@ const interactiveProjects = [
   .landing-webs__chat-messages {
     display: grid;
     gap: 12px;
+    max-height: 300px;
+    overflow: auto;
   }
 
   .landing-webs__chat-bubble {
@@ -1325,6 +1418,13 @@ const interactiveProjects = [
     background: linear-gradient(135deg, #ce43d0, #0055ff);
     color: #fff;
     font-weight: 600;
+  }
+
+  .landing-webs__chat-actions button:disabled,
+  .landing-webs__chat-input button:disabled,
+  .landing-webs__chat-input input:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
   .landing-webs__principles-grid {
