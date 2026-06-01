@@ -14,7 +14,7 @@ import "../styles/global.css";
     <section class="contact-page__section">
       <div class="container contact-page__grid">
         <div class="contact-page__copy">
-          <h1>Habla con nuestro equipo<br /> de ventas para descubrir cómo<br />KitStation se adapta a tus necesidades</h1>
+          <h1><span>Habla con nuestro equipo</span><span>de ventas para descubrir c�mo</span><span>KitStation se adapta a tus necesidades</span></h1>
 
           <ul class="contact-page__benefits">
             <li>Encuentra la solución perfecta para impulsar el crecimiento de tu negocio.</li>
@@ -96,13 +96,18 @@ import "../styles/global.css";
   }
 
   .contact-page__copy h1 {
-    max-width: 18ch;
+    max-width: none;
     margin: 0;
     color: #000;
     font-size: clamp(2.1rem, 3.2vw, 3.35rem);
     font-weight: 600;
     line-height: 0.94;
     letter-spacing: -0.06em;
+  }
+
+  .contact-page__copy h1 span {
+    display: block;
+    white-space: nowrap;
   }
 
   .contact-page__benefits {
@@ -237,3 +242,4 @@ import "../styles/global.css";
     }
   }
 </style>
+
