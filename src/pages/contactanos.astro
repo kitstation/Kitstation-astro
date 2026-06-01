@@ -1,4 +1,4 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import MarqueeBar from "../components/MarqueeBar.astro";
@@ -14,7 +14,12 @@ import "../styles/global.css";
     <section class="contact-page__section">
       <div class="container contact-page__grid">
         <div class="contact-page__copy">
-          <h1><span>Habla con nuestro equipo</span><span>de ventas para</span><span>descubrir c�mo</span><span>KitStation se adapta a tus necesidades</span></h1>
+          <h1>
+            <span>Habla con nuestro equipo</span>
+            <span>de ventas para</span>
+            <span>descubrir cómo</span>
+            <span>KitStation se adapta a tus necesidades</span>
+          </h1>
 
           <ul class="contact-page__benefits">
             <li>Encuentra la solución perfecta para impulsar el crecimiento de tu negocio.</li>
@@ -225,10 +230,6 @@ import "../styles/global.css";
       text-align: left;
     }
 
-    .contact-page__copy h1 {
-      max-width: 12ch;
-    }
-
     .contact-page__benefits {
       width: 100%;
     }
@@ -242,4 +243,3 @@ import "../styles/global.css";
     }
   }
 </style>
-
