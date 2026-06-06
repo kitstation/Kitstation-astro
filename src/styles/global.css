@@ -547,7 +547,7 @@ select {
 .hero h1 {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  font-size: 40px;
+  font-size: 100px;
   font-weight: 600;
   line-height: 0.97;
   letter-spacing: -0.08em;
