@@ -1,0 +1,356 @@
+<div class="hero-particles" aria-hidden="true" data-hero-particles>
+  <canvas class="hero-particles__canvas" data-hero-particles-canvas></canvas>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-hero-particles]");
+    const canvas = root?.querySelector("[data-hero-particles-canvas]");
+    const hero = root?.closest(".hero");
+
+    if (!root || !hero || !canvas || !(canvas instanceof HTMLCanvasElement)) return;
+
+    const context = canvas.getContext("2d", { alpha: true });
+    if (!context) return;
+
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mobileQuery = window.matchMedia("(max-width: 767px)");
+    const tabletQuery = window.matchMedia("(max-width: 1024px)");
+
+    let animationFrame = 0;
+    let resizeObserver;
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let particles = [];
+    let reducedMotion = reducedMotionQuery.matches;
+    const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, active: false };
+
+    const palette = [
+      { color: "36, 99, 255", minOpacity: 1, maxOpacity: 1, weight: 0.5 },
+      { color: "255, 196, 0", minOpacity: 1, maxOpacity: 1, weight: 0.24 },
+      { color: "255, 72, 72", minOpacity: 1, maxOpacity: 1, weight: 0.26 }
+    ];
+
+    const rand = (min, max) => min + Math.random() * (max - min);
+
+    const pickTint = () => {
+      const total = palette.reduce((sum, item) => sum + item.weight, 0);
+      let cursor = Math.random() * total;
+
+      for (const item of palette) {
+        cursor -= item.weight;
+        if (cursor <= 0) return item;
+      }
+
+      return palette[0];
+    };
+
+    const buildParticle = (x, y, clusterBoost = 0) => {
+      const tint = pickTint();
+
+      return {
+        x,
+        y,
+        baseX: x,
+        baseY: y,
+        radius: rand(1.8, 3.4),
+        opacity: rand(tint.minOpacity, tint.maxOpacity) + clusterBoost,
+        driftX: rand(-0.12, 0.12),
+        driftY: rand(-0.1, 0.1),
+        pulse: rand(0.4, 1.2),
+        pulseSpeed: rand(0.0032, 0.0054),
+        offset: rand(0, Math.PI * 2),
+        color: tint.color,
+        hiddenUntil: 0
+      };
+    };
+
+    const rebuildParticles = () => {
+      const isMobile = mobileQuery.matches;
+      const isTablet = tabletQuery.matches && !isMobile;
+      const spacing = isMobile ? 56 : isTablet ? 46 : 40;
+      const jitter = isMobile ? 6 : 8;
+      const clusterRadius = isMobile ? 120 : isTablet ? 170 : 210;
+      const clusters = [
+        { x: width * 0.2, y: height * 0.38, strength: 0.06 },
+        { x: width * 0.78, y: height * 0.38, strength: 0.07 },
+        { x: width * 0.5, y: height * 0.56, strength: 0.04 }
+      ];
+
+      const nextParticles = [];
+
+      for (let gy = spacing * 0.5; gy < height; gy += spacing) {
+        for (let gx = spacing * 0.5; gx < width; gx += spacing) {
+          const x = gx + rand(-jitter, jitter);
+          const y = gy + rand(-jitter, jitter);
+
+          let clusterBoost = 0;
+          for (const cluster of clusters) {
+            const dx = x - cluster.x;
+            const dy = y - cluster.y;
+            const distance = Math.hypot(dx, dy);
+            if (distance < clusterRadius) {
+              clusterBoost += ((clusterRadius - distance) / clusterRadius) * cluster.strength;
+            }
+          }
+
+          const keepChance = isMobile ? 0.12 : isTablet ? 0.18 : 0.24;
+          if (Math.random() < keepChance + clusterBoost * 2.4) {
+            nextParticles.push(buildParticle(x, y, clusterBoost));
+          }
+        }
+      }
+
+      particles = nextParticles;
+    };
+
+    const respawnParticle = (particle, now) => {
+      const isMobile = mobileQuery.matches;
+      const isTablet = tabletQuery.matches && !isMobile;
+      const spacing = isMobile ? 44 : isTablet ? 36 : 30;
+      const jitter = isMobile ? 6 : 8;
+      const clusterRadius = isMobile ? 120 : isTablet ? 170 : 210;
+      const clusters = [
+        { x: width * 0.2, y: height * 0.38, strength: 0.06 },
+        { x: width * 0.78, y: height * 0.38, strength: 0.07 },
+        { x: width * 0.5, y: height * 0.56, strength: 0.04 }
+      ];
+
+      const x = rand(spacing * 0.5, Math.max(spacing * 0.5, width - spacing * 0.5)) + rand(-jitter, jitter);
+      const y = rand(spacing * 0.5, Math.max(spacing * 0.5, height - spacing * 0.5)) + rand(-jitter, jitter);
+
+      let clusterBoost = 0;
+      for (const cluster of clusters) {
+        const dx = x - cluster.x;
+        const dy = y - cluster.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance < clusterRadius) {
+          clusterBoost += ((clusterRadius - distance) / clusterRadius) * cluster.strength;
+        }
+      }
+
+      const replacement = buildParticle(x, y, clusterBoost);
+      particle.baseX = replacement.baseX;
+      particle.baseY = replacement.baseY;
+      particle.radius = replacement.radius;
+      particle.opacity = replacement.opacity;
+      particle.driftX = replacement.driftX;
+      particle.driftY = replacement.driftY;
+      particle.pulse = replacement.pulse;
+      particle.pulseSpeed = replacement.pulseSpeed;
+      particle.offset = replacement.offset + now * 0.0002;
+      particle.color = replacement.color;
+      particle.hiddenUntil = now + rand(260, 520);
+    };
+
+    const resize = () => {
+      const rect = root.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      rebuildParticles();
+      draw(performance.now());
+    };
+
+    const draw = (time) => {
+      context.clearRect(0, 0, width, height);
+      const flowTime = reducedMotion ? 0 : time * 0.0005;
+      const fieldOffsetX = Math.sin(flowTime) * 7.6;
+      const fieldOffsetY = Math.sin(flowTime * 0.72) * 5.4;
+
+      const pointerInfluence = mobileQuery.matches ? 0 : 18;
+      pointer.x += (pointer.targetX - pointer.x) * 0.045;
+      pointer.y += (pointer.targetY - pointer.y) * 0.045;
+
+      if (pointer.active && pointerInfluence) {
+        const glow = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 140);
+        glow.addColorStop(0, "rgba(36, 99, 255, 0.05)");
+        glow.addColorStop(0.45, "rgba(163, 105, 255, 0.03)");
+        glow.addColorStop(1, "rgba(255, 255, 255, 0)");
+        context.fillStyle = glow;
+        context.beginPath();
+        context.arc(pointer.x, pointer.y, 140, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      for (const particle of particles) {
+        if (!reducedMotion && pointer.active) {
+          const triggerDx = particle.baseX - pointer.x;
+          const triggerDy = particle.baseY - pointer.y;
+          const triggerDistance = Math.hypot(triggerDx, triggerDy);
+          if (triggerDistance < 44 && time > particle.hiddenUntil) {
+            respawnParticle(particle, time);
+          }
+        }
+
+        if (time < particle.hiddenUntil) {
+          continue;
+        }
+
+        const particleTime = reducedMotion ? 0 : time * particle.pulseSpeed;
+        const pulse = reducedMotion
+          ? 1
+          : 0.78 + ((Math.sin(particleTime + particle.offset) + 1) * 0.5) * 0.22;
+        const driftX = reducedMotion
+          ? 0
+          : Math.sin(particleTime * 0.7 + particle.offset) * particle.driftX * 26;
+        const driftY = reducedMotion
+          ? 0
+          : Math.cos(particleTime * 0.65 + particle.offset) * particle.driftY * 22;
+
+        let x = particle.baseX + fieldOffsetX + driftX;
+        let y = particle.baseY + fieldOffsetY + driftY;
+
+        if (pointer.active && pointerInfluence) {
+          const dx = x - pointer.x;
+          const dy = y - pointer.y;
+          const distance = Math.max(26, Math.hypot(dx, dy));
+          const radius = 180;
+          const proximity = Math.max(0, 1 - distance / radius);
+          const force = proximity * pointerInfluence;
+          x += (dx / distance) * force;
+          y += (dy / distance) * force;
+        }
+
+        context.beginPath();
+        context.fillStyle = `rgba(${particle.color}, 1)`;
+        context.arc(x, y, particle.radius, 0, Math.PI * 2);
+        context.fill();
+      }
+    };
+
+    const animate = (time) => {
+      draw(time);
+
+      if (!reducedMotion) {
+        animationFrame = window.requestAnimationFrame(animate);
+      }
+    };
+
+    const stop = () => {
+      if (animationFrame) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+      }
+    };
+
+    const start = () => {
+      stop();
+      draw(performance.now());
+      if (!reducedMotion) {
+        animationFrame = window.requestAnimationFrame(animate);
+      }
+    };
+
+    const handlePointerMove = (event) => {
+      const rect = hero.getBoundingClientRect();
+      pointer.targetX = event.clientX - rect.left;
+      pointer.targetY = event.clientY - rect.top;
+      pointer.active = true;
+    };
+
+    const handlePointerLeave = () => {
+      pointer.active = false;
+      pointer.targetX = width * 0.5;
+      pointer.targetY = height * 0.5;
+    };
+
+    const handleReducedMotionChange = (event) => {
+      reducedMotion = event.matches;
+      start();
+    };
+
+    resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(root);
+
+    reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
+    hero.addEventListener("pointermove", handlePointerMove, { passive: true });
+    hero.addEventListener("pointerleave", handlePointerLeave);
+
+    pointer.targetX = width * 0.5;
+    pointer.targetY = height * 0.5;
+    resize();
+    start();
+
+    window.addEventListener(
+      "pagehide",
+      () => {
+        stop();
+        resizeObserver?.disconnect();
+        reducedMotionQuery.removeEventListener("change", handleReducedMotionChange);
+        hero.removeEventListener("pointermove", handlePointerMove);
+        hero.removeEventListener("pointerleave", handlePointerLeave);
+      },
+      { once: true }
+    );
+  })();
+</script>
+
+<style>
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-particles::before,
+  .hero-particles::after {
+    content: "";
+    position: absolute;
+    inset: auto;
+    pointer-events: none;
+    filter: blur(56px);
+    opacity: 0.26;
+  }
+
+  .hero-particles::before {
+    top: 10%;
+    left: -4%;
+    width: min(36vw, 460px);
+    height: min(36vw, 460px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(52, 109, 255, 0.055), transparent 72%);
+  }
+
+  .hero-particles::after {
+    right: 2%;
+    top: 18%;
+    width: min(28vw, 360px);
+    height: min(30vw, 380px);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(193, 103, 255, 0.04), transparent 72%);
+  }
+
+  .hero-particles__canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .hero-particles::before {
+      width: 220px;
+      height: 220px;
+      left: -12%;
+      top: 6%;
+      opacity: 0.26;
+    }
+
+    .hero-particles::after {
+      width: 180px;
+      height: 180px;
+      right: -6%;
+      top: 24%;
+      opacity: 0.18;
+    }
+  }
+</style>

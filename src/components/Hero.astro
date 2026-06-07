@@ -1,19 +1,20 @@
 ---
 import Reveal from "./Reveal.astro";
 import AnimatedPhone from "./AnimatedPhone.astro";
+import HeroParticles from "./HeroParticles.astro";
 ---
 
 <section class="hero">
+  <HeroParticles />
   <div class="container hero__grid">
     <Reveal class="hero__content" delay={40}>
       <h1>
-        Digitaliza tu negocio.
+        <span>Digitaliza tu negocio.</span>
         <br />
-        Automatiza tu crecimiento.
+        <span>Automatiza tu<br />crecimiento.</span>
       </h1>
       <p class="hero__lead">
-        Creamos soluciones que conectan tu web, tus clientes, tus ventas y tus
-        procesos internos en un solo flujo más ordenado, rápido e inteligente.
+        Menos tareas manuales. Más ventas, más control y procesos más inteligentes.
       </p>
       <div class="hero__actions">
         <a class="button button--primary hero__button" href="https://kitstation.pe/empezar-con-kit/">Empezar ahora →</a>
