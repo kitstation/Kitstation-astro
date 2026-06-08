@@ -27,9 +27,8 @@
     const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, active: false };
 
     const palette = [
-      { color: "36, 99, 255", minOpacity: 1, maxOpacity: 1, weight: 0.5 },
-      { color: "255, 196, 0", minOpacity: 1, maxOpacity: 1, weight: 0.24 },
-      { color: "255, 72, 72", minOpacity: 1, maxOpacity: 1, weight: 0.26 }
+      { color: "182, 189, 201", minOpacity: 0.35, maxOpacity: 0.43, weight: 0.68 },
+      { color: "104, 142, 230", minOpacity: 0.37, maxOpacity: 0.45, weight: 0.32 }
     ];
 
     const rand = (min, max) => min + Math.random() * (max - min);
@@ -54,10 +53,10 @@
         y,
         baseX: x,
         baseY: y,
-        radius: rand(1.8, 3.4),
+        radius: rand(1.6, 3),
         opacity: rand(tint.minOpacity, tint.maxOpacity) + clusterBoost,
-        driftX: rand(-0.12, 0.12),
-        driftY: rand(-0.1, 0.1),
+        driftX: rand(-0.2, 0.2),
+        driftY: rand(-0.18, 0.18),
         pulse: rand(0.4, 1.2),
         pulseSpeed: rand(0.0032, 0.0054),
         offset: rand(0, Math.PI * 2),
@@ -69,7 +68,7 @@
     const rebuildParticles = () => {
       const isMobile = mobileQuery.matches;
       const isTablet = tabletQuery.matches && !isMobile;
-      const spacing = isMobile ? 56 : isTablet ? 46 : 40;
+      const spacing = isMobile ? 42 : isTablet ? 35 : 28;
       const jitter = isMobile ? 6 : 8;
       const clusterRadius = isMobile ? 120 : isTablet ? 170 : 210;
       const clusters = [
@@ -95,7 +94,7 @@
             }
           }
 
-          const keepChance = isMobile ? 0.12 : isTablet ? 0.18 : 0.24;
+          const keepChance = isMobile ? 0.2 : isTablet ? 0.28 : 0.35;
           if (Math.random() < keepChance + clusterBoost * 2.4) {
             nextParticles.push(buildParticle(x, y, clusterBoost));
           }
@@ -162,9 +161,9 @@
 
     const draw = (time) => {
       context.clearRect(0, 0, width, height);
-      const flowTime = reducedMotion ? 0 : time * 0.0005;
-      const fieldOffsetX = Math.sin(flowTime) * 7.6;
-      const fieldOffsetY = Math.sin(flowTime * 0.72) * 5.4;
+      const flowTime = reducedMotion ? 0 : time * 0.00075;
+      const fieldOffsetX = Math.sin(flowTime) * 10.5;
+      const fieldOffsetY = Math.sin(flowTime * 0.72) * 7.8;
 
       const pointerInfluence = mobileQuery.matches ? 0 : 18;
       pointer.x += (pointer.targetX - pointer.x) * 0.045;
@@ -201,10 +200,10 @@
           : 0.78 + ((Math.sin(particleTime + particle.offset) + 1) * 0.5) * 0.22;
         const driftX = reducedMotion
           ? 0
-          : Math.sin(particleTime * 0.7 + particle.offset) * particle.driftX * 26;
+          : Math.sin(particleTime * 0.7 + particle.offset) * particle.driftX * 38;
         const driftY = reducedMotion
           ? 0
-          : Math.cos(particleTime * 0.65 + particle.offset) * particle.driftY * 22;
+          : Math.cos(particleTime * 0.65 + particle.offset) * particle.driftY * 34;
 
         let x = particle.baseX + fieldOffsetX + driftX;
         let y = particle.baseY + fieldOffsetY + driftY;
@@ -221,7 +220,7 @@
         }
 
         context.beginPath();
-        context.fillStyle = `rgba(${particle.color}, 1)`;
+        context.fillStyle = `rgba(${particle.color}, ${Math.min(0.45, Math.max(0.35, particle.opacity * pulse))})`;
         context.arc(x, y, particle.radius, 0, Math.PI * 2);
         context.fill();
       }

@@ -1,0 +1,924 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import "../styles/global.css";
+
+const benefits = [
+  {
+    title: "Atención más rápida",
+    text: "Reduce tiempos de respuesta y centraliza todos tus mensajes."
+  },
+  {
+    title: "Clientes organizados",
+    text: "Guarda historial, datos y seguimiento de cada contacto."
+  },
+  {
+    title: "Equipo bajo control",
+    text: "Asigna conversaciones y mide el rendimiento de tus vendedores."
+  },
+  {
+    title: "Automatizaciones inteligentes",
+    text: "Crea recordatorios, respuestas rápidas y flujos automáticos."
+  }
+];
+
+const problems = [
+  "Mensajes perdidos",
+  "Clientes sin seguimiento",
+  "Vendedores desorganizados",
+  "Falta de reportes",
+  "Respuestas lentas"
+];
+
+const channels = ["WhatsApp", "Instagram", "Facebook", "Web / Formularios"];
+
+const crmCore = [
+  "Link Station CRM",
+  "Bandeja de conversaciones",
+  "Clientes",
+  "Asignaciones",
+  "Automatizaciones",
+  "Reportes"
+];
+
+const outputs = [
+  "Vendedor 1",
+  "Vendedor 2",
+  "Vendedor 3",
+  "Jefe de ventas",
+  "Reportes"
+];
+
+const features = [
+  {
+    title: "Bandeja unificada",
+    text: "Recibe conversaciones de distintos canales en un solo panel."
+  },
+  {
+    title: "Gestión de clientes",
+    text: "Organiza datos, historial, etiquetas y seguimiento de cada cliente."
+  },
+  {
+    title: "Asignación de vendedores",
+    text: "Distribuye conversaciones entre tu equipo y evita duplicidad o desorden."
+  },
+  {
+    title: "Automatizaciones",
+    text: "Crea respuestas rápidas, recordatorios y flujos para tareas repetitivas."
+  },
+  {
+    title: "Reportes y métricas",
+    text: "Visualiza conversaciones, rendimiento del equipo, clientes y oportunidades."
+  },
+  {
+    title: "Roles y permisos",
+    text: "Define accesos para administradores, jefes y vendedores."
+  }
+];
+
+const adminBullets = [
+  "Supervisión de conversaciones",
+  "Asignación de responsables",
+  "Control de clientes pendientes",
+  "Métricas por vendedor",
+  "Reportes de actividad"
+];
+
+const integrations = [
+  "WhatsApp",
+  "Instagram",
+  "Facebook",
+  "Formularios web",
+  "Google Sheets",
+  "Webhooks",
+  "API personalizada"
+];
+
+const useCases = [
+  "Tiendas y comercios",
+  "Inmobiliarias",
+  "Clínicas y consultorios",
+  "Academias",
+  "Restaurantes y delivery",
+  "Empresas de servicios"
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Link Station CRM",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD"
+  },
+  description:
+    "Link Station es un CRM para centralizar WhatsApp, Instagram, Facebook y formularios web, organizar clientes, asignar vendedores y controlar ventas desde un solo panel."
+};
+---
+
+<BaseLayout
+  title="Link Station CRM | Centraliza conversaciones y ventas"
+  description="Link Station es un CRM para centralizar WhatsApp, Instagram, Facebook y formularios web, organizar clientes, asignar vendedores y controlar ventas desde un solo panel."
+  structuredData={structuredData}
+>
+  <Header />
+
+  <main class="linkstation-page">
+    <section class="linkstation-hero">
+      <div class="container linkstation-hero__grid">
+        <div class="linkstation-hero__copy">
+          <h1>Centraliza tus conversaciones. Organiza tus ventas.</h1>
+          <p>
+            Link Station reúne WhatsApp, Instagram, Facebook y formularios web en
+            un solo CRM para que tu equipo responda más rápido, haga seguimiento y
+            no pierda clientes.
+          </p>
+          <div class="linkstation-hero__actions">
+            <a class="linkstation-btn linkstation-btn--primary" href="/contactanos/">Agendar una demo</a>
+            <a class="linkstation-btn linkstation-btn--secondary" href="#funcionalidades">Ver funcionalidades</a>
+          </div>
+        </div>
+
+        <div class="linkstation-hero__visual" aria-hidden="true">
+          <div class="crm-shell">
+            <div class="crm-shell__window">
+              <div class="crm-shell__bar">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="crm-shell__top">
+                <div class="crm-stat">
+                  <small>Conversaciones activas</small>
+                  <strong>148</strong>
+                </div>
+                <div class="crm-stat">
+                  <small>Nuevos clientes</small>
+                  <strong>36</strong>
+                </div>
+                <div class="crm-stat">
+                  <small>Ventas del mes</small>
+                  <strong>S/ 72K</strong>
+                </div>
+              </div>
+
+              <div class="crm-shell__middle">
+                <div class="crm-chart">
+                  <div class="crm-chart__grid"></div>
+                  <div class="crm-chart__line"></div>
+                </div>
+                <div class="crm-channels">
+                  <h3>Conversaciones por canal</h3>
+                  <div><span>WhatsApp</span><strong>53%</strong></div>
+                  <div><span>Instagram</span><strong>24%</strong></div>
+                  <div><span>Facebook</span><strong>13%</strong></div>
+                  <div><span>Web</span><strong>10%</strong></div>
+                </div>
+              </div>
+
+              <div class="crm-shell__bottom">
+                <article class="crm-card crm-card--floating crm-card--left">
+                  <h4>Bandeja</h4>
+                  <p>Clientes en seguimiento</p>
+                </article>
+                <article class="crm-card crm-card--floating crm-card--center">
+                  <h4>Asignación</h4>
+                  <p>Equipo distribuido</p>
+                </article>
+                <article class="crm-card crm-card--floating crm-card--right">
+                  <h4>Automatizaciones</h4>
+                  <p>Recordatorios activos</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-benefits">
+      <div class="container linkstation-benefits__grid">
+        {benefits.map((item) => (
+          <article class="linkstation-panel">
+            <h2>{item.title}</h2>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="linkstation-problem">
+      <div class="container">
+        <header class="linkstation-sectionhead">
+          <span>Problema</span>
+          <h2>Cuando tus mensajes están dispersos, tus ventas también lo están.</h2>
+          <p>
+            Muchos negocios pierden oportunidades porque los mensajes llegan por
+            diferentes canales, los vendedores responden sin orden y el jefe no
+            tiene visibilidad real del proceso comercial.
+          </p>
+        </header>
+
+        <div class="linkstation-problem__grid">
+          {problems.map((item) => (
+            <article class="linkstation-problem__card">
+              <strong>{item}</strong>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-solution">
+      <div class="container">
+        <header class="linkstation-sectionhead">
+          <span>Solución</span>
+          <h2>Link Station conecta tus canales, tu equipo y tus clientes en un solo lugar.</h2>
+          <p>
+            Centraliza la atención comercial, distribuye conversaciones entre
+            vendedores y controla cada oportunidad desde un panel simple y
+            profesional.
+          </p>
+        </header>
+
+        <div class="linkstation-flow">
+          <article class="linkstation-flow__column">
+            <h3>Canales de entrada</h3>
+            <div class="linkstation-flow__stack">
+              {channels.map((item) => <span>{item}</span>)}
+            </div>
+          </article>
+
+          <article class="linkstation-flow__column linkstation-flow__column--center">
+            <h3>Link Station CRM</h3>
+            <div class="linkstation-flow__stack">
+              {crmCore.map((item) => <span>{item}</span>)}
+            </div>
+          </article>
+
+          <article class="linkstation-flow__column">
+            <h3>Salida y control</h3>
+            <div class="linkstation-flow__stack">
+              {outputs.map((item) => <span>{item}</span>)}
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-features" id="funcionalidades">
+      <div class="container">
+        <header class="linkstation-sectionhead">
+          <span>Funcionalidades</span>
+          <h2>Funcionalidades para vender con más orden y control.</h2>
+        </header>
+
+        <div class="linkstation-features__grid">
+          {features.map((item) => (
+            <article class="linkstation-feature">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-admin">
+      <div class="container linkstation-admin__grid">
+        <div class="linkstation-admin__copy">
+          <span>Para jefes y administradores</span>
+          <h2>Control real para el jefe de ventas.</h2>
+          <p>
+            Link Station permite ver qué vendedor atiende cada cliente, cuántas
+            conversaciones están activas y qué oportunidades necesitan seguimiento.
+          </p>
+        </div>
+
+        <div class="linkstation-admin__list">
+          {adminBullets.map((item) => (
+            <article class="linkstation-admin__item">{item}</article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-integrations">
+      <div class="container">
+        <header class="linkstation-sectionhead">
+          <span>Integraciones</span>
+          <h2>Conecta tus canales y herramientas favoritas.</h2>
+          <p>
+            Link Station está pensado para integrarse con los canales que tu
+            negocio ya usa todos los días.
+          </p>
+        </header>
+
+        <div class="linkstation-integrations__grid">
+          {integrations.map((item) => (
+            <article class="linkstation-integration">{item}</article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-usecases">
+      <div class="container">
+        <header class="linkstation-sectionhead">
+          <span>Casos de uso</span>
+          <h2>Diseñado para negocios que atienden muchos clientes.</h2>
+        </header>
+
+        <div class="linkstation-usecases__grid">
+          {useCases.map((item) => (
+            <article class="linkstation-usecase">{item}</article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-finalcta">
+      <div class="container">
+        <div class="linkstation-finalcta__panel">
+          <span>Link Station CRM</span>
+          <h2>Convierte tus mensajes en oportunidades reales.</h2>
+          <p>
+            Agenda una demo de Link Station y descubre cómo ordenar la atención,
+            seguimiento y ventas de tu negocio desde un solo CRM.
+          </p>
+          <a class="linkstation-btn linkstation-btn--light" href="/contactanos/">Agendar una demo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>
+
+<style>
+  :root {
+    --ls-blue: #0b56f0;
+    --ls-blue-dark: #0a45c2;
+    --ls-ink: #10131a;
+    --ls-soft: #5d6778;
+    --ls-line: rgba(15, 22, 38, 0.08);
+    --ls-surface: #f6f9ff;
+    --ls-card-shadow: 0 22px 54px rgba(19, 33, 68, 0.08);
+  }
+
+  .linkstation-page {
+    background:
+      radial-gradient(circle at top left, rgba(11, 86, 240, 0.08), transparent 24%),
+      linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    color: var(--ls-ink);
+  }
+
+  .linkstation-hero,
+  .linkstation-benefits,
+  .linkstation-problem,
+  .linkstation-solution,
+  .linkstation-features,
+  .linkstation-admin,
+  .linkstation-integrations,
+  .linkstation-usecases,
+  .linkstation-finalcta {
+    padding: 88px 0;
+  }
+
+  .linkstation-hero {
+    padding-top: 72px;
+  }
+
+  .linkstation-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 58px;
+    align-items: center;
+  }
+
+  .linkstation-kicker,
+  .linkstation-sectionhead span,
+  .linkstation-admin__copy span,
+  .linkstation-finalcta__panel span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 16px;
+    border: 1px solid rgba(11, 86, 240, 0.12);
+    border-radius: 999px;
+    background: rgba(11, 86, 240, 0.05);
+    color: var(--ls-blue);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .linkstation-hero__copy h1,
+  .linkstation-sectionhead h2,
+  .linkstation-admin__copy h2,
+  .linkstation-finalcta__panel h2 {
+    margin: 20px 0 0;
+    font-family: "Poppins", sans-serif;
+    font-size: 80px;
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.08em;
+  }
+
+  .linkstation-sectionhead h2,
+  .linkstation-admin__copy h2,
+  .linkstation-finalcta__panel h2 {
+    font-size: clamp(2.2rem, 4vw, 4rem);
+  }
+
+  .linkstation-hero__copy p,
+  .linkstation-sectionhead p,
+  .linkstation-admin__copy p,
+  .linkstation-finalcta__panel p {
+    max-width: 42rem;
+    margin: 22px 0 0;
+    color: var(--ls-soft);
+    font-size: 1.08rem;
+    line-height: 1.65;
+  }
+
+  .linkstation-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .linkstation-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .linkstation-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .linkstation-btn--primary {
+    background: linear-gradient(135deg, var(--ls-blue) 0%, #3b72ff 100%);
+    color: #fff;
+    box-shadow: 0 16px 34px rgba(11, 86, 240, 0.22);
+  }
+
+  .linkstation-btn--secondary {
+    border-color: rgba(16, 19, 26, 0.1);
+    background: #fff;
+    color: var(--ls-ink);
+  }
+
+  .linkstation-btn--light {
+    background: #fff;
+    color: var(--ls-blue-dark);
+  }
+
+  .linkstation-hero__visual {
+    position: relative;
+    min-height: 620px;
+  }
+
+  .crm-shell {
+    position: relative;
+    height: 100%;
+    padding-top: 22px;
+  }
+
+  .crm-shell::before {
+    content: "";
+    position: absolute;
+    inset: 14% 6% 4%;
+    border-radius: 36px;
+    background: radial-gradient(circle, rgba(11, 86, 240, 0.14), transparent 72%);
+    filter: blur(42px);
+  }
+
+  .crm-shell__window {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border: 1px solid rgba(12, 19, 37, 0.08);
+    border-radius: 34px;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: var(--ls-card-shadow);
+    backdrop-filter: blur(6px);
+  }
+
+  .crm-shell__bar {
+    display: flex;
+    gap: 8px;
+    padding: 18px 20px 0;
+  }
+
+  .crm-shell__bar span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #d9deeb;
+  }
+
+  .crm-shell__bar span:first-child {
+    background: #0b56f0;
+  }
+
+  .crm-shell__bar span:nth-child(2) {
+    background: #7c9fff;
+  }
+
+  .crm-shell__bar span:nth-child(3) {
+    background: #9fd58c;
+  }
+
+  .crm-shell__top,
+  .crm-shell__middle,
+  .crm-shell__bottom {
+    display: grid;
+    gap: 18px;
+    padding: 20px 22px 0;
+  }
+
+  .crm-shell__top {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .crm-stat,
+  .crm-channels,
+  .crm-chart,
+  .crm-card {
+    border: 1px solid var(--ls-line);
+    border-radius: 22px;
+    background: #fff;
+  }
+
+  .crm-stat {
+    padding: 18px;
+  }
+
+  .crm-stat small {
+    display: block;
+    color: var(--ls-soft);
+    font-size: 0.84rem;
+  }
+
+  .crm-stat strong {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.5rem;
+  }
+
+  .crm-shell__middle {
+    grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+    align-items: stretch;
+  }
+
+  .crm-chart {
+    position: relative;
+    min-height: 280px;
+    overflow: hidden;
+  }
+
+  .crm-chart__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(11, 86, 240, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(11, 86, 240, 0.06) 1px, transparent 1px);
+    background-size: 34px 34px;
+  }
+
+  .crm-chart__line {
+    position: absolute;
+    inset: 20% 10% 16%;
+    background: linear-gradient(180deg, rgba(11, 86, 240, 0.08), transparent 80%);
+    clip-path: polygon(0 78%, 14% 70%, 32% 76%, 44% 48%, 58% 58%, 72% 42%, 100% 12%, 100% 100%, 0 100%);
+  }
+
+  .crm-channels {
+    padding: 22px;
+  }
+
+  .crm-channels h3 {
+    margin: 0 0 14px;
+    font-size: 1.2rem;
+  }
+
+  .crm-channels div {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-top: 1px solid var(--ls-line);
+    color: var(--ls-soft);
+  }
+
+  .crm-channels div:first-of-type {
+    border-top: 0;
+  }
+
+  .crm-channels strong {
+    color: var(--ls-ink);
+  }
+
+  .crm-shell__bottom {
+    position: relative;
+    min-height: 162px;
+    padding-bottom: 22px;
+  }
+
+  .crm-card {
+    position: absolute;
+    width: 220px;
+    padding: 18px;
+    box-shadow: 0 16px 34px rgba(19, 33, 68, 0.07);
+  }
+
+  .crm-card h4 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .crm-card p {
+    margin: 8px 0 0;
+    color: var(--ls-soft);
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .crm-card--left {
+    left: 6%;
+    bottom: 22px;
+  }
+
+  .crm-card--center {
+    left: 35%;
+    bottom: 0;
+  }
+
+  .crm-card--right {
+    right: 6%;
+    bottom: 30px;
+  }
+
+  .linkstation-benefits__grid,
+  .linkstation-problem__grid,
+  .linkstation-features__grid,
+  .linkstation-integrations__grid,
+  .linkstation-usecases__grid {
+    display: grid;
+    gap: 18px;
+  }
+
+  .linkstation-benefits__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .linkstation-panel,
+  .linkstation-problem__card,
+  .linkstation-feature,
+  .linkstation-admin__item,
+  .linkstation-integration,
+  .linkstation-usecase {
+    padding: 26px;
+    border: 1px solid var(--ls-line);
+    border-radius: 26px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--ls-card-shadow);
+  }
+
+  .linkstation-panel h2,
+  .linkstation-feature h3 {
+    margin: 0;
+    font-size: 1.18rem;
+    line-height: 1.08;
+  }
+
+  .linkstation-panel p,
+  .linkstation-feature p {
+    margin: 12px 0 0;
+    color: var(--ls-soft);
+    line-height: 1.6;
+  }
+
+  .linkstation-problem__grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    margin-top: 30px;
+  }
+
+  .linkstation-problem__card {
+    display: grid;
+    place-items: center;
+    min-height: 128px;
+    text-align: center;
+  }
+
+  .linkstation-flow {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+    margin-top: 34px;
+  }
+
+  .linkstation-flow__column {
+    padding: 26px;
+    border: 1px solid var(--ls-line);
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: var(--ls-card-shadow);
+  }
+
+  .linkstation-flow__column h3 {
+    margin: 0;
+    font-size: 1.24rem;
+  }
+
+  .linkstation-flow__column--center {
+    background:
+      linear-gradient(180deg, rgba(11, 86, 240, 0.08), rgba(11, 86, 240, 0.02)),
+      #fff;
+  }
+
+  .linkstation-flow__stack {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .linkstation-flow__stack span {
+    display: block;
+    padding: 14px 16px;
+    border: 1px solid var(--ls-line);
+    border-radius: 16px;
+    background: rgba(246, 249, 255, 0.9);
+    color: var(--ls-soft);
+    font-weight: 500;
+  }
+
+  .linkstation-features__grid,
+  .linkstation-usecases__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 30px;
+  }
+
+  .linkstation-admin__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 30px;
+    align-items: start;
+  }
+
+  .linkstation-admin__list {
+    display: grid;
+    gap: 16px;
+  }
+
+  .linkstation-admin__item {
+    font-weight: 600;
+  }
+
+  .linkstation-integrations__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 30px;
+  }
+
+  .linkstation-integration,
+  .linkstation-usecase {
+    display: grid;
+    place-items: center;
+    min-height: 120px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .linkstation-finalcta__panel {
+    padding: 44px;
+    border-radius: 34px;
+    background: linear-gradient(135deg, var(--ls-blue) 0%, #4f7dff 100%);
+    box-shadow: 0 26px 56px rgba(11, 86, 240, 0.26);
+    color: #fff;
+    text-align: center;
+  }
+
+  .linkstation-finalcta__panel span {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+
+  .linkstation-finalcta__panel p {
+    max-width: 42rem;
+    margin-inline: auto;
+    color: rgba(255, 255, 255, 0.86);
+  }
+
+  .linkstation-finalcta__panel .linkstation-btn {
+    margin-top: 28px;
+  }
+
+  @media (max-width: 1100px) {
+    .linkstation-hero__grid,
+    .linkstation-admin__grid,
+    .linkstation-flow,
+    .linkstation-benefits__grid,
+    .linkstation-problem__grid,
+    .linkstation-features__grid,
+    .linkstation-integrations__grid,
+    .linkstation-usecases__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .linkstation-hero__visual {
+      min-height: 540px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .linkstation-hero,
+    .linkstation-benefits,
+    .linkstation-problem,
+    .linkstation-solution,
+    .linkstation-features,
+    .linkstation-admin,
+    .linkstation-integrations,
+    .linkstation-usecases,
+    .linkstation-finalcta {
+      padding: 64px 0;
+    }
+
+    .linkstation-hero__grid,
+    .linkstation-admin__grid,
+    .linkstation-flow,
+    .linkstation-benefits__grid,
+    .linkstation-problem__grid,
+    .linkstation-features__grid,
+    .linkstation-integrations__grid,
+    .linkstation-usecases__grid,
+    .crm-shell__top,
+    .crm-shell__middle {
+      grid-template-columns: 1fr;
+    }
+
+    .linkstation-panel,
+    .linkstation-problem__card,
+    .linkstation-feature,
+    .linkstation-admin__item,
+    .linkstation-integration,
+    .linkstation-usecase,
+    .linkstation-flow__column,
+    .linkstation-finalcta__panel {
+      padding: 20px;
+      border-radius: 22px;
+    }
+
+    .linkstation-hero__copy h1,
+    .linkstation-sectionhead h2,
+    .linkstation-admin__copy h2,
+    .linkstation-finalcta__panel h2 {
+      font-size: clamp(2rem, 12vw, 3rem);
+    }
+
+    .linkstation-hero__copy p,
+    .linkstation-sectionhead p,
+    .linkstation-admin__copy p,
+    .linkstation-finalcta__panel p {
+      font-size: 0.96rem;
+    }
+
+    .linkstation-hero__visual {
+      min-height: 0;
+    }
+
+    .crm-shell__window {
+      border-radius: 24px;
+    }
+
+    .crm-shell__bottom {
+      min-height: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .crm-card {
+      position: relative;
+      width: auto;
+      right: auto;
+      left: auto;
+      bottom: auto;
+    }
+  }
+</style>
