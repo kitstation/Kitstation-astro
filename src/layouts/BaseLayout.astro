@@ -83,7 +83,19 @@ const structuredDataItems = Array.isArray(structuredData)
   </head>
   <body>
     <slot />
-    <script type="module" src={revealScript}></script>
+    <script type="module" define:vars={{ revealScript }}>
+      const loadReveal = () => {
+        import(revealScript);
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(loadReveal, { timeout: 1200 });
+      } else {
+        window.addEventListener("load", () => {
+          window.setTimeout(loadReveal, 120);
+        }, { once: true });
+      }
+    </script>
     <script type="module" src={formsScript}></script>
   </body>
 </html>

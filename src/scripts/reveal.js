@@ -1,10 +1,26 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+const queueWrite = (callback) => {
+  window.requestAnimationFrame(callback);
+};
+
+const queueIdle = (callback) => {
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(callback, { timeout: 500 });
+    return;
+  }
+
+  window.setTimeout(callback, 1);
+};
+
 const revealElements = [...document.querySelectorAll("[data-reveal]")];
 
-if (prefersReducedMotion) {
-  revealElements.forEach((element) => element.classList.add("is-visible"));
-} else {
+const initReveal = () => {
+  if (prefersReducedMotion) {
+    revealElements.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -14,7 +30,9 @@ if (prefersReducedMotion) {
         const delay = Number(element.getAttribute("data-delay") || 0);
 
         window.setTimeout(() => {
-          element.classList.add("is-visible");
+          queueWrite(() => {
+            element.classList.add("is-visible");
+          });
         }, delay);
 
         observer.unobserve(element);
@@ -27,7 +45,73 @@ if (prefersReducedMotion) {
   );
 
   revealElements.forEach((element) => observer.observe(element));
-}
+};
+
+const measureTrackSpan = (track, fallbackRatio = 0.82, fallbackMax = 420) => {
+  const firstCard = track.firstElementChild;
+
+  if (!(firstCard instanceof HTMLElement)) {
+    return Math.min(track.clientWidth * fallbackRatio, fallbackMax);
+  }
+
+  const cardWidth = firstCard.getBoundingClientRect().width;
+  const trackStyles = window.getComputedStyle(track);
+  const gap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap || "0");
+
+  return cardWidth + gap;
+};
+
+const createSpanStore = (track, options = {}) => {
+  const { fallbackRatio = 0.82, fallbackMax = 420 } = options;
+  let span = measureTrackSpan(track, fallbackRatio, fallbackMax);
+  let frame = 0;
+
+  const refresh = () => {
+    span = measureTrackSpan(track, fallbackRatio, fallbackMax);
+    return span;
+  };
+
+  const scheduleRefresh = () => {
+    if (frame) return;
+
+    frame = window.requestAnimationFrame(() => {
+      frame = 0;
+      refresh();
+    });
+  };
+
+  let resizeObserver = null;
+  let fallbackResizeHandler = null;
+
+  if ("ResizeObserver" in window) {
+    resizeObserver = new ResizeObserver(() => {
+      scheduleRefresh();
+    });
+    resizeObserver.observe(track);
+  } else {
+    fallbackResizeHandler = () => {
+      scheduleRefresh();
+    };
+    window.addEventListener("resize", fallbackResizeHandler, { passive: true });
+  }
+
+  return {
+    get: () => span,
+    refresh,
+    scheduleRefresh,
+    disconnect: () => {
+      if (frame) {
+        window.cancelAnimationFrame(frame);
+      }
+
+      resizeObserver?.disconnect();
+
+      if (fallbackResizeHandler) {
+        window.removeEventListener("resize", fallbackResizeHandler);
+      }
+    }
+  };
+};
 
 const attachCarouselControls = () => {
   const carousels = document.querySelectorAll("[data-carousel]");
@@ -40,51 +124,42 @@ const attachCarouselControls = () => {
     if (!track || !previous || !next) return;
 
     const loopCount = Number.parseInt(carousel.getAttribute("data-carousel-loop") || "0", 10);
-
-    const getCardSpan = () => {
-      const firstCard = track.firstElementChild;
-
-      if (!(firstCard instanceof HTMLElement)) {
-        return Math.min(track.clientWidth * 0.82, 420);
-      }
-
-      const cardWidth = firstCard.getBoundingClientRect().width;
-      const trackStyles = window.getComputedStyle(track);
-      const gap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap || "0");
-
-      return cardWidth + gap;
-    };
+    const spanStore = createSpanStore(track);
 
     if (loopCount > 0) {
       let isAnimating = false;
       const durationMs = 360;
 
       const resetScroll = (position) => {
-        const previousBehavior = track.style.scrollBehavior;
-        track.style.scrollBehavior = "auto";
-        track.scrollLeft = position;
-        track.style.scrollBehavior = previousBehavior;
+        track.scrollTo({ left: position, behavior: "auto" });
       };
 
-      resetScroll(0);
+      queueWrite(() => {
+        resetScroll(0);
+      });
 
       next.addEventListener("click", () => {
         if (isAnimating) return;
 
         isAnimating = true;
-        const span = getCardSpan();
+        const span = spanStore.refresh();
 
-        track.scrollBy({ left: span, behavior: "smooth" });
+        queueWrite(() => {
+          track.scrollBy({ left: span, behavior: "smooth" });
+        });
 
         window.setTimeout(() => {
-          const firstCard = track.firstElementChild;
+          queueWrite(() => {
+            const firstCard = track.firstElementChild;
 
-          if (firstCard) {
-            track.appendChild(firstCard);
-          }
+            if (firstCard) {
+              track.appendChild(firstCard);
+            }
 
-          resetScroll(0);
-          isAnimating = false;
+            resetScroll(0);
+            spanStore.scheduleRefresh();
+            isAnimating = false;
+          });
         }, durationMs);
       });
 
@@ -92,35 +167,43 @@ const attachCarouselControls = () => {
         if (isAnimating) return;
 
         isAnimating = true;
-        const span = getCardSpan();
-        const lastCard = track.lastElementChild;
+        const span = spanStore.refresh();
 
-        if (lastCard) {
-          track.insertBefore(lastCard, track.firstChild);
-        }
+        queueWrite(() => {
+          const lastCard = track.lastElementChild;
 
-        resetScroll(span);
-        track.scrollBy({ left: -span, behavior: "smooth" });
+          if (lastCard) {
+            track.insertBefore(lastCard, track.firstChild);
+          }
+
+          resetScroll(span);
+          track.scrollBy({ left: -span, behavior: "smooth" });
+        });
 
         window.setTimeout(() => {
-          resetScroll(0);
-          isAnimating = false;
+          queueWrite(() => {
+            resetScroll(0);
+            spanStore.scheduleRefresh();
+            isAnimating = false;
+          });
         }, durationMs);
       });
 
       return;
     }
 
-    const step = () => {
-      return getCardSpan();
-    };
-
     previous.addEventListener("click", () => {
-      track.scrollBy({ left: -step(), behavior: "smooth" });
+      const step = spanStore.refresh();
+      queueWrite(() => {
+        track.scrollBy({ left: -step, behavior: "smooth" });
+      });
     });
 
     next.addEventListener("click", () => {
-      track.scrollBy({ left: step(), behavior: "smooth" });
+      const step = spanStore.refresh();
+      queueWrite(() => {
+        track.scrollBy({ left: step, behavior: "smooth" });
+      });
     });
   });
 };
@@ -161,14 +244,7 @@ const attachTopicSlider = () => {
   let activeIndex = -1;
   let isAnimating = false;
   const durationMs = 360;
-
-  const getSpan = () => {
-    const first = track.firstElementChild;
-
-    if (!(first instanceof HTMLElement)) return 0;
-
-    return first.getBoundingClientRect().width;
-  };
+  const spanStore = createSpanStore(track, { fallbackRatio: 1, fallbackMax: 0 });
 
   const syncActiveState = () => {
     const domItems = [...slider.querySelectorAll("[data-topic-item]")];
@@ -200,28 +276,31 @@ const attachTopicSlider = () => {
   };
 
   const jumpToStart = (position = 0) => {
-    const previousBehavior = track.style.scrollBehavior;
-    track.style.scrollBehavior = "auto";
-    track.scrollLeft = position;
-    track.style.scrollBehavior = previousBehavior;
+    track.scrollTo({ left: position, behavior: "auto" });
   };
 
   const rotateNext = () => {
     if (isAnimating) return;
 
     isAnimating = true;
-    const span = getSpan();
-    track.scrollBy({ left: span, behavior: "smooth" });
+    const span = spanStore.refresh();
+
+    queueWrite(() => {
+      track.scrollBy({ left: span, behavior: "smooth" });
+    });
 
     window.setTimeout(() => {
-      const first = track.firstElementChild;
+      queueWrite(() => {
+        const first = track.firstElementChild;
 
-      if (first) {
-        track.appendChild(first);
-      }
+        if (first) {
+          track.appendChild(first);
+        }
 
-      jumpToStart(0);
-      isAnimating = false;
+        jumpToStart(0);
+        spanStore.scheduleRefresh();
+        isAnimating = false;
+      });
     }, durationMs);
   };
 
@@ -229,19 +308,25 @@ const attachTopicSlider = () => {
     if (isAnimating) return;
 
     isAnimating = true;
-    const span = getSpan();
-    const last = track.lastElementChild;
+    const span = spanStore.refresh();
 
-    if (last) {
-      track.insertBefore(last, track.firstChild);
-    }
+    queueWrite(() => {
+      const last = track.lastElementChild;
 
-    jumpToStart(span);
-    track.scrollBy({ left: -span, behavior: "smooth" });
+      if (last) {
+        track.insertBefore(last, track.firstChild);
+      }
+
+      jumpToStart(span);
+      track.scrollBy({ left: -span, behavior: "smooth" });
+    });
 
     window.setTimeout(() => {
-      jumpToStart(0);
-      isAnimating = false;
+      queueWrite(() => {
+        jumpToStart(0);
+        spanStore.scheduleRefresh();
+        isAnimating = false;
+      });
     }, durationMs);
   };
 
@@ -292,6 +377,9 @@ const attachTopicSlider = () => {
   syncActiveState();
 };
 
-attachCarouselControls();
-closeMobileMenuOnNavigate();
-attachTopicSlider();
+queueIdle(() => {
+  initReveal();
+  attachCarouselControls();
+  closeMobileMenuOnNavigate();
+  attachTopicSlider();
+});
