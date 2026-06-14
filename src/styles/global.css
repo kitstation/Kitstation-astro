@@ -2145,6 +2145,13 @@ select {
 
   .hero__visual {
     justify-content: center;
+    min-height: 0;
+    margin-top: 12px;
+  }
+
+  .animated-phone {
+    width: min(100%, 320px);
+    min-height: 0;
   }
 
   .result-cards {
@@ -2307,7 +2314,15 @@ select {
 
   .animated-phone {
     min-height: 0;
-    width: 100%;
+    width: min(100%, 200px);
+    max-width: 200px;
+    flex: 0 0 200px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .animated-phone__glow {
+    display: none;
   }
 
   .animated-phone__video--desktop {
@@ -2316,8 +2331,7 @@ select {
 
   .animated-phone__video--mobile {
     display: block;
-    width: min(100%, 430px);
-    aspect-ratio: 9 / 16;
+    width: 100%;
     max-width: 100%;
     margin: 0 auto;
     border-radius: 0;
