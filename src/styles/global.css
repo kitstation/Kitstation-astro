@@ -2314,9 +2314,9 @@ select {
 
   .animated-phone {
     min-height: 0;
-    width: min(100%, 200px);
-    max-width: 200px;
-    flex: 0 0 200px;
+    width: min(100%, 230px);
+    max-width: 230px;
+    flex: 0 0 230px;
     margin: 0 auto;
     overflow: hidden;
   }
