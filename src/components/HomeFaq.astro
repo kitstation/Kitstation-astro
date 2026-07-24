@@ -5,8 +5,10 @@ import { homeFaqs } from "../data/homeFaq";
 <section class="home-faq" id="faq" aria-labelledby="home-faq-title">
   <div class="container">
     <div class="home-faq__intro reveal reveal-up" data-reveal="up" data-delay="0">
-      <p class="eyebrow">Preguntas frecuentes</p>
-      <h2 id="home-faq-title">Respuestas claras para empresas que quieren crecer en digital</h2>
+      <h2 id="home-faq-title">
+        <span>Respuestas claras para empresas</span>
+        <span>que quieren crecer en digital</span>
+      </h2>
       <p>
         Resolvemos las dudas más comunes sobre páginas web profesionales, Google Ads, Meta Ads, automatización de WhatsApp y CRM personalizado para empresas en Perú.
       </p>
@@ -44,8 +46,13 @@ import { homeFaqs } from "../data/homeFaq";
     margin: 0 0 14px;
     color: #0d162f;
     font-size: clamp(2rem, 4vw, 3.4rem);
+    font-weight: 400;
     line-height: 0.98;
     letter-spacing: -0.05em;
+  }
+
+  .home-faq__intro h2 span {
+    display: block;
   }
 
   .home-faq__intro p:last-child {

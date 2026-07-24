@@ -1,15 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
-import HeroParticles from "../components/HeroParticles.astro";
 import "../styles/global.css";
 
-const metrics = [
-  { value: "1 panel", label: "Todos tus canales en un solo lugar" },
-  { value: "75%", label: "WhatsApp liderando las conversaciones" },
-  { value: "25%", label: "Tasa de conversion visible para el equipo" }
+const platformLogos = [
+  { src: "/icons/facebook.png", alt: "Facebook" },
+  { src: "/icons/tiktok.png", alt: "TikTok" },
+  { src: "/icons/whatsapp.png", alt: "WhatsApp" },
+  { src: "/icons/woocomerce.png", alt: "WooCommerce" },
+  { src: "/icons/wordpress.png", alt: "WordPress" }
 ];
 
 const features = [
@@ -50,28 +50,51 @@ const structuredData = {
   imageAlt="Vista del dashboard de LinkStation CRM"
   structuredData={structuredData}
 >
-  <Header />
-
   <main class="linkstation-page">
-    <section class="hero linkstation-hero">
-      <HeroParticles />
+    <section class="hero linkstation-hero" id="app-movil">
+      <div class="linkstation-hero__background" aria-hidden="true"></div>
+      <header class="linkstation-nav">
+        <div class="container linkstation-nav__shell">
+          <a class="linkstation-nav__brand" href="/link-station/" aria-label="Ir al inicio de LinkStation">
+            <img
+              src="/images/LOGO-CRM@300x.png"
+              alt="LinkStation"
+              width="300"
+              height="72"
+              loading="eager"
+              decoding="async"
+            />
+          </a>
+
+          <nav class="linkstation-nav__menu" aria-label="Principal de LinkStation">
+            <a href="#app-movil">App Movil</a>
+            <a href="#integraciones">Integraciones</a>
+            <a href="#agente-kit">AgenteKIT</a>
+            <a href="#precios">Precios</a>
+            <a href="#como-funciona">¿Como funciona?</a>
+          </nav>
+
+          <a class="linkstation-nav__cta" href="/contactanos/">Iniciar sesion</a>
+        </div>
+      </header>
       <div class="container linkstation-hero__inner">
         <div class="linkstation-copy reveal reveal-up" data-reveal="up">
-          <h1>
-            <span>Gestiona todos tus chats de clientes</span>
-            <span>y vendedores desde un solo lugar.</span>
+          <h1 aria-label="Centraliza tus ventas y responde 10x mas rapido">
+            <span>Centraliza tus ventas y</span>
+            <span>responde <span class="linkstation-count" data-linkstation-count aria-hidden="true">10</span>x mas rapido</span>
           </h1>
           <p>
-            Responde más rápido, mide el rendimiento de tus agentes y mantén el
-            control de cada conversación desde Linkstation
+            Un sistema que organiza a tu equipo, automatiza respuestas con IA y evita que
+            pierdas clientes por demorar en responder. Nosotros nos encargamos de toda la
+            integracion tecnica.
           </p>
 
           <div class="linkstation-actions">
-            <a class="linkstation-button linkstation-button--primary" href="/contactanos/">
-              Solicitar demo
-            </a>
             <a class="linkstation-button linkstation-button--ghost" href="#overview">
-              Ver tablero
+              Habla con Ventas
+            </a>
+            <a class="linkstation-button linkstation-button--primary" href="/contactanos/">
+              Agendar Demostracion Gratuita
             </a>
           </div>
         </div>
@@ -92,45 +115,103 @@ const structuredData = {
       </div>
     </section>
 
-    <section class="linkstation-metrics">
-      <div class="container linkstation-metrics__grid">
-        {metrics.map((item) => (
-          <article class="linkstation-metric reveal reveal-up" data-reveal="up">
-            <strong>{item.value}</strong>
-            <span>{item.label}</span>
-          </article>
-        ))}
+    <section class="linkstation-metrics" id="integraciones">
+      <div class="container linkstation-platforms">
+        <h2 class="reveal reveal-up" data-reveal="up">Conecta todas tus plataformas a un solo lugar</h2>
+        <div class="linkstation-platforms__marquee" aria-label="Plataformas compatibles">
+          <div class="linkstation-platforms__track">
+            {[...platformLogos, ...platformLogos].map((logo) => (
+              <div class="linkstation-platforms__item">
+                <img src={logo.src} alt={logo.alt} width="220" height="72" loading="lazy" decoding="async" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <a class="linkstation-integrations-button" href="#agente-kit">
+          Conoce mas sobre nuestras integraciones
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+          </svg>
+        </a>
       </div>
     </section>
 
-    <section class="linkstation-overview">
-      <div class="container linkstation-overview__grid">
-        <div class="linkstation-sectionhead reveal reveal-left" data-reveal="left">
-          <span>VISION GENERAL</span>
-          <h2>Una interfaz limpia para entender el estado comercial sin esfuerzo.</h2>
-          <p>
-            LinkStation ordena el trabajo diario con tarjetas de rendimiento,
-            lectura por canal e insights accionables para tomar decisiones mas
-            rapidas.
-          </p>
+    <section class="linkstation-overview" id="agente-kit">
+      <div class="container linkstation-problem__grid">
+        <div class="linkstation-problem__media reveal reveal-left" data-reveal="left">
+          <p>Video animado de todas las redes sociales fusionandose en linkstation.</p>
         </div>
 
-        <div class="linkstation-featurelist">
-          {features.map((item) => (
-            <article class="linkstation-feature reveal reveal-right" data-reveal="right">
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+        <div class="linkstation-problem__copy reveal reveal-right" data-reveal="right">
+          <h2>¿Tus vendedores pierden mensajes saltando de app en app?</h2>
+          <p>
+            Mensajes perdidos, tiempos de respuesta lentos, sin control de metricas,
+            dependencia de respuestas manuales repetitivas.
+          </p>
+          <p>Pierdes dinero frente a competidores mas rapidos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-solution" id="como-funciona">
+      <div class="container linkstation-solution__inner">
+        <h2 class="reveal reveal-up" data-reveal="up">
+          Esta es plataforma que pondra fin a tus mensajes perdidos ¿Como?
+        </h2>
+
+        <div class="linkstation-solution__grid">
+          <div class="linkstation-solution__list reveal reveal-left" data-reveal="left">
+            <article class="linkstation-solution__item is-active">
+              <h3>Control Total (Bandeja Unica)</h3>
+              <p>
+                Deja de perder clientes porque un vendedor olvido revisar el Instagram o
+                el TikTok. Centralizamos WhatsApp, Meta, LinkedIn y tu sitio web en un
+                solo flujo de trabajo. Si te escriben por donde sea, lo respondes desde
+                el mismo lugar, sin friccion y sin cambiar de pestana.
+              </p>
             </article>
+            <article class="linkstation-solution__item">
+              <h3>Automatizacion Inteligente</h3>
+            </article>
+            <article class="linkstation-solution__item">
+              <h3>Asignacion y Colaboracion</h3>
+            </article>
+            <article class="linkstation-solution__item">
+              <h3>Supervision y Metricas</h3>
+            </article>
+            <article class="linkstation-solution__item">
+              <h3>Cero Friccion Tecnica</h3>
+            </article>
+          </div>
+
+          <div class="linkstation-solution__media reveal reveal-right" data-reveal="right">
+            <p>Imagenes describiendo cada una de las cualidades</p>
+          </div>
+        </div>
+
+        <div class="linkstation-solution__progress" aria-hidden="true">
+          <span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="linkstation-velocity" aria-label="Diseñado por vendedores para vendedores">
+      <div class="linkstation-velocity__viewport">
+        <div class="linkstation-velocity__track" data-linkstation-velocity-track>
+          {Array.from({ length: 8 }).map(() => (
+            <span>Diseñado por vendedores para vendedores.</span>
           ))}
         </div>
       </div>
     </section>
 
-    <section class="linkstation-cta">
+    <section class="linkstation-cta" id="precios">
       <div class="container">
         <div class="linkstation-cta__panel reveal reveal-up" data-reveal="up">
-          <span>LINKSTATION</span>
-          <h2>Convierte conversaciones en seguimiento, equipo y ventas visibles.</h2>
+          <h2>
+            <span>Convierte conversaciones en seguimiento,</span>
+            <span>equipo y ventas visibles.</span>
+          </h2>
           <a class="linkstation-button linkstation-button--light" href="/contactanos/">
             Quiero una demo
           </a>
@@ -143,15 +224,84 @@ const structuredData = {
   <WhatsAppButton />
 </BaseLayout>
 
-<style>
+<script>
+  const countNode = document.querySelector("[data-linkstation-count]");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (countNode && !reducedMotion.matches) {
+    const maxCount = 10;
+    let current = 1;
+
+    const animateCount = () => {
+      countNode.classList.remove("is-pulsing");
+      countNode.textContent = String(current);
+
+      if (current < maxCount) {
+        current += 1;
+        window.setTimeout(animateCount, 130);
+        return;
+      }
+
+      countNode.classList.add("is-pulsing");
+      current = 1;
+      window.setTimeout(animateCount, 820);
+    };
+
+    animateCount();
+  }
+
+  const velocityTrack = document.querySelector("[data-linkstation-velocity-track]");
+
+  if (velocityTrack && !reducedMotion.matches) {
+    let lastScrollY = window.scrollY;
+    let currentX = 0;
+    let speed = 1.8;
+    let targetBoost = 0;
+    let currentBoost = 0;
+    let lastTime = performance.now();
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        const delta = window.scrollY - lastScrollY;
+        lastScrollY = window.scrollY;
+        targetBoost = Math.max(-3.8, Math.min(3.8, delta * 0.09));
+      },
+      { passive: true }
+    );
+
+    const moveVelocityText = (time) => {
+      const deltaTime = Math.min(time - lastTime, 40);
+      lastTime = time;
+      currentBoost += (targetBoost - currentBoost) * 0.08;
+      targetBoost *= 0.92;
+      currentX -= (speed + currentBoost) * (deltaTime / 16.67);
+
+      const firstItem = velocityTrack.querySelector("span");
+      const itemWidth = firstItem instanceof HTMLElement ? firstItem.offsetWidth : 0;
+      const wrapWidth = itemWidth ? itemWidth * 4 : 1200;
+
+      if (currentX <= -wrapWidth) currentX += wrapWidth;
+      if (currentX > 0) currentX -= wrapWidth;
+
+      velocityTrack.style.transform = `translate3d(${currentX}px, 0, 0)`;
+      requestAnimationFrame(moveVelocityText);
+    };
+
+    requestAnimationFrame(moveVelocityText);
+  }
+</script>
+
+<style is:global>
   :root {
     --ls-surface: rgba(255, 255, 255, 0.88);
     --ls-surface-strong: rgba(255, 255, 255, 0.96);
     --ls-line: rgba(19, 19, 19, 0.08);
     --ls-text: #202125;
     --ls-soft: #5f6674;
+    --ls-blue: #1b70ff;
     --ls-accent: #4fd46f;
-    --ls-accent-dark: #2b3cff;
+    --ls-accent-dark: #1b70ff;
     --ls-shadow: 0 24px 70px rgba(5, 14, 35, 0.12);
   }
 
@@ -160,16 +310,114 @@ const structuredData = {
     color: var(--ls-text);
   }
 
+  .linkstation-nav {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    padding: 0;
+    pointer-events: none;
+    background: transparent;
+  }
+
+  .linkstation-nav__shell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    min-height: 62px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 18px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035)),
+      rgba(9, 10, 17, 0.54);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      0 18px 46px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    pointer-events: auto;
+  }
+
+  .linkstation-nav__brand {
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    line-height: 1;
+  }
+
+  .linkstation-nav__brand img {
+    display: block;
+    width: 132px;
+    height: auto;
+  }
+
+  .linkstation-nav__menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(18px, 2.4vw, 34px);
+    flex: 1;
+  }
+
+  .linkstation-nav__menu a {
+    display: inline-flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .linkstation-nav__menu a:hover {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .linkstation-nav__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 11px;
+    background: var(--ls-blue);
+    color: #ffffff;
+    font-size: 0.98rem;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 10px 28px rgba(27, 112, 255, 0.28);
+  }
+
   .linkstation-hero {
     position: relative;
     overflow: hidden;
     min-height: auto;
-    padding: 78px 0 40px;
-    background: transparent;
+    padding: 150px 0 40px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(82, 39, 255, 0.18), transparent 34%),
+      linear-gradient(180deg, #02030a 0%, #05080b 48%, #08050d 78%, #000000 100%);
+  }
+
+  .linkstation-hero::before {
+    content: none;
   }
 
   .linkstation-hero::after {
-    display: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(1, 2, 8, 0.12), rgba(1, 2, 8, 0.22) 56%, rgba(0, 0, 0, 0.7) 100%),
+      radial-gradient(circle at 50% 36%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.42) 74%);
+    pointer-events: none;
+    z-index: 1;
   }
 
   .linkstation-hero__inner {
@@ -177,15 +425,64 @@ const structuredData = {
     z-index: 2;
   }
 
+  .linkstation-hero__background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      linear-gradient(90deg, rgba(82, 39, 255, 0.22), rgba(124, 255, 103, 0.2) 48%, rgba(82, 39, 255, 0.24)),
+      linear-gradient(180deg, rgba(1, 2, 8, 0) 0%, rgba(1, 2, 8, 0.22) 45%, rgba(0, 0, 0, 0.96) 100%);
+    box-shadow: inset 0 -220px 180px rgba(0, 0, 0, 0.86);
+  }
+
+  .linkstation-hero__background::before,
+  .linkstation-hero__background::after {
+    content: "";
+    position: absolute;
+    inset: -16% -10%;
+    pointer-events: none;
+    opacity: 0.72;
+    transform-origin: center;
+  }
+
+  .linkstation-hero__background::before {
+    background:
+      radial-gradient(50% 68% at 17% 22%, rgba(82, 39, 255, 0.42), transparent 74%),
+      radial-gradient(38% 58% at 50% 20%, rgba(124, 255, 103, 0.34), transparent 76%),
+      radial-gradient(48% 66% at 84% 20%, rgba(82, 39, 255, 0.46), transparent 78%);
+    filter: blur(46px);
+  }
+
+  .linkstation-hero__background::after {
+    inset: -30% -58% -24%;
+    background:
+      radial-gradient(38% 46% at 18% 36%, rgba(124, 255, 103, 0.28), transparent 72%),
+      radial-gradient(36% 48% at 82% 30%, rgba(82, 39, 255, 0.36), transparent 72%),
+      linear-gradient(
+        100deg,
+        transparent 12%,
+        rgba(82, 39, 255, 0.08) 22%,
+        rgba(82, 39, 255, 0.3) 34%,
+        rgba(124, 255, 103, 0.32) 50%,
+        rgba(82, 39, 255, 0.34) 66%,
+        rgba(82, 39, 255, 0.08) 78%,
+        transparent 88%
+      );
+    filter: blur(46px);
+  }
+
   .linkstation-copy {
     max-width: 880px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+    z-index: 2;
   }
 
   .linkstation-badge,
-  .linkstation-sectionhead span,
-  .linkstation-cta__panel span {
+  .linkstation-sectionhead span {
     display: inline-flex;
     align-items: center;
     min-height: 38px;
@@ -205,8 +502,8 @@ const structuredData = {
   .linkstation-cta__panel h2 {
     margin: 20px 0 0;
     font-size: clamp(2.5rem, 4.8vw, 4.2rem);
-    font-weight: 600;
-    line-height: 1.1;
+    font-weight: 500;
+    line-height: 1;
     letter-spacing: -0.045em;
   }
 
@@ -216,15 +513,43 @@ const structuredData = {
     align-items: center;
     width: fit-content;
     margin-inline: auto;
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
   }
 
   .linkstation-copy h1 span {
     display: block;
     white-space: nowrap;
+    color: #ffffff;
+    font-weight: 500;
+  }
+
+  .linkstation-copy h1 > span {
+    background-image: linear-gradient(110deg, #f4f7ff 0%, #f4f7ff 36%, #ffffff 50%, #dce7ff 62%, #f4f7ff 100%);
+    background-size: 220% auto;
+    background-position: 140% center;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: linkstationShinyText 3.6s ease-in-out infinite;
+  }
+
+  .linkstation-copy h1 .linkstation-count {
+    display: inline-block;
+    min-width: 1.16em;
+    text-align: right;
+    transform-origin: center;
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+  }
+
+  .linkstation-copy h1 .linkstation-count.is-pulsing {
+    animation: linkstationCountPulse 0.58s ease-out;
   }
 
   .linkstation-copy h1 span + span {
-    margin-top: 0.14em;
+    margin-top: 0.02em;
   }
 
   .linkstation-copy p,
@@ -236,6 +561,11 @@ const structuredData = {
     line-height: 1.55;
   }
 
+  .linkstation-copy p {
+    max-width: 960px;
+    color: #ffffff;
+  }
+
   .linkstation-actions {
     display: flex;
     justify-content: center;
@@ -245,15 +575,18 @@ const structuredData = {
   }
 
   .linkstation-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 56px;
-    padding: 0 26px;
+    min-height: 50px;
+    padding: 0 22px;
     border: 1px solid transparent;
-    border-radius: 16px;
-    font-size: 1rem;
-    font-weight: 600;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    isolation: isolate;
+    overflow: hidden;
     transition:
       transform 0.2s ease,
       border-color 0.2s ease,
@@ -266,44 +599,149 @@ const structuredData = {
   }
 
   .linkstation-button--primary {
-    background: linear-gradient(135deg, #2c42ff 0%, #4a36f5 100%);
+    background: var(--ls-blue);
     color: #fff;
-    box-shadow: 0 18px 42px rgba(44, 66, 255, 0.24);
+    box-shadow: 0 18px 42px rgba(27, 112, 255, 0.24);
+  }
+
+  .linkstation-button--primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background:
+      linear-gradient(
+        110deg,
+        rgba(255, 255, 255, 0.26) 0%,
+        rgba(255, 255, 255, 0.26) 32%,
+        rgba(255, 255, 255, 1) 48%,
+        rgba(183, 216, 255, 0.58) 64%,
+        rgba(255, 255, 255, 0.26) 100%
+      );
+    background-size: 240% 100%;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.95;
+    animation: linkstationSpecularSweep 3.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .linkstation-button--primary:hover::before {
+    animation-duration: 1.8s;
+    opacity: 1;
   }
 
   .linkstation-button--ghost {
-    border-color: rgba(19, 19, 19, 0.12);
-    background: rgba(255, 255, 255, 0.76);
-    color: #202125;
+    border-color: transparent;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.035)),
+      rgba(255, 255, 255, 0.025);
+    color: #ffffff;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.26),
+      0 16px 36px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(14px) saturate(145%);
+    -webkit-backdrop-filter: blur(14px) saturate(145%);
+  }
+
+  .linkstation-button--ghost::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background:
+      linear-gradient(
+        110deg,
+        rgba(255, 255, 255, 0.24) 0%,
+        rgba(255, 255, 255, 0.24) 32%,
+        rgba(255, 255, 255, 1) 48%,
+        rgba(255, 255, 255, 0.34) 64%,
+        rgba(255, 255, 255, 0.24) 100%
+      );
+    background-size: 240% 100%;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 1;
+    animation: linkstationSpecularSweep 3.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .linkstation-button--ghost::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    border-radius: calc(12px - 1px);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015));
+    pointer-events: none;
   }
 
   .linkstation-button--ghost:hover {
-    border-color: rgba(44, 66, 255, 0.24);
-    background: rgba(255, 255, 255, 0.94);
-    color: #202125;
+    border-color: rgba(255, 255, 255, 0.48);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06)),
+      rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+  }
+
+  .linkstation-button--ghost:hover::before {
+    opacity: 1;
+    animation-duration: 1.8s;
   }
 
   .linkstation-button--light {
     background: #fff;
-    color: #2432d8;
+    color: var(--ls-blue);
   }
 
   .linkstation-stage {
     position: relative;
     margin-top: 56px;
     padding: 34px 0 24px;
+    z-index: 2;
   }
 
   .linkstation-shot {
     position: relative;
     z-index: 1;
-    width: min(1380px, 100%);
+    width: min(1180px, 100%);
     margin: 0 auto;
     border: 1px solid rgba(19, 19, 19, 0.08);
-    border-radius: 26px;
+    border-radius: 16px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.94);
     box-shadow: var(--ls-shadow);
+    transform: translateZ(0);
+    transition:
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .linkstation-shot:hover {
+    transform: scale(1.025);
+    box-shadow: 0 30px 88px rgba(5, 14, 35, 0.18);
+  }
+
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .linkstation-hero__background::before {
+      animation: linkstationAuroraDriftA 22s ease-in-out infinite alternate;
+      will-change: transform, opacity;
+    }
+
+    .linkstation-hero__background::after {
+      animation: linkstationAuroraWave 9s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
   }
 
   .linkstation-shot::after {
@@ -323,98 +761,335 @@ const structuredData = {
   }
 
   .linkstation-metrics {
-    padding: 22px 0 88px;
+    padding: 70px 0 92px;
+    background: #000000;
   }
 
-  .linkstation-metrics__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 18px;
+  .linkstation-platforms {
+    overflow: hidden;
   }
 
-  .linkstation-metric,
-  .linkstation-feature {
-    padding: 26px;
-    border: 1px solid var(--ls-line);
-    border-radius: 24px;
-    background: var(--ls-surface);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 18px 40px rgba(5, 14, 35, 0.06);
+  .linkstation-platforms h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 500;
+    line-height: 1.08;
+    text-align: center;
   }
 
-  .linkstation-metric strong {
+  .linkstation-platforms__marquee {
+    position: relative;
+    margin-top: 54px;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  }
+
+  .linkstation-platforms__track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: clamp(46px, 6vw, 94px);
+    animation: linkstationLogoMarquee 24s linear infinite;
+    will-change: transform;
+  }
+
+  .linkstation-platforms__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: clamp(132px, 12vw, 210px);
+    height: 62px;
+    opacity: 0.95;
+    flex: 0 0 auto;
+  }
+
+  .linkstation-platforms__item img {
     display: block;
-    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    max-width: 100%;
+    max-height: 48px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .linkstation-integrations-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 48px;
+    margin: 48px auto 0;
+    padding: 0 16px 0 18px;
+    border: 1px solid var(--ls-blue);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.02);
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1;
+    text-decoration: none;
+    width: fit-content;
+    isolation: isolate;
+    overflow: hidden;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease,
+      border-color 0.2s ease;
   }
 
-  .linkstation-metric span {
-    display: block;
-    margin-top: 10px;
-    color: var(--ls-soft);
-    line-height: 1.55;
+  .linkstation-integrations-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background:
+      linear-gradient(
+        110deg,
+        rgba(27, 112, 255, 0.5) 0%,
+        rgba(27, 112, 255, 0.5) 32%,
+        rgba(183, 216, 255, 1) 48%,
+        rgba(27, 112, 255, 0.72) 64%,
+        rgba(27, 112, 255, 0.5) 100%
+      );
+    background-size: 240% 100%;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 1;
+    animation: linkstationSpecularSweep 3.2s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .linkstation-integrations-button:hover {
+    background: rgba(27, 112, 255, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .linkstation-integrations-button:hover::before {
+    animation-duration: 1.8s;
+  }
+
+  .linkstation-integrations-button svg {
+    flex: 0 0 auto;
   }
 
   .linkstation-overview {
-    padding: 0 0 96px;
+    padding: 72px 0 112px;
+    background: #000000;
   }
 
-  .linkstation-overview__grid {
+  .linkstation-problem__grid {
     display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap: 28px;
-    align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+    gap: clamp(44px, 7vw, 96px);
+    align-items: center;
   }
 
-  .linkstation-sectionhead p {
-    margin-left: 0;
+  .linkstation-problem__media {
+    display: grid;
+    place-items: center;
+    min-height: clamp(300px, 32vw, 405px);
+    border: 1px solid var(--ls-blue);
+    border-radius: 30px;
+    background: #1b1b1b;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 20px 70px rgba(27, 112, 255, 0.08);
   }
 
-  .linkstation-featurelist {
+  .linkstation-problem__media p {
+    max-width: 380px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .linkstation-problem__copy {
+    color: #ffffff;
+    text-align: right;
+  }
+
+  .linkstation-problem__copy h2 {
+    max-width: 520px;
+    margin: 0 0 16px auto;
+    color: #ffffff;
+    font-size: clamp(2rem, 3.3vw, 3.15rem);
+    font-weight: 500;
+    line-height: 1.08;
+  }
+
+  .linkstation-problem__copy p {
+    max-width: 520px;
+    margin: 0 0 12px auto;
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.36;
+  }
+
+  .linkstation-solution {
+    padding: 54px 0 112px;
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .linkstation-solution__inner {
+    max-width: var(--container);
+  }
+
+  .linkstation-solution h2 {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: clamp(2rem, 3.1vw, 3rem);
+    font-weight: 500;
+    line-height: 1.05;
+    text-align: center;
+  }
+
+  .linkstation-solution__grid {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.78fr) minmax(500px, 1.12fr);
+    gap: clamp(48px, 7vw, 86px);
+    align-items: center;
+    margin-top: 42px;
+  }
+
+  .linkstation-solution__list {
     display: grid;
     gap: 18px;
   }
 
-  .linkstation-feature {
-    background: var(--ls-surface-strong);
+  .linkstation-solution__item {
+    color: rgba(255, 255, 255, 0.32);
   }
 
-  .linkstation-feature h3 {
+  .linkstation-solution__item h3 {
     margin: 0;
-    font-size: 1.28rem;
+    color: currentColor;
+    font-size: 1.14rem;
+    font-weight: 600;
+    line-height: 1.15;
   }
 
-  .linkstation-feature p {
-    margin: 10px 0 0;
-    color: var(--ls-soft);
-    line-height: 1.6;
+  .linkstation-solution__item p {
+    margin: 4px 0 0;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .linkstation-solution__item.is-active {
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+  }
+
+  .linkstation-solution__media {
+    display: grid;
+    place-items: center;
+    min-height: clamp(330px, 31vw, 405px);
+    border: 1px solid var(--ls-blue);
+    border-radius: 30px;
+    background: #1b1b1b;
+    box-shadow: 0 24px 72px rgba(27, 112, 255, 0.08);
+  }
+
+  .linkstation-solution__media p {
+    max-width: 360px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.22);
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.14;
+    text-align: center;
+  }
+
+  .linkstation-solution__progress {
+    height: 7px;
+    margin: 40px auto 0;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  .linkstation-solution__progress span {
+    display: block;
+    width: 35%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--ls-blue);
+  }
+
+  .linkstation-velocity {
+    overflow: hidden;
+    padding: 28px 0 68px;
+    background: #000000;
+    color: #ffffff;
+  }
+
+  .linkstation-velocity__viewport {
+    overflow: hidden;
+    width: 100%;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+
+  .linkstation-velocity__track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 0.42em;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  .linkstation-velocity__track span {
+    flex: 0 0 auto;
+    color: #ffffff;
+    font-size: clamp(2.6rem, 7vw, 6.5rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: 0;
   }
 
   .linkstation-cta {
     padding: 0 0 96px;
+    background: #000000;
   }
 
   .linkstation-cta__panel {
     padding: 42px;
-    border: 1px solid rgba(19, 19, 19, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 30px;
     background:
-      radial-gradient(circle at top right, rgba(122, 146, 255, 0.18), transparent 34%),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(245, 248, 255, 0.98));
+      radial-gradient(circle at top right, rgba(27, 112, 255, 0.18), transparent 34%),
+      linear-gradient(135deg, rgba(18, 18, 22, 0.96), rgba(8, 9, 13, 0.98));
     text-align: center;
-    box-shadow: var(--ls-shadow);
-  }
-
-  .linkstation-cta__panel span {
-    border-color: rgba(19, 19, 19, 0.08);
-    background: rgba(255, 255, 255, 0.82);
-    color: #3d4655;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
   }
 
   .linkstation-cta__panel h2 {
-    max-width: 840px;
+    max-width: 1040px;
     margin-inline: auto;
-    font-size: clamp(2rem, 4vw, 3.8rem);
+    font-size: clamp(2rem, 3.7vw, 3.55rem);
+    color: #ffffff;
+  }
+
+  .linkstation-cta__panel h2 span {
+    display: block;
+    white-space: nowrap;
   }
 
   .linkstation-cta__panel .linkstation-button {
@@ -422,9 +1097,27 @@ const structuredData = {
   }
 
   @media (max-width: 980px) {
-    .linkstation-metrics__grid,
-    .linkstation-overview__grid {
+    .linkstation-nav__shell {
+      gap: 18px;
+    }
+
+    .linkstation-nav__menu {
+      gap: 18px;
+    }
+
+    .linkstation-problem__grid,
+    .linkstation-solution__grid {
       grid-template-columns: 1fr;
+    }
+
+    .linkstation-problem__copy {
+      text-align: center;
+    }
+
+    .linkstation-problem__copy h2,
+    .linkstation-problem__copy p {
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .linkstation-stage {
@@ -434,8 +1127,52 @@ const structuredData = {
   }
 
   @media (max-width: 768px) {
+    .linkstation-nav {
+      top: 12px;
+      padding-top: 0;
+    }
+
+    .linkstation-nav__shell {
+      min-height: 54px;
+      padding: 0 12px;
+    }
+
+    .linkstation-nav__menu {
+      display: none;
+    }
+
+    .linkstation-nav__cta {
+      min-height: 38px;
+      padding: 0 14px;
+      font-size: 0.88rem;
+    }
+
     .linkstation-hero {
-      padding: 52px 0 28px;
+      padding: 104px 0 28px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(82, 39, 255, 0.2), transparent 36%),
+        linear-gradient(180deg, #02030a 0%, #05080b 52%, #050407 78%, #000000 100%);
+    }
+
+    .linkstation-hero::after {
+      background:
+        linear-gradient(180deg, rgba(1, 2, 8, 0.16), rgba(1, 2, 8, 0.44)),
+        radial-gradient(circle at 50% 34%, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.56) 72%);
+    }
+
+    .linkstation-hero__background::before,
+    .linkstation-hero__background::after {
+      animation: none;
+      transform: none;
+      opacity: 0.56;
+    }
+
+    .linkstation-hero__background::before {
+      filter: blur(44px);
+    }
+
+    .linkstation-hero__background::after {
+      filter: blur(54px);
     }
 
     .linkstation-actions {
@@ -452,7 +1189,7 @@ const structuredData = {
     }
 
     .linkstation-shot {
-      border-radius: 20px;
+      border-radius: 14px;
     }
 
     .linkstation-shot::after {
@@ -461,15 +1198,191 @@ const structuredData = {
 
     .linkstation-metrics,
     .linkstation-overview,
+    .linkstation-solution,
+    .linkstation-velocity,
     .linkstation-cta {
       padding-bottom: 64px;
     }
 
-    .linkstation-metric,
-    .linkstation-feature,
+    .linkstation-metrics {
+      padding-top: 54px;
+    }
+
+    .linkstation-platforms h2 {
+      font-size: 1.6rem;
+    }
+
+    .linkstation-platforms__marquee {
+      margin-top: 38px;
+    }
+
+    .linkstation-platforms__track {
+      gap: 38px;
+      animation-duration: 18s;
+    }
+
+    .linkstation-platforms__item {
+      min-width: 118px;
+      height: 50px;
+    }
+
+    .linkstation-platforms__item img {
+      max-height: 38px;
+    }
+
+    .linkstation-integrations-button {
+      width: 100%;
+      max-width: 360px;
+      margin-top: 34px;
+      font-size: 0.9rem;
+    }
+
+    .linkstation-problem__media,
+    .linkstation-solution__media,
     .linkstation-cta__panel {
       padding: 20px;
       border-radius: 20px;
+    }
+
+    .linkstation-problem__media,
+    .linkstation-solution__media {
+      min-height: 260px;
+    }
+
+    .linkstation-solution {
+      padding-top: 42px;
+    }
+
+    .linkstation-solution h2 {
+      font-size: 1.9rem;
+    }
+
+    .linkstation-solution__grid {
+      margin-top: 34px;
+      gap: 34px;
+    }
+
+    .linkstation-solution__progress {
+      margin-top: 30px;
+    }
+
+    .linkstation-cta__panel h2 span {
+      white-space: normal;
+    }
+
+    .linkstation-velocity {
+      padding-top: 16px;
+    }
+
+    .linkstation-velocity__track span {
+      font-size: 2.35rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .linkstation-hero__background::before,
+    .linkstation-hero__background::after,
+    .linkstation-count,
+    .linkstation-platforms__track,
+    .linkstation-button--ghost::before,
+    .linkstation-button--primary::before,
+    .linkstation-integrations-button::before,
+    .linkstation-copy h1 > span,
+    .linkstation-velocity__track {
+      animation: none;
+      transform: none;
+    }
+  }
+
+  @keyframes linkstationAuroraDriftA {
+    0% {
+      opacity: 0.64;
+      transform: translate3d(-2%, -1%, 0) rotate(-5deg) scale(1);
+    }
+
+    100% {
+      opacity: 0.82;
+      transform: translate3d(3%, 2%, 0) rotate(4deg) scale(1.08);
+    }
+  }
+
+  @keyframes linkstationAuroraDriftB {
+    0% {
+      opacity: 0.48;
+      transform: translate3d(2%, -3%, 0) rotate(6deg) scale(1.02);
+    }
+
+    100% {
+      opacity: 0.72;
+      transform: translate3d(-3%, 2%, 0) rotate(-4deg) scale(1.1);
+    }
+  }
+
+  @keyframes linkstationAuroraWave {
+    0% {
+      opacity: 0.62;
+      transform: translate3d(-16%, -2%, 0) rotate(-5deg) scaleX(1.06);
+    }
+
+    50% {
+      opacity: 0.92;
+      transform: translate3d(16%, 3%, 0) rotate(5deg) scaleX(1.18);
+    }
+
+    100% {
+      opacity: 0.62;
+      transform: translate3d(-16%, -2%, 0) rotate(-5deg) scaleX(1.06);
+    }
+  }
+
+  @keyframes linkstationLogoMarquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes linkstationSpecularSweep {
+    from {
+      background-position: 130% 0;
+    }
+
+    to {
+      background-position: -130% 0;
+    }
+  }
+
+  @keyframes linkstationShinyText {
+    0% {
+      background-position: 140% center;
+    }
+
+    55% {
+      background-position: -40% center;
+    }
+
+    100% {
+      background-position: -40% center;
+    }
+  }
+
+  @keyframes linkstationCountPulse {
+    0% {
+      transform: scale(1);
+      text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+
+    45% {
+      transform: scale(1.16);
+      text-shadow: 0 0 24px rgba(124, 255, 103, 0.3);
+    }
+
+    100% {
+      transform: scale(1);
+      text-shadow: 0 0 0 rgba(255, 255, 255, 0);
     }
   }
 </style>

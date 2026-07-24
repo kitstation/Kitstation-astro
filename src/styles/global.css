@@ -171,7 +171,7 @@ select {
   min-height: 52px;
   padding: 0 22px;
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: 18px;
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
   font-weight: 600;
@@ -263,11 +263,11 @@ select {
   grid-template-columns: 220px 1fr auto;
   gap: 40px;
   align-items: center;
-  min-height: 82px;
+  min-height: 68px;
 }
 
 .brand img {
-  width: 144px;
+  width: 128px;
   height: auto;
 }
 
@@ -315,14 +315,14 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 32px;
-  padding: 0 18px;
+  min-height: 30px;
+  padding: 0 16px;
   border-radius: 999px;
   background: var(--primary);
   color: #fff;
   font-family: "Poppins", sans-serif;
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 500;
   text-transform: uppercase;
   box-shadow: 0 12px 24px rgba(5, 83, 241, 0.22);
 }
@@ -653,18 +653,53 @@ select {
 }
 
 .hero__button {
+  position: relative;
   min-height: 48px;
   padding: 0 24px;
   font-size: 1rem;
   background: #2217ff;
+  isolation: isolate;
+  overflow: hidden;
   transform: translateZ(0);
   backface-visibility: hidden;
   transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
+.hero__button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(255, 255, 255, 0.26) 32%,
+      rgba(255, 255, 255, 1) 48%,
+      rgba(183, 216, 255, 0.58) 64%,
+      rgba(255, 255, 255, 0.26) 100%
+    );
+  background-size: 240% 100%;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.95;
+  animation: heroButtonSpecularSweep 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
 .hero__button:hover {
   transform: none;
   background: #1f36ff;
+}
+
+.hero__button:hover::before {
+  animation-duration: 1.8s;
+  opacity: 1;
 }
 
 .animated-phone {
@@ -1900,7 +1935,7 @@ select {
   color: #fff;
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .footer-accordion__item summary::-webkit-details-marker {
@@ -1933,6 +1968,7 @@ select {
 
 .footer-accordion__item a {
   color: rgba(255, 255, 255, 0.72);
+  font-size: 0.84rem;
 }
 
 .site-footer h3 {
@@ -1940,6 +1976,7 @@ select {
   color: #fff;
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .site-footer li + li {
@@ -1948,6 +1985,7 @@ select {
 
 .site-footer a {
   color: rgba(255, 255, 255, 0.72);
+  font-size: 0.84rem;
 }
 
 .site-footer a:hover {
@@ -1971,6 +2009,7 @@ select {
 .footer-bottom p {
   margin: 0;
   color: rgba(255, 255, 255, 0.58);
+  font-size: 0.82rem;
 }
 
 .whatsapp-float {
@@ -1992,10 +2031,8 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
+  width: 31px;
+  height: 31px;
 }
 
 .whatsapp-float__icon svg {
@@ -2005,7 +2042,7 @@ select {
 
 .whatsapp-float__label {
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @keyframes marquee {
@@ -2015,6 +2052,16 @@ select {
 
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes heroButtonSpecularSweep {
+  from {
+    background-position: 130% 0;
+  }
+
+  to {
+    background-position: -130% 0;
   }
 }
 
@@ -2103,12 +2150,12 @@ select {
 @media (max-width: 1100px) {
   .brand img,
   .mobile-nav__brand img {
-    width: 170px;
+    width: 128px;
   }
 
   .header-main {
     grid-template-columns: 180px 1fr;
-    min-height: 82px;
+    min-height: 68px;
   }
 
   .desktop-nav,
@@ -2760,6 +2807,12 @@ select {
   .footer-bottom p {
     width: 100%;
     text-align: center;
-    font-size: 0.88rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__button::before {
+    animation: none;
   }
 }
