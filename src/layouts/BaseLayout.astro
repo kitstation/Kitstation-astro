@@ -68,6 +68,14 @@ const structuredDataItems = Array.isArray(structuredData)
   </head>
   <body>
     <slot />
+    <div class="recaptcha-disclosure" aria-label="Protección de reCAPTCHA">
+      <div class="recaptcha-disclosure__content">
+        <strong><span>protección de</span> reCAPTCHA</strong>
+      </div>
+      <div class="recaptcha-disclosure__icon" aria-hidden="true">
+        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="" loading="lazy" />
+      </div>
+    </div>
     <script type="module" define:vars={{ revealScript }}>
       const loadReveal = () => {
         import(revealScript);
