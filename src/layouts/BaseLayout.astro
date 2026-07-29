@@ -64,6 +64,7 @@ const structuredDataItems = Array.isArray(structuredData)
     {structuredDataItems.map((item) => (
       <script type="application/ld+json" set:html={JSON.stringify(item)} />
     ))}
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeOxWotAAAAAMu4G5IjcT3_inO9D1eq3o1Fkc1Y" async defer></script>
   </head>
   <body>
     <slot />

@@ -1,6 +1,8 @@
 const SUCCESS_MESSAGE = "Tu mensaje fue enviado correctamente. Te responderemos pronto.";
 const ERROR_MESSAGE =
   "No se pudo enviar el formulario. Intentalo nuevamente o escribenos por WhatsApp.";
+const RECAPTCHA_SITE_KEY = "6LeOxWotAAAAAMu4G5IjcT3_inO9D1eq3o1Fkc1Y";
+const RECAPTCHA_ACTION = "mail_form";
 
 function setOrigin(form) {
   const origin = form.querySelector('input[name="página_origen"]');
@@ -29,6 +31,26 @@ function setButtonState(button, sending) {
   button.disabled = false;
 }
 
+function getRecaptchaApi() {
+  return window.grecaptcha?.enterprise || window.grecaptcha;
+}
+
+function waitForRecaptcha() {
+  const recaptcha = getRecaptchaApi();
+  if (!recaptcha?.ready) {
+    return Promise.reject(new Error("reCAPTCHA unavailable"));
+  }
+
+  return new Promise((resolve) => {
+    recaptcha.ready(() => resolve(recaptcha));
+  });
+}
+
+async function getRecaptchaToken() {
+  const recaptcha = await waitForRecaptcha();
+  return recaptcha.execute(RECAPTCHA_SITE_KEY, { action: RECAPTCHA_ACTION });
+}
+
 function initMailForms() {
   if (!window.fetch) return;
 
@@ -47,12 +69,16 @@ function initMailForms() {
       setButtonState(button, true);
 
       try {
+        const formData = new FormData(form);
+        formData.set("recaptcha_token", await getRecaptchaToken());
+        formData.set("recaptcha_action", RECAPTCHA_ACTION);
+
         const response = await fetch(form.action, {
           method: "POST",
           headers: {
             Accept: "application/json"
           },
-          body: new FormData(form)
+          body: formData
         });
         const result = await response.json().catch(() => ({ success: false }));
 

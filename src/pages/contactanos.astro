@@ -27,15 +27,13 @@ import "../styles/global.css";
           </ul>
 
           <blockquote class="contact-page__quote">
-            “Despreocúpate del contenido digital. En KitStation nos encargamos de todo, para<br />
-            que tú puedas enfocarte en hacer crecer tu negocio.”
+            “Despreocúpate del contenido digital. En KitStation nos encargamos de todo,<br />
+            para que tú puedas enfocarte en hacer crecer tu negocio.”
           </blockquote>
         </div>
 
         <div class="contact-page__panel">
           <form class="contact-page__form" method="POST" action="/api/enviar-formulario" data-mail-form>
-            <h2>Comunícate con nuestro equipo de ventas</h2>
-
             <input type="hidden" name="formulario" value="Contacto" />
             <input type="hidden" name="pagina_origen" value="" />
             <input class="form-honeypot" type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" />
@@ -46,6 +44,7 @@ import "../styles/global.css";
             <label class="contact-page__label" for="service">¿Qué te gustaría hablar con nosotros?</label>
             <select id="service" name="service" required>
               <option>Página web</option>
+              <option>CRM para ventas</option>
               <option>Animación digital</option>
               <option>Automatización con IA</option>
               <option>Campañas digitales</option>
@@ -74,12 +73,11 @@ import "../styles/global.css";
 
 <style>
   .contact-page {
-    min-height: 100vh;
     background: #fff;
   }
 
   .contact-page__section {
-    padding: 78px 0 94px;
+    padding: 64px 0 48px;
   }
 
   .contact-page__grid {
@@ -93,19 +91,21 @@ import "../styles/global.css";
     display: grid;
     justify-items: start;
     align-content: center;
-    gap: 26px;
+    gap: 30px;
     padding: 20px 0;
     text-align: left;
+    transform: translateY(-34px);
   }
 
   .contact-page__copy h1 {
     max-width: none;
     margin: 0;
     color: #000;
-    font-size: clamp(2.1rem, 3.2vw, 3.35rem);
-    font-weight: 600;
-    line-height: 0.94;
-    letter-spacing: -0.06em;
+    font-size: clamp(1.95rem, 2.85vw, 3rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    text-align: justify;
   }
 
   .contact-page__copy h1 span {
@@ -115,7 +115,7 @@ import "../styles/global.css";
 
   .contact-page__benefits {
     display: grid;
-    gap: 18px;
+    gap: 22px;
     margin: 0;
     padding: 0;
     width: min(100%, 680px);
@@ -142,19 +142,23 @@ import "../styles/global.css";
   }
 
   .contact-page__quote {
-    margin: 4px 0 0;
-    max-width: 740px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(13, 22, 47, 0.08);
+    margin: 42px 0 0;
+    width: 100%;
+    max-width: 900px;
+    padding: 22px 24px;
+    border: 1px solid rgba(13, 22, 47, 0.08);
+    border-radius: 14px;
+    background: #f5f6f8;
     color: #0d162f;
-    font-size: clamp(0.92rem, 1.2vw, 1.08rem);
-    line-height: 1.45;
+    font-size: clamp(0.86rem, 0.95vw, 0.94rem);
+    line-height: 1.35;
     text-align: center;
   }
 
   .contact-page__panel {
     padding: 34px;
-    border-radius: 28px;
+    border: 1px solid rgba(13, 22, 47, 0.1);
+    border-radius: 18px;
     background: #fff;
     box-shadow: 0 24px 68px rgba(9, 18, 37, 0.08);
   }
@@ -176,7 +180,7 @@ import "../styles/global.css";
   .contact-page__form textarea {
     width: 100%;
     border: 1px solid rgba(13, 22, 47, 0.12);
-    border-radius: 14px;
+    border-radius: 10px;
     background: #fff;
     color: #111827;
     padding: 14px 16px;
@@ -209,7 +213,7 @@ import "../styles/global.css";
   .contact-page__form button {
     min-height: 52px;
     border: 0;
-    border-radius: 999px;
+    border-radius: 14px;
     background: #1c54f8;
     color: #fff;
     font-weight: 700;

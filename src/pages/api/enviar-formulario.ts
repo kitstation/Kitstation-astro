@@ -20,7 +20,17 @@ const ALLOWED_FORMS = new Set([
   "Libro de Reclamaciones"
 ]);
 
-const EXCLUDED_FIELDS = new Set(["formulario", "pagina_origen", "privacy", "website"]);
+const EXCLUDED_FIELDS = new Set([
+  "formulario",
+  "pagina_origen",
+  "privacy",
+  "website",
+  "recaptcha_token",
+  "recaptcha_action"
+]);
+
+const RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+const RECAPTCHA_MIN_SCORE = 0.5;
 
 function jsonResponse(status: number, payload: Record<string, unknown>) {
   return new Response(JSON.stringify(payload), {
@@ -86,7 +96,7 @@ function getRecipients() {
 }
 
 function getMissingEnvVars() {
-  const required = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS", "MAIL_FROM"];
+  const required = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS", "MAIL_FROM", "RECAPTCHA_SECRET_KEY"];
   return required.filter((name) => !getEnv(name));
 }
 
@@ -110,6 +120,45 @@ function getSubmitterName(entries: Map<string, string>) {
     entries.get("email") ||
     "cliente"
   );
+}
+
+async function verifyRecaptcha(entries: Map<string, string>, metadata: ReturnType<typeof getRequestMetadata>) {
+  const token = entries.get("recaptcha_token") || "";
+  const expectedAction = entries.get("recaptcha_action") || "mail_form";
+
+  if (!token) {
+    return false;
+  }
+
+  const params = new URLSearchParams({
+    secret: getEnv("RECAPTCHA_SECRET_KEY"),
+    response: token
+  });
+
+  if (metadata.ip !== "No disponible") {
+    params.set("remoteip", metadata.ip.split(",")[0].trim());
+  }
+
+  const response = await fetch(RECAPTCHA_VERIFY_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: params
+  });
+
+  const result = (await response.json().catch(() => null)) as {
+    success?: boolean;
+    score?: number;
+    action?: string;
+  } | null;
+
+  if (!result?.success) return false;
+
+  const score = typeof result.score === "number" ? result.score : 1;
+  const actionMatches = !result.action || result.action === expectedAction;
+
+  return score >= RECAPTCHA_MIN_SCORE && actionMatches;
 }
 
 async function sendInternalMail(transporter: nodemailer.Transporter, entries: Map<string, string>, metadata: ReturnType<typeof getRequestMetadata>) {
@@ -189,6 +238,15 @@ async function handleSubmit(request: Request) {
     entries.set(key, cleanValue(value));
   }
 
+  const metadata = getRequestMetadata(request);
+  const recaptchaOk = await verifyRecaptcha(entries, metadata);
+  if (!recaptchaOk) {
+    return jsonResponse(400, {
+      success: false,
+      message: "No se pudo validar reCAPTCHA."
+    });
+  }
+
   const formName = entries.get("formulario") || "";
   if (!ALLOWED_FORMS.has(formName)) {
     return jsonResponse(400, {
@@ -215,8 +273,6 @@ async function handleSubmit(request: Request) {
       pass: getEnv("SMTP_PASS")
     }
   });
-
-  const metadata = getRequestMetadata(request);
 
   await sendInternalMail(transporter, entries, metadata);
   await sendAutoReply(transporter, entries);

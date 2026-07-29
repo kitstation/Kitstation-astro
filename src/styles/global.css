@@ -115,6 +115,26 @@ select {
   color: #c42d2d;
 }
 
+.grecaptcha-badge {
+  right: auto !important;
+  left: -186px !important;
+  bottom: 18px !important;
+  z-index: 54 !important;
+  opacity: 0.82;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16) !important;
+  transition:
+    left 0.28s ease,
+    opacity 0.28s ease,
+    transform 0.28s ease !important;
+}
+
+.grecaptcha-badge:hover,
+.grecaptcha-badge:focus-within {
+  left: 12px !important;
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
 .container {
   width: var(--container);
   margin: 0 auto;
@@ -2014,7 +2034,7 @@ select {
 
 .live-linkstation-widget {
   position: fixed;
-  right: 16px;
+  right: 28px;
   bottom: 16px;
   z-index: 55;
   display: grid;
@@ -2054,8 +2074,8 @@ select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 58px;
-  height: 58px;
+  width: 64px;
+  height: 64px;
   border: 0;
   border-radius: 999px;
   color: #ffffff;
@@ -2103,8 +2123,8 @@ select {
 }
 
 .live-linkstation-widget__channel--instagram img {
-  width: 58px;
-  height: 58px;
+  width: 64px;
+  height: 64px;
   object-fit: cover;
   border-radius: inherit;
 }
@@ -2888,14 +2908,14 @@ select {
   }
 
   .live-linkstation-widget {
-    right: 12px;
+    right: 18px;
     bottom: 12px;
   }
 
   .live-linkstation-widget__channel,
   .live-linkstation-widget__button {
-    width: 54px;
-    height: 54px;
+    width: 58px;
+    height: 58px;
   }
 
   .live-linkstation-widget__channel svg,
