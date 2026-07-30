@@ -76,6 +76,16 @@ const structuredDataItems = Array.isArray(structuredData)
         <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="" loading="lazy" />
       </div>
     </div>
+    <section class="cookie-banner" data-cookie-banner aria-label="Aviso de cookies" hidden>
+      <p>
+        ¡Bienvenido a kitstation.pe! Para proporcionarte una mejor experiencia, utilizamos cookies para habilitar algunas funciones del sitio web. Las cookies nos ayudan a ver qué artículos pueden ser de mayor interés para usted; le permiten compartir fácilmente artículos en las redes sociales; nos permiten entregar contenido, trabajos y anuncios adaptados a sus intereses y ubicaciones; y proporcionar muchos otros beneficios del sitio. Para obtener más información, consulte nuestra <a href="/politicas-y-privacidad/">Política de Cookies y Política de Privacidad</a>.
+      </p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-banner__link" type="button" data-cookie-config>Configuración de cookies</button>
+        <button class="cookie-banner__button" type="button" data-cookie-choice="rejected">Rechazarlas todas</button>
+        <button class="cookie-banner__button" type="button" data-cookie-choice="accepted">Aceptar todas las cookies</button>
+      </div>
+    </section>
     <script type="module" define:vars={{ revealScript }}>
       const loadReveal = () => {
         import(revealScript);
@@ -88,6 +98,30 @@ const structuredDataItems = Array.isArray(structuredData)
           window.setTimeout(loadReveal, 120);
         }, { once: true });
       }
+    </script>
+    <script>
+      (() => {
+        const banner = document.querySelector("[data-cookie-banner]");
+        if (!banner) return;
+
+        const storageKey = "kitstation-cookie-consent";
+        const storedChoice = window.localStorage.getItem(storageKey);
+        if (storedChoice) return;
+
+        banner.hidden = false;
+
+        banner.querySelectorAll("[data-cookie-choice]").forEach((button) => {
+          button.addEventListener("click", () => {
+            window.localStorage.setItem(storageKey, button.dataset.cookieChoice || "configured");
+            banner.hidden = true;
+          });
+        });
+
+        banner.querySelector("[data-cookie-config]")?.addEventListener("click", () => {
+          window.localStorage.setItem(storageKey, "configured");
+          banner.hidden = true;
+        });
+      })();
     </script>
     <script type="module" src={formsScript}></script>
   </body>
