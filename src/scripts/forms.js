@@ -1,6 +1,7 @@
 const SUCCESS_MESSAGE = "Tu mensaje fue enviado correctamente. Te responderemos pronto.";
 const ERROR_MESSAGE =
   "No se pudo enviar el formulario. Intentalo nuevamente o escribenos por WhatsApp.";
+const RECAPTCHA_ENABLED = false;
 const RECAPTCHA_SITE_KEY = "6LeOxWotAAAAAMu4G5IjcT3_inO9D1eq3o1Fkc1Y";
 const RECAPTCHA_ACTION = "mail_form";
 
@@ -69,8 +70,11 @@ function initMailForms() {
 
       try {
         const formData = new FormData(form);
-        formData.set("recaptcha_token", await getRecaptchaToken());
-        formData.set("recaptcha_action", RECAPTCHA_ACTION);
+
+        if (RECAPTCHA_ENABLED) {
+          formData.set("recaptcha_token", await getRecaptchaToken());
+          formData.set("recaptcha_action", RECAPTCHA_ACTION);
+        }
 
         const response = await fetch(form.action, {
           method: "POST",

@@ -31,6 +31,7 @@ const EXCLUDED_FIELDS = new Set([
 ]);
 
 const RECAPTCHA_VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+const RECAPTCHA_ENABLED = false;
 const RECAPTCHA_MIN_SCORE = 0.5;
 
 function jsonResponse(status: number, payload: Record<string, unknown>) {
@@ -100,7 +101,11 @@ function getRecipients() {
 }
 
 function getMissingEnvVars() {
-  const required = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS", "MAIL_FROM", "RECAPTCHA_SECRET_KEY"];
+  const required = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS", "MAIL_FROM"];
+  if (RECAPTCHA_ENABLED) {
+    required.push("RECAPTCHA_SECRET_KEY");
+  }
+
   return required.filter((name) => !getEnv(name));
 }
 
@@ -243,12 +248,14 @@ async function handleSubmit(request: Request) {
   }
 
   const metadata = getRequestMetadata(request);
-  const recaptchaOk = await verifyRecaptcha(entries, metadata);
-  if (!recaptchaOk) {
-    return jsonResponse(400, {
-      success: false,
-      message: "No se pudo validar reCAPTCHA."
-    });
+  if (RECAPTCHA_ENABLED) {
+    const recaptchaOk = await verifyRecaptcha(entries, metadata);
+    if (!recaptchaOk) {
+      return jsonResponse(400, {
+        success: false,
+        message: "No se pudo validar reCAPTCHA."
+      });
+    }
   }
 
   const formName = entries.get("formulario") || "";
