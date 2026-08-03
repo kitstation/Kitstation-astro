@@ -5,10 +5,9 @@ const RECAPTCHA_SITE_KEY = "6LeOxWotAAAAAMu4G5IjcT3_inO9D1eq3o1Fkc1Y";
 const RECAPTCHA_ACTION = "mail_form";
 
 function setOrigin(form) {
-  const origin = form.querySelector('input[name="página_origen"]');
-  if (origin) {
+  form.querySelectorAll('input[name="pagina_origen"], input[name="página_origen"]').forEach((origin) => {
     origin.value = window.location.href;
-  }
+  });
 }
 
 function setFeedback(feedback, state, message) {
@@ -38,7 +37,7 @@ function getRecaptchaApi() {
 function waitForRecaptcha() {
   const recaptcha = getRecaptchaApi();
   if (!recaptcha?.ready) {
-    return Promise.reject(new Error("reCAPTCHA unavailable"));
+    return Promise.reject(new Error("reCAPTCHA no esta disponible."));
   }
 
   return new Promise((resolve) => {
@@ -83,15 +82,15 @@ function initMailForms() {
         const result = await response.json().catch(() => ({ success: false }));
 
         if (!response.ok || result.success !== true) {
-          throw new Error("Request failed");
+          throw new Error(result.message || ERROR_MESSAGE);
         }
 
         form.reset();
         setOrigin(form);
         setFeedback(feedback, "success", SUCCESS_MESSAGE);
         form.dispatchEvent(new CustomEvent("mail-form:success"));
-      } catch (_error) {
-        setFeedback(feedback, "error", ERROR_MESSAGE);
+      } catch (error) {
+        setFeedback(feedback, "error", error?.message || ERROR_MESSAGE);
       } finally {
         setButtonState(button, false);
       }
