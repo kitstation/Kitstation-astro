@@ -78,7 +78,10 @@ const mobileMenuLinks = [
     <nav class="desktop-nav" aria-label="Principal">
       <ul>
         {navItems.map((item) => (
-          <li class:list={[item.hasArrow && "desktop-nav__item desktop-nav__item--mega"]} data-mega-menu>
+          <li
+            class:list={[item.hasArrow && "desktop-nav__item desktop-nav__item--mega"]}
+            data-mega-menu={item.hasArrow ? true : undefined}
+          >
             <a class:list={[item.hasArrow && "desktop-nav__link--arrow"]} href={item.href}>
               {item.label}
               {item.hasArrow && <span class="desktop-nav__arrow" aria-hidden="true"></span>}
