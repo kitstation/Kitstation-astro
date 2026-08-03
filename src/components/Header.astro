@@ -8,7 +8,7 @@ const navItems = [
 
 const megaMenuColumns = [
   {
-    title: "Capacidades",
+    title: "Servicios",
     links: [
       { href: "/consultoria-y-soporte/", title: "Software y plataformas empresariales", description: "Sistemas internos, aplicaciones web y plataformas personalizadas.", image: "/images/perso/1.jpg" },
       { href: "/automatizacion-con-ia/", title: "Automatización e inteligencia artificial", description: "Agentes de IA, automatización de tareas, asistentes e integraciones.", image: "/images/perso/2.jpg" },
@@ -187,8 +187,16 @@ const mobileMenuLinks = [
 <span class="desktop-mega-page-backdrop" data-mega-page-backdrop aria-hidden="true"></span>
 
 <script>
+  const siteHeader = document.querySelector(".site-header");
   const megaItems = document.querySelectorAll("[data-mega-menu]");
   const megaBackdrop = document.querySelector("[data-mega-page-backdrop]");
+
+  const updateHeaderShadow = () => {
+    siteHeader?.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+
+  updateHeaderShadow();
+  window.addEventListener("scroll", updateHeaderShadow, { passive: true });
 
   megaItems.forEach((item) => {
     let closeTimer: number | undefined;

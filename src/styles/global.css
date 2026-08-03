@@ -374,6 +374,14 @@ select {
   border-bottom: 1px solid rgba(10, 10, 10, 0.06);
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
+  transition:
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: rgba(27, 112, 255, 0.08);
+  box-shadow: 0 10px 24px rgba(27, 112, 255, 0.12);
 }
 
 .site-header:has(.mobile-nav[open]) {
@@ -385,7 +393,7 @@ select {
   grid-template-columns: 220px 1fr auto;
   gap: 40px;
   align-items: center;
-  min-height: 68px;
+  min-height: 76px;
 }
 
 .brand img {
@@ -526,7 +534,7 @@ select {
 
 .desktop-mega__heading {
   margin: 0 0 44px;
-  color: #8d8d8d;
+  color: #1b70ff;
   font-size: 0.82rem;
   font-weight: 400;
   letter-spacing: 0.12em;
@@ -1018,7 +1026,7 @@ select {
   margin: 20px 0 0;
   font-family: "Poppins", sans-serif;
   font-size: 25px;
-  line-height: 1.14;
+  line-height: 1.24;
   letter-spacing: -0.04em;
   color: #212121;
 }
@@ -1476,7 +1484,7 @@ select {
 .service-card__label {
   margin: 0 0 10px;
   color: rgba(255, 255, 255, 0.86);
-  font-size: 0.88rem;
+  font-size: clamp(0.76rem, 0.95vw, 0.88rem);
   font-weight: 500;
   letter-spacing: 0;
   text-transform: none;
@@ -1485,7 +1493,8 @@ select {
 .service-card h3 {
   margin: 0 0 16px;
   font-family: "Poppins", sans-serif;
-  font-size: 1.52rem;
+  font-size: clamp(1.18rem, 1.65vw, 1.52rem);
+  font-weight: 600;
   line-height: 1.08;
 }
 
@@ -1493,7 +1502,7 @@ select {
   margin: 0;
   padding-left: 20px;
   color: rgba(255, 255, 255, 0.96);
-  font-size: 1.08rem;
+  font-size: clamp(0.84rem, 1.05vw, 1.08rem);
   line-height: 1.35;
 }
 
@@ -1501,17 +1510,55 @@ select {
   margin-top: 8px;
 }
 
+.service-card--web ul,
+.service-card--compact ul {
+  font-size: clamp(0.8rem, 0.98vw, 0.98rem);
+  line-height: 1.28;
+}
+
+.service-card--web li + li,
+.service-card--compact li + li {
+  margin-top: 10px;
+}
+
+.service-card--compact ul {
+  line-height: 1.2;
+}
+
+.service-card--compact li + li {
+  margin-top: 7px;
+}
+
 .service-card__action {
-  align-self: flex-start;
+  align-self: flex-end;
   margin-top: auto;
-  padding: 11px 28px;
+  padding: 10px clamp(20px, 2vw, 28px);
   border-radius: 999px;
   background: var(--accent);
   color: #fff;
   font-family: "Poppins", sans-serif;
-  font-size: 0.98rem;
-  font-weight: 700;
+  font-size: clamp(0.84rem, 1vw, 0.98rem);
+  font-weight: 600;
   line-height: 1;
+}
+
+@media (max-width: 1280px) and (min-width: 769px) {
+  .service-card ul {
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .service-card--web ul,
+  .service-card--compact ul {
+    font-size: 0.72rem;
+    line-height: 1.22;
+  }
+
+  .service-card li + li,
+  .service-card--web li + li,
+  .service-card--compact li + li {
+    margin-top: 6px;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -2859,6 +2906,7 @@ select {
 
   .hero__lead {
     font-size: 0.9rem;
+    line-height: 1.32;
   }
 
   .hero__grid,
@@ -3211,7 +3259,7 @@ select {
 
   .service-card__content {
     justify-content: flex-end;
-    padding: 18px 18px 18px;
+    padding: 18px clamp(16px, 5vw, 24px);
     background: linear-gradient(180deg, rgba(8, 10, 18, 0) 0%, rgba(8, 10, 18, 0.12) 26%, rgba(8, 10, 18, 0.74) 100%);
   }
 
@@ -3221,39 +3269,39 @@ select {
 
   .service-card h3 {
     margin-bottom: 10px;
-    font-size: 1.08rem;
-    line-height: 1.02;
-    max-width: 74%;
+    font-size: clamp(0.98rem, 4.4vw, 1.18rem);
+    line-height: 1.08;
+    max-width: 92%;
   }
 
   .service-card--web h3 {
-    font-size: 1.08rem;
-    line-height: 1;
-    white-space: nowrap;
+    font-size: clamp(1.05rem, 4.8vw, 1.28rem);
+    line-height: 1.04;
+    white-space: normal;
     letter-spacing: -0.04em;
-    max-width: none;
+    max-width: 92%;
   }
 
   .service-card ul {
     padding-left: 16px;
-    font-size: 0.82rem;
-    line-height: 1.24;
-    max-width: 78%;
+    font-size: clamp(0.72rem, 3.5vw, 0.84rem);
+    line-height: 1.32;
+    max-width: 92%;
   }
 
   .service-card li + li {
-    margin-top: 4px;
+    margin-top: 7px;
   }
 
   .service-card li {
-    white-space: nowrap;
-    font-size: 0.78rem;
+    white-space: normal;
+    font-size: inherit;
   }
 
   .service-card__action {
-    margin-top: 14px;
-    padding: 10px 20px;
-    font-size: 0.9rem;
+    margin-top: 16px;
+    padding: 10px 22px;
+    font-size: clamp(0.78rem, 3.6vw, 0.9rem);
   }
 
   .service-carousel--objective::before,

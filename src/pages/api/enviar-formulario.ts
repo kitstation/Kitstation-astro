@@ -17,6 +17,7 @@ const ALLOWED_FORMS = new Set([
   "Consultoría y Soporte",
   "Creación de Contenido",
   "Animación Digital",
+  "Diagnóstico de Proyecto",
   "Libro de Reclamaciones"
 ]);
 
@@ -50,6 +51,9 @@ function fieldLabel(name: string) {
     email: "Correo electrónico",
     phone: "Celular",
     service: "Servicio de interés",
+    need: "Necesidad",
+    budget: "Presupuesto aproximado",
+    project_description: "Breve descripción del proyecto",
     message: "Mensaje",
     tipo_documento: "Tipo de documento",
     numero_documento: "Número de documento",

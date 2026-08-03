@@ -4,53 +4,66 @@ import { servicePages } from "../data/servicePages";
 
 const services = [
   {
-    title: "Animación digital 2D y 3D",
-    href: "/animacion-digital/",
-    image: "/images/service-animation.webp",
-    accent: "#3aaf61",
-    bullets: ["Motion graphics", "Animación de personajes 3D", "Motion 3D para marcas", "Storyboard visual"]
-  },
-  {
-    title: "Diseño de página web",
+    title: "Desarrollo Web y E-commerce",
+    titleHtml: "Desarrollo Web y<br />E-commerce",
     href: "/diseno-de-pagina-web/",
-    image: "/images/service-web.webp",
+    image: "/images/perso/Desarrollo Web y E-commerce.jpg",
     accent: "#6945bb",
-    bullets: ["Creación de interfaz", "E-commerce", "Formularios y base de datos", "Implementación de WhatsApp"]
+    bullets: [
+      "Diseño UX/UI y web corporativa",
+      "Landing pages y e-commerce",
+      "Formularios, pagos y WhatsApp",
+      "Optimización de velocidad"
+    ]
   },
   {
     title: "Automatización con IA",
     href: "/automatizacion-con-ia/",
-    image: "/images/service-automation.webp",
+    image: "/images/perso/Automatización con IA.jpg",
     accent: "#2c70ff",
-    bullets: ["Respuestas 24h", "Chat con tecnología GPT-4o", "Captación automatizada", "Flujos por WhatsApp"]
+    bullets: [
+      "Chatbots",
+      "WhatsApp",
+      "Calificación de leads",
+      "Seguimiento automático",
+      "Distribución de conversaciones",
+      "Automatización comercial"
+    ]
   },
   {
-    title: "Campañas digitales",
+    title: "Captación de clientes",
     href: "/campanas-digitales/",
-    image: "/images/service-campaigns.webp",
+    image: "/images/perso/Captación de clientes.jpeg",
     accent: "#454884",
-    bullets: ["Estrategias personalizadas", "Diseño y redacción de anuncios", "Display y YouTube", "Campañas Search"]
+    bullets: ["Google Ads", "Meta Ads", "TikTok Ads", "SEO", "Analítica", "Seguimiento de conversiones"]
   },
   {
-    title: "Posicionamiento SEO",
-    href: "/posicionamiento-seo/",
-    image: "/images/service-seo.webp",
-    accent: "#32b8d9",
-    bullets: ["Sube en Google", "Aumenta el tráfico web", "SEO técnico y contenido", "Análisis de competencia"]
-  },
-  {
-    title: "Consultoría y soporte técnico",
+    title: "Software para operaciones",
     href: "/consultoria-y-soporte/",
-    image: "/images/service-consulting.webp",
+    image: "/images/perso/Software para operaciones.jpeg",
     accent: "#f4bc22",
-    bullets: ["Gestión de proyectos", "Sistema de integraciones", "Protección de datos", "Seguridad informática"]
+    bullets: [
+      "Software a medida",
+      "Sistemas internos",
+      "CRM",
+      "Integraciones con APIs",
+      "Paneles de gestión",
+      "Automatización de operaciones"
+    ]
   },
   {
-    title: "Creación de contenido",
+    title: "Marca y contenido digital",
     href: "/creacion-de-contenido/",
-    image: "/images/service-content.jpg",
+    image: "/images/perso/Marca y contenido digital.jpg",
     accent: "#7ea6f7",
-    bullets: ["Reels y TikToks", "Bancos de contenido", "Fotografía de producto", "Conceptos para marca"]
+    bullets: [
+      "Branding",
+      "Diseño gráfico",
+      "Contenido para campañas",
+      "Animación 2D y 3D",
+      "Videos",
+      "Recursos visuales para webs y redes"
+    ]
   }
 ];
 ---
@@ -58,7 +71,7 @@ const services = [
 <section class="objectives" id="servicios" aria-labelledby="servicios-title">
   <div class="container">
     <Reveal class="objective-copy objective-copy--center" delay={0}>
-      <h2 id="servicios-title">¿Cuál es tu próximo objetivo?</h2>
+      <h2 id="servicios-title">Elige tu solución</h2>
     </Reveal>
 
     <div
@@ -91,14 +104,14 @@ const services = [
       <div class="service-carousel__track service-carousel__track--objective" data-carousel-track>
         {services.map((service, index) => (
           <article
-            class={`service-card${service.href.includes("/diseno-de-pagina-web/") ? " service-card--web" : ""}`}
-            style={`--accent:${service.accent}; --bg:url(${service.image})`}
+            class={`service-card${service.href.includes("/diseno-de-pagina-web/") ? " service-card--web" : ""}${service.href.includes("/campanas-digitales/") || service.href.includes("/automatizacion-con-ia/") || service.href.includes("/consultoria-y-soporte/") || service.href.includes("/creacion-de-contenido/") ? " service-card--compact" : ""}`}
+            style={`--accent:${service.accent}; --bg:url("${service.image}")`}
             data-delay={index * 50}
           >
             <a class="service-card__overlay" href={service.href} aria-label={`Ver ${service.title}`}></a>
             <div class="service-card__content">
               <p class="service-card__label">Servicio recomendado</p>
-              <h3>{service.title}</h3>
+              {service.titleHtml ? <h3 set:html={service.titleHtml}></h3> : <h3>{service.title}</h3>}
               <ul>
                 {service.bullets.map((bullet) => (
                   <li>{bullet}</li>

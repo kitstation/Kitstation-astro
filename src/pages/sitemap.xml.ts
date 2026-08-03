@@ -12,6 +12,7 @@ const routes = [
   "/contactanos/",
   "/creacion-de-contenido/",
   "/diseno-de-pagina-web/",
+  "/empezar/",
   "/landing-paginas-webs/",
   "/libro-de-reclamaciones/",
   "/nosotros/",
