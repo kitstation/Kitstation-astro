@@ -17,16 +17,24 @@
 </section>
 
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  let sequenceInitialized = false;
 
-  gsap.registerPlugin(ScrollTrigger);
+  const initializeSequence = async () => {
+    if (sequenceInitialized) return;
+    sequenceInitialized = true;
 
-  const canvas = document.getElementById("sequence-canvas") as HTMLCanvasElement;
-  const context = canvas ? canvas.getContext("2d") : null;
-  const textElement = document.getElementById("typewriter-text");
-  
-  if (canvas && context) {
+    // GSAP queda fuera de la ruta crítica y se descarga cuando la sección se acerca.
+    const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+      import("gsap"),
+      import("gsap/ScrollTrigger")
+    ]);
+    gsap.registerPlugin(ScrollTrigger);
+
+    const canvas = document.getElementById("sequence-canvas") as HTMLCanvasElement;
+    const context = canvas ? canvas.getContext("2d") : null;
+    const textElement = document.getElementById("typewriter-text");
+    if (!canvas || !context) return;
+
     // Configuración de la secuencia
     const frameCount = 120;
     const currentFrame = (index: number) => 
@@ -74,17 +82,6 @@
       }
     };
 
-    let sequenceLoaded = false;
-
-    const loadSequence = () => {
-      if (sequenceLoaded) return;
-      sequenceLoaded = true;
-
-      images.forEach((img, i) => {
-        img.src = currentFrame(i);
-      });
-    };
-
     for (let i = 0; i <= frameCount; i++) {
       const img = new Image();
       img.decoding = "async";
@@ -96,17 +93,9 @@
       }
     }
 
-    const sequenceSection = document.getElementById("scroll-sequence-section");
-    if (sequenceSection && "IntersectionObserver" in window) {
-      const sequenceObserver = new IntersectionObserver((entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        loadSequence();
-        sequenceObserver.disconnect();
-      }, { rootMargin: "500px 0px" });
-      sequenceObserver.observe(sequenceSection);
-    } else {
-      loadSequence();
-    }
+    images.forEach((img, i) => {
+      img.src = currentFrame(i);
+    });
 
     // Configurar la animación con GSAP ScrollTrigger
     gsap.to(sequence, {
@@ -131,6 +120,18 @@
       window.removeEventListener("resize", render);
       ScrollTrigger.getAll().forEach(t => t.kill());
     });
+  };
+
+  const sequenceSection = document.getElementById("scroll-sequence-section");
+  if (sequenceSection && "IntersectionObserver" in window) {
+    const sequenceObserver = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      sequenceObserver.disconnect();
+      void initializeSequence();
+    }, { rootMargin: "500px 0px" });
+    sequenceObserver.observe(sequenceSection);
+  } else {
+    void initializeSequence();
   }
 </script>
 

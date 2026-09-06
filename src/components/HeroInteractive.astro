@@ -313,7 +313,11 @@
   const container = document.getElementById('hero-container');
   const orbs = document.querySelectorAll('.interactive-orb') as NodeListOf<HTMLElement>;
 
-  if (container && orbs.length > 0) {
+  // El efecto solo aporta interacción con mouse. En móviles se evita por completo
+  // para no medir el layout ni mantener un requestAnimationFrame permanente.
+  const supportsOrbInteraction = window.matchMedia('(min-width: 768px) and (pointer: fine)').matches;
+
+  if (container && orbs.length > 0 && supportsOrbInteraction) {
     let parentRect = container.getBoundingClientRect();
     
     // Initial state storage
