@@ -7,6 +7,9 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://kitstation.pe',
   output: 'server',
+  security: {
+    checkOrigin: false,
+  },
   integrations: [tailwind(), sitemap()],
   adapter: vercel(),
 });
