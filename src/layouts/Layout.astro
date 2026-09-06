@@ -9,6 +9,7 @@ interface Props {
 
 import FooterKit from '../components/FooterKit.astro';
 import ChatWidget from '../components/ChatWidget.astro';
+import formsScript from '../scripts/forms.js?url';
 
 const { 
 	title, 
@@ -60,6 +61,7 @@ const {
 		</main>
 		{!hideFooter && <FooterKit />}
 		{!hideChat && <ChatWidget />}
+		<script type="module" src={formsScript}></script>
 	</body>
 </html>
 
@@ -69,5 +71,17 @@ const {
 	}
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 600;
+	}
+	.form-feedback {
+		min-height: 1.25rem;
+		margin-top: 0.5rem;
+		font-size: 0.8125rem;
+		text-align: center;
+	}
+	.form-feedback[data-state="success"] {
+		color: #15803d;
+	}
+	.form-feedback[data-state="error"] {
+		color: #dc2626;
 	}
 </style>
