@@ -1,4 +1,3 @@
-import nodemailer from 'nodemailer';
 export { renderers } from '../../renderers.mjs';
 
 const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://kitstation.pe", "SSR": true};
@@ -170,6 +169,8 @@ async function handleSubmit(request) {
       message: "El correo electrónico no es válido."
     });
   }
+  const nodemailerModule = await import('nodemailer');
+  const nodemailer = nodemailerModule.default ?? nodemailerModule;
   const transporter = nodemailer.createTransport({
     host: getEnv("SMTP_HOST"),
     port: Number(getEnv("SMTP_PORT")),

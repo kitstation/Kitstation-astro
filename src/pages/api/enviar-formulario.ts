@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import nodemailer from "nodemailer";
+import type { Transporter } from "nodemailer";
 
 export const prerender = false;
 
@@ -170,7 +170,7 @@ async function verifyRecaptcha(entries: Map<string, string>, metadata: ReturnTyp
   return score >= RECAPTCHA_MIN_SCORE && actionMatches;
 }
 
-async function sendInternalMail(transporter: nodemailer.Transporter, entries: Map<string, string>, metadata: ReturnType<typeof getRequestMetadata>) {
+async function sendInternalMail(transporter: Transporter, entries: Map<string, string>, metadata: ReturnType<typeof getRequestMetadata>) {
   const formName = entries.get("formulario") ?? "Formulario";
   const pageOrigin = entries.get("pagina_origen") || metadata.referer;
   const recipients = getRecipients();
@@ -207,7 +207,7 @@ async function sendInternalMail(transporter: nodemailer.Transporter, entries: Ma
   });
 }
 
-async function sendAutoReply(transporter: nodemailer.Transporter, entries: Map<string, string>) {
+async function sendAutoReply(transporter: Transporter, entries: Map<string, string>) {
   const recipient = entries.get("email") || entries.get("correo_electronico");
   if (!recipient) return;
 
@@ -275,6 +275,8 @@ async function handleSubmit(request: Request) {
     });
   }
 
+  const nodemailerModule = await import("nodemailer");
+  const nodemailer = nodemailerModule.default ?? nodemailerModule;
   const transporter = nodemailer.createTransport({
     host: getEnv("SMTP_HOST"),
     port: Number(getEnv("SMTP_PORT")),
