@@ -49,11 +49,13 @@ import FooterKit from '../components/FooterKit.astro';
             Cuéntanos qué necesitas y nuestro equipo se pondrá en contacto contigo lo antes posible para asesorarte.
           </p>
 
-          <form id="contact-form" class="space-y-6" action="#" method="POST" novalidate>
+          <form id="contact-form-mail" class="space-y-6" action="/api/enviar-formulario" method="POST" data-mail-form>
+            <input type="hidden" name="formulario" value="Contacto" />
+            <input type="hidden" name="pagina_origen" value="" />
             <!-- Honeypot anti-spam field -->
             <div class="hidden" aria-hidden="true">
               <label for="bot-field">No llenes este campo si eres humano:</label>
-              <input type="text" id="bot-field" name="bot-field" tabindex="-1" />
+            <input type="text" id="bot-field" name="website" tabindex="-1" />
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -62,7 +64,7 @@ import FooterKit from '../components/FooterKit.astro';
                 <label class="block text-[13px] font-semibold text-gray-700 mb-2">Tu nombre</label>
                 <input 
                   type="text" 
-                  name="nombre" 
+                name="name"
                   placeholder="Ej. Rodrigo García"
                   maxlength="80"
                   class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300"
@@ -76,7 +78,7 @@ import FooterKit from '../components/FooterKit.astro';
                 <label class="block text-[13px] font-semibold text-gray-700 mb-2">Tu correo</label>
                 <input 
                   type="email" 
-                  name="correo" 
+                name="email"
                   placeholder="hola@empresa.com"
                   maxlength="100"
                   pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
@@ -94,7 +96,7 @@ import FooterKit from '../components/FooterKit.astro';
                 <input 
                   type="tel" 
                   id="celular-input"
-                  name="celular" 
+                name="phone"
                   placeholder="+51 "
                   maxlength="13"
                   class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300"
@@ -135,7 +137,7 @@ import FooterKit from '../components/FooterKit.astro';
             <div class="relative">
               <label class="block text-[13px] font-semibold text-gray-700 mb-2">Mensaje</label>
               <textarea 
-                name="mensaje" 
+                name="message"
                 placeholder="Hola, me gustaría cotizar una web para mi empresa..."
                 rows="3"
                 maxlength="300"

@@ -20,16 +20,18 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Form container -->
       <div class="max-w-[450px] w-full">
-        <form id="contact-form" class="space-y-4" action="#" method="POST" novalidate>
+        <form id="contact-form-mail" class="space-y-4" action="/api/enviar-formulario" method="POST" data-mail-form>
+          <input type="hidden" name="formulario" value="Creación de Contenido" />
+          <input type="hidden" name="pagina_origen" value="" />
           <!-- Honeypot anti-spam field -->
           <div class="hidden" aria-hidden="true">
             <label for="bot-field">No llenes este campo si eres humano:</label>
-            <input type="text" id="bot-field" name="bot-field" tabindex="-1" />
+            <input type="text" id="bot-field" name="website" tabindex="-1" />
           </div>
           <div class="relative">
             <input 
               type="text" 
-              name="nombre" 
+              name="name"
               placeholder="Nombre completo"
               maxlength="80"
               class="w-full bg-[#111111] border border-[#222222] rounded-lg px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#fd8b57] focus:ring-1 focus:ring-[#fd8b57] transition-colors"
@@ -40,7 +42,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="relative">
             <input 
               type="email" 
-              name="correo" 
+              name="email"
               placeholder="Correo"
               maxlength="100"
               pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
@@ -53,7 +55,7 @@ import Layout from '../layouts/Layout.astro';
             <input 
               type="tel" 
               id="celular-input"
-              name="celular" 
+              name="phone"
               placeholder="Celular"
               maxlength="13"
               class="w-full bg-[#111111] border border-[#222222] rounded-lg px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#fd8b57] focus:ring-1 focus:ring-[#fd8b57] transition-colors"
@@ -87,7 +89,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
           <div class="relative">
             <textarea 
-              name="mensaje" 
+              name="message"
               placeholder="Cuéntanos cómo podemos ayudarte..."
               rows="3"
               maxlength="300"
