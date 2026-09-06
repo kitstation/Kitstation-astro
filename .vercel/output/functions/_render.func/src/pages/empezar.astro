@@ -1,0 +1,591 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import "../styles/global.css";
+---
+
+<BaseLayout
+  title="Empezar proyecto | KitStation"
+  description="Cuéntanos tu proyecto y recibe una evaluación inicial para convertir tu idea en una solución digital."
+>
+  <main class="start-page">
+    <header class="start-page__top" aria-label="KitStation">
+      <a class="start-page__brand" href="/" aria-label="Ir al inicio de KitStation">
+        <img src="/images/logo-kitstation.webp" alt="KitStation" width="150" height="25" decoding="async" />
+      </a>
+    </header>
+
+    <section class="start-page__section">
+      <div class="start-page__content">
+        <div class="start-page__copy">
+          <h1>
+            <span>Convierte una idea</span>
+            <span>en una</span>
+            <span>solución digital</span>
+          </h1>
+
+          <p class="start-page__lead">
+            Cuéntanos qué necesitas y evaluaremos la mejor forma de ayudarte con estrategia, diseño,
+            automatización o software.
+          </p>
+
+          <div class="start-page__benefits" aria-label="Beneficios del diagnóstico">
+            <article>
+              <span aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 0a.5.5 0 0 1 .5.5v1.7a5.82 5.82 0 0 1 5.3 5.3h1.7a.5.5 0 0 1 0 1h-1.7a5.82 5.82 0 0 1-5.3 5.3v1.7a.5.5 0 0 1-1 0v-1.7a5.82 5.82 0 0 1-5.3-5.3H.5a.5.5 0 0 1 0-1h1.7a5.82 5.82 0 0 1 5.3-5.3V.5A.5.5 0 0 1 8 0Zm0 3.15A4.85 4.85 0 1 0 8 12.85 4.85 4.85 0 0 0 8 3.15Zm0 2.1a2.75 2.75 0 1 1 0 5.5 2.75 2.75 0 0 1 0-5.5Z"/>
+                </svg>
+              </span>
+              <div>
+                <h2>Diagnóstico inicial</h2>
+                <p>Revisamos tu objetivo, proceso actual y necesidades.</p>
+              </div>
+            </article>
+
+            <article>
+              <span aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31z"/>
+                </svg>
+              </span>
+              <div>
+                <h2>Propuesta personalizada</h2>
+                <p>Recibes una recomendación clara con alcance, tiempos y siguiente paso.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <aside class="start-page__panel" aria-labelledby="start-form-title">
+          <form class="start-page__form" method="POST" action="/api/enviar-formulario" data-mail-form>
+            <input type="hidden" name="formulario" value="Diagnóstico de Proyecto" />
+            <input type="hidden" name="pagina_origen" value="" />
+            <input class="form-honeypot" type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" />
+
+            <div class="start-page__form-head">
+              <h2 id="start-form-title">Cuéntanos tu proyecto</h2>
+            </div>
+
+            <label>
+              <span>Nombre</span>
+              <input type="text" name="name" placeholder="Tu nombre" required />
+            </label>
+
+            <label>
+              <span>Empresa</span>
+              <input type="text" name="company" placeholder="Nombre de empresa" required />
+            </label>
+
+            <div class="start-page__form-row">
+              <label>
+                <span>WhatsApp</span>
+                <input type="tel" name="phone" placeholder="+51 999 999 999" required />
+              </label>
+
+              <label>
+                <span>Correo</span>
+                <input type="email" name="email" placeholder="correo@empresa.com" required />
+              </label>
+            </div>
+
+            <label>
+              <span>¿Qué necesitas?</span>
+              <select name="need" required>
+                <option value="">Selecciona una opción</option>
+                <option>Estrategia digital</option>
+                <option>Diseño web o landing page</option>
+                <option>Automatización con IA</option>
+                <option>Software o sistema interno</option>
+                <option>CRM para ventas</option>
+                <option>Marketing y campañas</option>
+                <option>No estoy seguro, necesito orientación</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Breve descripción del proyecto</span>
+              <textarea name="project_description" placeholder="Cuéntanos qué quieres resolver, mejorar o construir." required></textarea>
+            </label>
+
+            <label>
+              <span>Presupuesto aproximado <em>opcional</em></span>
+              <select name="budget">
+                <option value="">Prefiero conversarlo</option>
+                <option>Menos de S/ 2,000</option>
+                <option>S/ 2,000 - S/ 5,000</option>
+                <option>S/ 5,000 - S/ 10,000</option>
+                <option>Más de S/ 10,000</option>
+              </select>
+            </label>
+
+            <label class="start-page__check">
+              <input type="checkbox" name="privacy" required />
+              <span>Acepto la <a href="/politicas-y-privacidad/">Política de privacidad</a>.</span>
+            </label>
+
+            <button type="submit">Solicitar evaluación</button>
+            <p class="form-feedback" role="status" aria-live="polite"></p>
+          </form>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="start-page__footer">
+      <a href="/terminos-y-condiciones/">Términos y condiciones</a>
+      <a href="/politicas-y-privacidad/">Política de privacidad</a>
+    </footer>
+    <WhatsAppButton />
+  </main>
+</BaseLayout>
+
+<style>
+  .start-page {
+    --start-blue: #2217ff;
+    --start-blue-hover: #1f36ff;
+    --start-blue-rgb: 34, 23, 255;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 78% 18%, rgba(var(--start-blue-rgb), 0.16), transparent 34%),
+      linear-gradient(135deg, #dbe8ff 0%, #eef5ff 52%, #f8fbff 100%);
+    color: #11172a;
+  }
+
+  .start-page__top {
+    width: min(100% - 64px, 1800px);
+    margin: 0 auto;
+    padding: 34px 0 0;
+  }
+
+  .start-page__brand {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .start-page__brand img {
+    width: 148px;
+    height: auto;
+  }
+
+  .start-page__section {
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  .start-page__content {
+    width: min(100% - 64px, 1360px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.78fr);
+    gap: clamp(56px, 8vw, 140px);
+    align-items: center;
+  }
+
+  .start-page__copy {
+    max-width: 710px;
+  }
+
+  .start-page__copy h1 {
+    margin: 0;
+    color: #10172f;
+    font-size: clamp(2.25rem, 3.25vw, 3.65rem);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.06em;
+  }
+
+  .start-page__copy h1 span {
+    display: block;
+    color: #10172f;
+  }
+
+  .start-page__copy h1 span:last-child {
+    color: var(--start-blue);
+  }
+
+  .start-page__lead {
+    max-width: 620px;
+    margin: 30px 0 0;
+    color: rgba(17, 23, 42, 0.72);
+    font-size: clamp(0.92rem, 1.02vw, 1.04rem);
+    line-height: 1.55;
+  }
+
+  .start-page__benefits {
+    display: grid;
+    gap: 24px;
+    margin-top: 50px;
+    padding-top: 34px;
+    border-top: 1px solid rgba(17, 23, 42, 0.1);
+  }
+
+  .start-page__benefits article {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 18px;
+    align-items: start;
+  }
+
+  .start-page__benefits article > span {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--start-blue);
+    box-shadow: 0 12px 30px rgba(var(--start-blue-rgb), 0.12);
+  }
+
+  .start-page__benefits svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .start-page__benefits h2 {
+    margin: 0 0 6px;
+    color: #11172a;
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .start-page__benefits p {
+    margin: 0;
+    color: rgba(17, 23, 42, 0.66);
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .start-page__panel {
+    padding: 34px 38px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 36px 90px rgba(49, 84, 140, 0.18);
+  }
+
+  .start-page__form {
+    display: grid;
+    gap: 12px;
+  }
+
+  .start-page__form-head {
+    margin-bottom: 4px;
+    text-align: center;
+  }
+
+  .start-page__form-head h2 {
+    margin: 0;
+    color: #10172f;
+    font-size: clamp(1.3rem, 1.65vw, 1.72rem);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+  }
+
+  .start-page__form-head p {
+    margin: 8px auto 0;
+    max-width: 360px;
+    color: rgba(17, 23, 42, 0.62);
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .start-page__form label {
+    display: grid;
+    gap: 5px;
+    color: rgba(17, 23, 42, 0.7);
+    font-size: 0.76rem;
+    font-weight: 500;
+  }
+
+  .start-page__form label span em {
+    color: rgba(17, 23, 42, 0.46);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .start-page__form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .start-page__form input,
+  .start-page__form select,
+  .start-page__form textarea {
+    width: 100%;
+    border: 1px solid rgba(17, 23, 42, 0.22);
+    border-radius: 4px;
+    background: #fff;
+    color: #11172a;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 400;
+    outline: none;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .start-page__form input,
+  .start-page__form select {
+    height: 42px;
+    padding: 0 14px;
+  }
+
+  .start-page__form textarea {
+    min-height: 84px;
+    resize: vertical;
+    padding: 12px 14px;
+  }
+
+  .start-page__form input:focus,
+  .start-page__form select:focus,
+  .start-page__form textarea:focus {
+    border-color: var(--start-blue);
+    box-shadow: 0 0 0 3px rgba(var(--start-blue-rgb), 0.12);
+  }
+
+  .start-page__check {
+    display: flex !important;
+    grid-template-columns: none;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px !important;
+    margin-top: 2px;
+    color: rgba(17, 23, 42, 0.68);
+    font-size: 0.78rem !important;
+    line-height: 1.35;
+  }
+
+  .start-page__check input {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+    margin-top: 2px;
+    accent-color: var(--start-blue);
+  }
+
+  .start-page__check a {
+    color: var(--start-blue);
+    text-decoration: underline;
+  }
+
+  .start-page__form button {
+    min-height: 48px;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--start-blue);
+    color: #fff;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 18px 34px rgba(var(--start-blue-rgb), 0.22);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
+  }
+
+  .start-page__form button:hover {
+    transform: translateY(-1px);
+    background: var(--start-blue-hover);
+    box-shadow: 0 22px 42px rgba(var(--start-blue-rgb), 0.28);
+  }
+
+  .start-page__form button:disabled {
+    cursor: wait;
+    opacity: 0.78;
+    transform: none;
+  }
+
+  .start-page__footer {
+    width: min(100% - 64px, 1800px);
+    margin: 0 auto;
+    display: flex;
+    gap: 34px;
+    padding: 0 0 30px;
+  }
+
+  .start-page__footer a {
+    color: rgba(17, 23, 42, 0.58);
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .start-page__footer a:hover {
+    color: var(--start-blue);
+  }
+
+  @media (max-width: 980px) {
+    .start-page {
+      overflow: visible;
+    }
+
+    .start-page__content {
+      grid-template-columns: 1fr;
+      gap: 42px;
+    }
+
+    .start-page__section {
+      align-items: start;
+      padding-top: 0;
+    }
+
+    .start-page__copy {
+      max-width: 760px;
+    }
+
+    .start-page__panel {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .start-page {
+      min-height: 100svh;
+      overflow-x: hidden;
+    }
+
+    .start-page__top,
+    .start-page__content,
+    .start-page__footer {
+      width: min(100% - 24px, 1800px);
+    }
+
+    .start-page__top {
+      padding-top: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .start-page__brand img {
+      width: 116px;
+    }
+
+    .start-page__section {
+      align-items: start;
+      padding: 18px 0 18px;
+    }
+
+    .start-page__content {
+      gap: 0;
+    }
+
+    .start-page__copy {
+      display: none;
+    }
+
+    .start-page__copy h1 {
+      font-size: clamp(1.9rem, 9.2vw, 2.42rem);
+    }
+
+    .start-page__lead {
+      margin-top: 22px;
+      font-size: 0.9rem;
+    }
+
+    .start-page__benefits {
+      margin-top: 34px;
+      padding-top: 26px;
+    }
+
+    .start-page__benefits article {
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+    }
+
+    .start-page__benefits article > span {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+    }
+
+    .start-page__panel {
+      width: 100%;
+      padding: 18px 14px;
+      border-radius: 7px;
+      box-shadow: 0 20px 54px rgba(49, 84, 140, 0.14);
+    }
+
+    .start-page__form {
+      gap: 10px;
+    }
+
+    .start-page__form-head {
+      margin-bottom: 2px;
+    }
+
+    .start-page__form-head h2 {
+      font-size: 1.08rem;
+      letter-spacing: -0.02em;
+    }
+
+    .start-page__form label {
+      gap: 4px;
+      font-size: 0.7rem;
+    }
+
+    .start-page__form input,
+    .start-page__form select,
+    .start-page__form textarea {
+      font-size: 0.8rem;
+      border-radius: 4px;
+    }
+
+    .start-page__form input,
+    .start-page__form select {
+      height: 36px;
+      padding-inline: 11px;
+    }
+
+    .start-page__form textarea {
+      min-height: 68px;
+      padding: 10px 11px;
+    }
+
+    .start-page__form-row {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .start-page__check {
+      gap: 8px !important;
+      font-size: 0.72rem !important;
+    }
+
+    .start-page__check input {
+      width: 14px;
+      height: 14px;
+    }
+
+    .start-page__form button {
+      min-height: 42px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+    }
+
+    .start-page__footer {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      padding-bottom: 18px;
+      text-align: center;
+    }
+
+    .start-page__footer a {
+      font-size: 0.7rem;
+    }
+
+    :global(.start-page .live-linkstation-widget) {
+      right: 14px;
+      bottom: 18px;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+import { c as createComponent, m as maybeRenderHead, d as addAttribute, a as renderTemplate, r as renderComponent, n as Fragment, b as renderScript } from './astro/server_QwZ4hMVt.mjs';
+import 'piccolore';
+
+const $$Header = createComponent(($$result, $$props, $$slots) => {
+  const navItems = [
+    { href: "#servicios", label: "Lo que hacemos", hasArrow: true },
+    { href: "#soluciones", label: "Soluciones" },
+    { href: "/websites/", label: "Proyectos" },
+    { href: "/nosotros/", label: "Nosotros" }
+  ];
+  const megaMenuColumns = [
+    {
+      title: "Servicios",
+      links: [
+        { href: "/consultoria-y-soporte/", title: "Software y plataformas empresariales", description: "Sistemas internos, aplicaciones web y plataformas personalizadas.", image: "/images/perso/1.jpg" },
+        { href: "/automatizacion-con-ia/", title: "Automatizaci\xF3n e inteligencia artificial", description: "Agentes de IA, automatizaci\xF3n de tareas, asistentes e integraciones.", image: "/images/perso/2.jpg" },
+        { href: "/linkstation/", title: "Ventas, comercio y atenci\xF3n al cliente", description: "Vende tus productos online, te ayudamos a organizar tu ecommerce y a responder a clientes", image: "/images/perso/3.jpg" },
+        { href: "/diseno-de-pagina-web/", title: "Web y experiencia digital", description: "P\xE1ginas web, tiendas virtuales, UX, SEO y rendimiento.", image: "/images/perso/4.jpg" },
+        { href: "/creacion-de-contenido/", title: "Integraciones y transformaci\xF3n tecnol\xF3gica", description: "Conexi\xF3n de sistemas, digitalizaci\xF3n de procesos y modernizaci\xF3n.", image: "/images/perso/5.jpg" },
+        { href: "/campanas-digitales/", title: "Marketing y Experiencia", description: "Estrategia, captaci\xF3n, campa\xF1as y experiencias digitales orientadas a conversi\xF3n.", image: "/images/perso/6.jpg" }
+      ]
+    },
+    {
+      title: "Aplicaciones empresariales",
+      links: [
+        { href: "/linkstation/", title: "Linkstation CRM", description: "Centraliza ventas, clientes y conversaciones", animatedIcons: ["/images/SVG/icon11.svg", "/images/SVG/icon22.svg"] }
+      ]
+    },
+    {
+      title: "Contenido visual",
+      links: [
+        { href: "/campanas-digitales/", title: "Marketing Visual", description: "Piezas Visuales VFX para captar atenci\xF3n.", svgIcon: "video" },
+        { href: "/creacion-de-contenido/", title: "Gr\xE1fica Empresarial", description: "Gr\xE1ficos para comunicar marca y propuesta.", svgIcon: "graphic" }
+      ]
+    }
+  ];
+  const mobileMenuGroups = [
+    {
+      label: "Lo que hacemos",
+      links: [
+        { href: "/consultoria-y-soporte/", label: "Software y plataformas empresariales" },
+        { href: "/automatizacion-con-ia/", label: "Automatizaci\xF3n e inteligencia artificial" },
+        { href: "/linkstation/", label: "Ventas, comercio y atenci\xF3n al cliente" },
+        { href: "/diseno-de-pagina-web/", label: "Web y experiencia digital" },
+        { href: "/creacion-de-contenido/", label: "Integraciones y transformaci\xF3n tecnol\xF3gica" },
+        { href: "/campanas-digitales/", label: "Marketing y Experiencia" }
+      ]
+    },
+    {
+      label: "IA",
+      icon: "stars",
+      links: [
+        { href: "/automatizacion-con-ia/", label: "Automatizaci\xF3n con IA" },
+        { href: "/servicios/automatizacion-whatsapp/", label: "Flujos por WhatsApp" }
+      ]
+    }
+  ];
+  const mobileMenuLinks = [
+    { href: "/websites/", label: "Proyectos" },
+    { href: "/nosotros/", label: "Empresa" }
+  ];
+  return renderTemplate`${maybeRenderHead()}<header class="site-header"> <div class="header-main container"> <a class="brand" href="/" aria-label="Ir al inicio de KitStation"> <img src="/images/logo-kitstation.webp" alt="Logo de KitStation" width="150" height="25" fetchpriority="high" loading="eager" decoding="async"> </a> <nav class="desktop-nav" aria-label="Principal"> <ul> ${navItems.map((item) => renderTemplate`<li${addAttribute([item.hasArrow && "desktop-nav__item desktop-nav__item--mega"], "class:list")}${addAttribute(item.hasArrow ? true : void 0, "data-mega-menu")}> <a${addAttribute([item.hasArrow && "desktop-nav__link--arrow"], "class:list")}${addAttribute(item.href, "href")}> ${item.label} ${item.hasArrow && renderTemplate`<span class="desktop-nav__arrow" aria-hidden="true"></span>`} </a> ${item.hasArrow && renderTemplate`${renderComponent($$result, "Fragment", Fragment, {}, { "default": ($$result2) => renderTemplate` <span class="desktop-mega__backdrop" aria-hidden="true"></span> <div class="desktop-mega" aria-label="Lo que hacemos"> <div class="desktop-mega__grid"> ${megaMenuColumns.map((column) => renderTemplate`<div class="desktop-mega__column"> <p class="desktop-mega__heading">${column.title}</p> <ul class="desktop-mega__list"> ${column.links.map((link) => renderTemplate`<li> <a class="desktop-mega__link"${addAttribute(link.href, "href")}> ${link.svgIcon === "video" ? renderTemplate`<span class="desktop-mega__svg-icon" aria-hidden="true"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" fill="none"> <path d="M2.5 1.5H15.5C15.5 1.5 16.5 1.5 16.5 2.5V15.5C16.5 15.5 16.5 16.5 15.5 16.5H2.5C2.5 16.5 1.5 16.5 1.5 15.5V2.5C1.5 2.5 1.5 1.5 2.5 1.5Z" stroke="currentColor" stroke-width="1.17647" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7.82533 11.44C7.73833 11.4833 7.64169 11.5038 7.54457 11.4993C7.44745 11.4949 7.35307 11.4657 7.2704 11.4146C7.18773 11.3634 7.11949 11.292 7.07217 11.2071C7.02485 11.1221 7.00001 11.0265 7 10.9293V7.07064C7.00001 6.97342 7.02485 6.87781 7.07217 6.79288C7.11949 6.70796 7.18773 6.63653 7.2704 6.58538C7.35307 6.53422 7.44745 6.50504 7.54457 6.5006C7.64169 6.49615 7.73833 6.51658 7.82533 6.55997L11.6847 8.49C11.7795 8.53726 11.8591 8.61006 11.9149 8.70013C11.9706 8.7902 12.0001 8.89406 12.0001 9C12.0001 9.10586 11.9706 9.20973 11.9149 9.2998C11.8591 9.38986 11.7795 9.46266 11.6847 9.51L7.82533 11.44Z" stroke="currentColor" stroke-width="1.17647" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M1.5 4H16.5" stroke="currentColor" stroke-width="1.17647" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M1.5 14H16.5" stroke="currentColor" stroke-width="1.17647" stroke-linecap="round" stroke-linejoin="round"></path> </svg> </span>` : link.svgIcon === "graphic" ? renderTemplate`<span class="desktop-mega__svg-icon" aria-hidden="true"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none"> <path d="M3.19714 8.1377C3.58982 7.81769 4.169 7.84125 4.53503 8.20703L7.36414 11.0352L7.4325 11.1113C7.73127 11.4778 7.73127 12.0075 7.4325 12.374L7.36414 12.4502L4.53503 15.2783C4.16902 15.644 3.5898 15.6676 3.19714 15.3477L3.12097 15.2783L0.292847 12.4502C-0.0976775 12.0597 -0.0976775 11.4257 0.292847 11.0352L3.12097 8.20703L3.19714 8.1377ZM14.8641 8C15.4164 8 15.8641 8.44772 15.8641 9V14C15.8641 14.5177 15.4708 14.9438 14.9667 14.9951L14.8641 15H9.86414L9.7616 14.9951C9.29136 14.947 8.9169 14.5728 8.86902 14.1025L8.86414 14V9C8.86414 8.44785 9.31204 8.00022 9.86414 8H14.8641ZM1.35339 11.7422L3.828 14.2178L6.30359 11.7422L3.828 9.26758L1.35339 11.7422ZM10.1141 13.75H14.6141V9.25H10.1141V13.75ZM6.58582 0C7.13807 4.123e-05 7.58582 0.447741 7.58582 1V6C7.58582 6.51765 7.19245 6.94375 6.68835 6.99512L6.58582 7H1.58582L1.48328 6.99512C1.01285 6.94722 0.638602 6.57296 0.590698 6.10254L0.585815 6V1C0.585815 0.447715 1.03353 2.41596e-08 1.58582 0H6.58582ZM12.0858 0C12.2903 0.000162452 12.4734 0.140281 12.538 0.333984L13.1083 2.15332C13.1514 2.30409 13.2817 2.42369 13.4325 2.47754L15.2518 3.04785C15.4562 3.11246 15.5856 3.29561 15.5858 3.5C15.5856 3.70439 15.4455 3.88753 15.2518 3.95215L13.4325 4.52246C13.2817 4.56554 13.1514 4.69591 13.1083 4.84668L12.538 6.66602C12.4734 6.87048 12.2903 6.99985 12.0858 7C11.8814 6.99984 11.6983 6.8597 11.6337 6.66602L11.0634 4.84668C11.0203 4.69591 10.8899 4.57631 10.7391 4.52246L8.9198 3.95215C8.71533 3.88758 8.586 3.70444 8.58582 3.5C8.58601 3.29556 8.7261 3.11243 8.9198 3.04785L10.7391 2.47754C10.8899 2.43446 11.0203 2.30409 11.0634 2.15332L11.6337 0.333984C11.6983 0.129543 11.8814 0.000148066 12.0858 0ZM1.83582 5.75H6.33582V1.25H1.83582V5.75Z" fill="currentColor"></path> </svg> </span>` : link.animatedIcons ? renderTemplate`<span class="desktop-mega__animated-icon" aria-hidden="true"> <img${addAttribute(link.animatedIcons[0], "src")} alt="" loading="lazy" decoding="async"> <img${addAttribute(link.animatedIcons[1], "src")} alt="" loading="lazy" decoding="async"> </span>` : link.image ? renderTemplate`<img class="desktop-mega__image"${addAttribute(link.image, "src")} alt="" loading="lazy" decoding="async" aria-hidden="true">` : renderTemplate`<span class="desktop-mega__icon"${addAttribute(link.icon, "data-icon")} aria-hidden="true"></span>`} <span> <strong>${link.title}</strong> <small>${link.description}</small> </span> </a> </li>`)} </ul> </div>`)} </div> </div> ` })}`} </li>`)} </ul> </nav> <a class="header-cta" href="/contactanos/">Habla con Nosotros</a> <details class="mobile-nav"> <summary aria-label="Abrir menú"> <span></span> <span></span> <span></span> </summary> <nav aria-label="Principal móvil"> <div class="mobile-nav__panel-head"> <a class="mobile-nav__brand" href="/" aria-label="Ir al inicio de KitStation"> <img src="/images/logo-kitstation.webp" alt="Logo de KitStation" width="150" height="25" decoding="async"> </a> </div> <div class="mobile-nav__menu"> ${mobileMenuGroups.map((group) => renderTemplate`<details class="mobile-nav__group"> <summary> <span class="mobile-nav__group-label"> <span>${group.label}</span> ${group.icon === "stars" && renderTemplate`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"> <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z"></path> </svg>`} </span> </summary> <ul class="mobile-nav__sublist"> ${group.links.map((link) => renderTemplate`<li><a${addAttribute(link.href, "href")}>${link.label}</a></li>`)} </ul> </details>`)} <ul class="mobile-nav__links"> ${mobileMenuLinks.map((item) => renderTemplate`<li><a${addAttribute(item.href, "href")}>${item.label}</a></li>`)} </ul> </div> </nav> </details> </div> </header> <span class="desktop-mega-page-backdrop" data-mega-page-backdrop aria-hidden="true"></span> ${renderScript($$result, "D:/web/Kitstation/kitstation-astro/Kitstation-astro2/Kitstation-astro/src/components/Header.astro?astro&type=script&index=0&lang.ts")}`;
+}, "D:/web/Kitstation/kitstation-astro/Kitstation-astro2/Kitstation-astro/src/components/Header.astro", void 0);
+
+export { $$Header as $ };

@@ -1,0 +1,376 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeaderKit from '../components/HeaderKit.astro';
+import FooterKit from '../components/FooterKit.astro';
+---
+
+<Layout title="Contacto - KitStation" bodyClass="bg-white text-black relative overflow-x-hidden min-h-screen">
+  <HeaderKit />
+  
+  <main class="relative z-10 pt-[120px] md:pt-[140px] pb-12 md:pb-24 px-0 min-h-screen flex items-center justify-center overflow-x-hidden bg-white">
+    
+    <!-- Main Container (Full Width Split) -->
+    <div class="w-full flex flex-col lg:flex-row relative">
+      
+      <!-- Left Column (Interactive Panel Area) -->
+      <div class="w-full lg:w-1/2 p-4 md:p-8 lg:pl-10 lg:pr-6 xl:pl-[max(2.5rem,calc((100vw-1500px)/2))] flex flex-col justify-end relative min-h-[400px] lg:min-h-[650px] z-0">
+        
+        <!-- The Blue Background Box -->
+        <div id="interactive-panel" class="absolute inset-4 md:inset-8 lg:inset-y-6 lg:left-10 lg:right-6 xl:left-[max(2.5rem,calc((100vw-1500px)/2))] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden pointer-events-auto bg-white -z-10 shadow-[0_8px_30px_rgb(0,0,0,0.03)]">
+          
+          <!-- Interactive Glow Background -->
+          <div 
+            id="interactive-glow" 
+            class="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] rounded-full bg-[#38bdf8] opacity-[0.55] blur-[80px] pointer-events-none transition-all duration-500 ease-out"
+            style="left: 80%; top: 100%; transform: translate(-50%, -70%);"
+          ></div>
+          <div class="absolute inset-0 bg-white/30 backdrop-blur-[2px] pointer-events-none"></div>
+        </div>
+        
+        <!-- Bottom Text -->
+        <div class="relative z-10 px-6 py-6 md:px-10 md:py-8 lg:p-12">
+          <p class="text-gray-700 font-medium text-sm md:text-base mb-2">Estas a un paso de</p>
+          <h2 class="text-black font-bold text-4xl md:text-[45px] lg:text-[50px] leading-[1.05] tracking-tight">
+            Digitalizar tu<br />negocio y escalar<br />tus resultados.
+          </h2>
+        </div>
+      </div>
+
+      <!-- Right Column (Form Area) -->
+      <div class="w-full lg:w-1/2 p-4 md:p-8 lg:pr-10 lg:pl-10 xl:pr-[max(2.5rem,calc((100vw-1500px)/2))] flex flex-col justify-center relative z-10">
+        
+        <div class="w-full max-w-[550px] mx-auto lg:mx-0">
+          
+          <!-- Asterisk Icon -->
+          <div class="text-[#38bdf8] text-4xl mb-2 leading-none font-sans font-medium">*</div>
+          
+          <h1 class="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">Hablemos de tu proyecto</h1>
+          <p class="text-gray-500 text-sm md:text-base mb-10 leading-relaxed max-w-md">
+            Cuéntanos qué necesitas y nuestro equipo se pondrá en contacto contigo lo antes posible para asesorarte.
+          </p>
+
+          <form id="contact-form-mail" class="space-y-6" action="/api/enviar-formulario" method="POST" data-mail-form>
+            <input type="hidden" name="formulario" value="Contacto" />
+            <input type="hidden" name="pagina_origen" value="" />
+            <!-- Honeypot anti-spam field -->
+            <div class="hidden" aria-hidden="true">
+              <label for="bot-field">No llenes este campo si eres humano:</label>
+            <input type="text" id="bot-field" name="website" tabindex="-1" />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Nombre -->
+              <div class="relative">
+                <label class="block text-[13px] font-semibold text-gray-700 mb-2">Tu nombre</label>
+                <input 
+                  type="text" 
+                name="name"
+                  placeholder="Ej. Rodrigo García"
+                  maxlength="80"
+                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300"
+                  required
+                />
+                <p class="text-red-500 text-xs mt-1 hidden error-message">Este campo es obligatorio.</p>
+              </div>
+              
+              <!-- Correo -->
+              <div class="relative">
+                <label class="block text-[13px] font-semibold text-gray-700 mb-2">Tu correo</label>
+                <input 
+                  type="email" 
+                name="email"
+                  placeholder="hola@empresa.com"
+                  maxlength="100"
+                  pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300"
+                  required
+                />
+                <p class="text-red-500 text-xs mt-1 hidden error-message">Ingresa un correo válido.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Celular -->
+              <div class="relative">
+                <label class="block text-[13px] font-semibold text-gray-700 mb-2">Número de celular</label>
+                <input 
+                  type="tel" 
+                  id="celular-input"
+                name="phone"
+                  placeholder="+51 "
+                  maxlength="13"
+                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300"
+                  required
+                />
+                <p class="text-red-500 text-xs mt-1 hidden error-message">Celular válido (9 dígitos).</p>
+              </div>
+              
+              <!-- Provincia Dropdown -->
+              <div class="relative" id="provincia-wrapper">
+                <label class="block text-[13px] font-semibold text-gray-700 mb-2">Provincia</label>
+                <input type="hidden" name="provincia" id="provincia-input" required>
+                <button 
+                  type="button" 
+                  id="provincia-trigger"
+                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-xl px-4 py-3.5 text-sm text-gray-500 flex justify-between items-center focus:outline-none focus:border-[#38bdf8] focus:ring-1 focus:ring-[#38bdf8] transition-all"
+                >
+                  <span id="provincia-text" class="pointer-events-none">Selecciona</span>
+                  <svg id="provincia-arrow" class="fill-current h-4 w-4 text-gray-400 transition-transform duration-200 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </button>
+    
+                <!-- Custom Options Dropdown -->
+                <div 
+                  id="provincia-dropdown" 
+                  class="absolute top-full left-0 mt-2 w-full bg-white border border-gray-100 rounded-xl shadow-xl z-50 hidden opacity-0 -translate-y-2 transition-all duration-200 overflow-hidden"
+                >
+                  <ul class="max-h-[200px] overflow-y-auto py-2 custom-scrollbar">
+                    {["Amazonas", "Áncash", "Apurímac", "Arequipa", "Ayacucho", "Cajamarca", "Callao", "Cusco", "Huancavelica", "Huánuco", "Ica", "Junín", "La Libertad", "Lambayeque", "Lima", "Loreto", "Madre de Dios", "Moquegua", "Pasco", "Piura", "Puno", "San Martín", "Tacna", "Tumbes", "Ucayali"].map(prov => (
+                      <li class="px-4 py-2.5 text-sm text-gray-600 hover:bg-gray-50 hover:text-black cursor-pointer transition-colors" data-value={prov}>{prov}</li>
+                    ))}
+                  </ul>
+                </div>
+                <p class="text-red-500 text-xs mt-1 hidden error-message">Selecciona una provincia.</p>
+              </div>
+            </div>
+
+            <!-- Mensaje -->
+            <div class="relative">
+              <label class="block text-[13px] font-semibold text-gray-700 mb-2">Mensaje</label>
+              <textarea 
+                name="message"
+                placeholder="Hola, me gustaría cotizar una web para mi empresa..."
+                rows="3"
+                maxlength="300"
+                class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300 custom-scrollbar resize-none"
+                required
+              ></textarea>
+              <p class="text-red-500 text-xs mt-1 hidden error-message">El mensaje no puede estar vacío.</p>
+            </div>
+
+            <div class="pt-2">
+              <button 
+                type="submit"
+                class="w-full bg-[#050505] hover:bg-[#1a1a1a] text-white font-semibold text-sm py-3 px-5 rounded-lg transition-colors shadow-lg shadow-black/10 min-h-[44px]"
+              >
+                Enviar mensaje
+              </button>
+            </div>
+            
+            <div class="text-center flex flex-col items-center gap-4 pt-4">
+              <p class="text-xs text-gray-400">
+                Al enviar, aceptas nuestras <a href="/terminos-y-condiciones" class="underline hover:text-gray-600 transition-colors">Condiciones</a> y <a href="/politicas-de-privacidad" class="underline hover:text-gray-600 transition-colors">Privacidad</a>.
+              </p>
+              <img src="/grupo-circulos/grupo-circulos.png" alt="Equipo KitStation" class="h-8 md:h-10 object-contain" onerror="this.style.display='none'" />
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  /* Scrollbar personalizado para el dropdown en modo claro */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 8px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
+  }
+</style>
+
+<script>
+  // --- INTERACTIVE GLOW LOGIC ---
+  const panel = document.getElementById('interactive-panel');
+  const glow = document.getElementById('interactive-glow');
+
+  if (panel && glow) {
+    panel.addEventListener('mousemove', (e) => {
+      const rect = panel.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Mover el centro del resplandor a la posición del mouse
+      glow.style.left = `${x}px`;
+      glow.style.top = `${y}px`;
+      glow.style.transform = `translate(-50%, -50%)`;
+      // Hacemos que siga de cerca pero suavemente gracias al transition-all
+    });
+
+    panel.addEventListener('mouseleave', () => {
+      // Regresa a la posición inicial (esquina inferior izquierda)
+      glow.style.left = `0%`;
+      glow.style.top = `100%`;
+      glow.style.transform = `translate(-30%, -70%)`;
+    });
+  }
+
+  // --- FORM LOGIC ---
+  // Logica para Custom Select (Provincia)
+  const provinciaWrapper = document.getElementById('provincia-wrapper');
+  const provinciaTrigger = document.getElementById('provincia-trigger');
+  const provinciaDropdown = document.getElementById('provincia-dropdown');
+  const provinciaText = document.getElementById('provincia-text');
+  const provinciaInput = document.getElementById('provincia-input') as HTMLInputElement;
+  const provinciaArrow = document.getElementById('provincia-arrow');
+
+  if (provinciaWrapper && provinciaTrigger && provinciaDropdown && provinciaText && provinciaInput && provinciaArrow) {
+    const provinciaOptions = provinciaDropdown.querySelectorAll('li');
+
+    const closeDropdown = () => {
+      provinciaDropdown.classList.remove('opacity-100', 'translate-y-0');
+      provinciaDropdown.classList.add('opacity-0', '-translate-y-2');
+      provinciaArrow.classList.remove('rotate-180');
+      setTimeout(() => {
+        provinciaDropdown.classList.add('hidden');
+      }, 200);
+    };
+
+    provinciaTrigger.addEventListener('click', () => {
+      const isHidden = provinciaDropdown.classList.contains('hidden');
+      if (isHidden) {
+        provinciaDropdown.classList.remove('hidden');
+        // Pequeño timeout para permitir que se aplique display:block antes de la animación
+        setTimeout(() => {
+          provinciaDropdown.classList.remove('opacity-0', '-translate-y-2');
+          provinciaDropdown.classList.add('opacity-100', 'translate-y-0');
+          provinciaArrow.classList.add('rotate-180');
+        }, 10);
+      } else {
+        closeDropdown();
+      }
+    });
+
+    provinciaOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const value = target.getAttribute('data-value');
+        const text = target.innerText;
+        
+        if (value) {
+          provinciaInput.value = value;
+          provinciaText.innerText = text;
+          provinciaText.classList.remove('text-gray-500');
+          provinciaText.classList.add('text-black');
+          
+          // Limpiar el estado de error si lo hubiera
+          provinciaTrigger.classList.remove('border-red-500');
+          const errorMsg = provinciaWrapper.querySelector('.error-message');
+          if (errorMsg) errorMsg.classList.add('hidden');
+        }
+        
+        closeDropdown();
+      });
+    });
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (!provinciaWrapper.contains(e.target as Node)) {
+        if (!provinciaDropdown.classList.contains('hidden')) {
+          closeDropdown();
+        }
+      }
+    });
+  }
+
+  // Logica para el campo de celular
+  const phoneInput = document.getElementById('celular-input') as HTMLInputElement;
+  
+  if (phoneInput) {
+    phoneInput.addEventListener('focus', function() {
+      if (this.value.trim() === '') {
+        this.value = '+51 ';
+      }
+    });
+
+    phoneInput.addEventListener('input', function(e) {
+      const prefix = '+51 ';
+      
+      let cleanNumbers = '';
+      if (!this.value.startsWith(prefix)) {
+        cleanNumbers = this.value.replace(/[^0-9]/g, '');
+        let remainingNumbers = cleanNumbers;
+        if (cleanNumbers.startsWith('51')) {
+          remainingNumbers = cleanNumbers.substring(2);
+        }
+        // Limitar a 9 digitos
+        remainingNumbers = remainingNumbers.substring(0, 9);
+        this.value = prefix + remainingNumbers;
+      } else {
+        const afterPrefix = this.value.substring(prefix.length);
+        cleanNumbers = afterPrefix.replace(/[^0-9]/g, '');
+        // Limitar a 9 digitos
+        cleanNumbers = cleanNumbers.substring(0, 9);
+        this.value = prefix + cleanNumbers;
+      }
+    });
+  }
+
+  // Lógica de Validación Personalizada (Custom Form Validation)
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Honeypot check
+      const botField = document.getElementById('bot-field') as HTMLInputElement;
+      if (botField && botField.value) {
+        console.warn('Bot detectado.');
+        return; // Detener envío silenciosamente
+      }
+      
+      let isValid = true;
+      const inputs = form.querySelectorAll('input, textarea');
+      
+      inputs.forEach((input: any) => {
+        const isCustomSelect = input.id === 'provincia-input';
+        const visualTarget = isCustomSelect ? document.getElementById('provincia-trigger') : input;
+        const errorMsg = isCustomSelect ? document.getElementById('provincia-wrapper')?.querySelector('.error-message') : input.parentElement.querySelector('.error-message');
+        
+        // Reset styles
+        visualTarget?.classList.remove('border-red-500');
+        if (errorMsg) errorMsg.classList.add('hidden');
+        
+        let fieldIsValid = true;
+        
+        if (input.name === 'correo') {
+          // Validar regex de correo
+          const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+          if (!emailRegex.test(input.value)) {
+            fieldIsValid = false;
+          }
+        } else if (input.name === 'celular') {
+          // Validar que tenga exactamente +51 y 9 dígitos
+          if (input.value.length !== 13) {
+            fieldIsValid = false;
+          }
+        } else {
+          // Para los demás, solo verificar que no estén vacíos
+          if (!input.value.trim()) {
+            fieldIsValid = false;
+          }
+        }
+        
+        if (!fieldIsValid) {
+          isValid = false;
+          visualTarget?.classList.add('border-red-500');
+          if (errorMsg) errorMsg.classList.remove('hidden');
+        }
+      });
+      
+      if (isValid) {
+        // Enviar formulario (aquí iría tu logica de fetch)
+        alert('Mensaje enviado correctamente. Nos pondremos en contacto contigo pronto.');
+      }
+    });
+  }
+</script>

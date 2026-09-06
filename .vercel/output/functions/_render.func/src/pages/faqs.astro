@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeaderKit from '../components/HeaderKit.astro';
+import FooterKit from '../components/FooterKit.astro';
+import CallToAction from '../components/CallToAction.astro';
+const faqsData = [
+  {
+    question: "¿Qué servicios de marketing digital y desarrollo web ofrece KitStation en Perú?",
+    answer: "Diseñamos ecosistemas digitales completos para escalar negocios. Nuestro enfoque incluye el desarrollo de páginas y sistemas web a medida, gestión estratégica de pauta digital (Google Ads y Meta Ads), y optimización de ventas mediante la automatización de WhatsApp y sistemas CRM personalizados. Atendemos a empresas en Lima y todo el Perú, adaptando cada solución a su etapa comercial."
+  },
+  {
+    question: "¿Es mejor invertir en una página web profesional o en campañas de Ads?",
+    answer: "Ambas herramientas cumplen roles distintos en un embudo de ventas exitoso. Una página web profesional o landing page es tu motor de conversión (donde el cliente decide comprar), mientras que Google Ads y Meta Ads son el combustible que genera tráfico hacia ella. En KitStation desarrollamos tu plataforma web y activamos campañas publicitarias de alto rendimiento para asegurar un retorno de inversión (ROI) medible."
+  },
+  {
+    question: "¿Qué estrategia de publicidad digital necesita mi empresa: Google Ads o Meta Ads?",
+    answer: "Depende de cómo compren tus clientes. Google Ads es ideal para capturar demanda activa (clientes que ya buscan tu servicio o producto exacto en el buscador). Meta Ads (Facebook e Instagram) es perfecto para generar demanda, interceptar a tu cliente ideal mediante segmentación avanzada y mostrar tu propuesta de valor. Analizamos tu modelo de negocio para ejecutar la plataforma que te brinde el costo por adquisición (CPA) más rentable."
+  },
+  {
+    question: "¿Cómo ayuda la automatización de WhatsApp y un CRM a escalar mis ventas?",
+    answer: "El principal problema de las empresas es perder clientes por respuestas lentas o falta de seguimiento. En KitStation automatizamos WhatsApp creando flujos inteligentes para calificar leads, responder consultas frecuentes 24/7 y asignar prospectos a tu equipo comercial. Toda esta información se centraliza en un CRM personalizado que diseñamos según la operación exacta de tu empresa, permitiéndote medir métricas, controlar procesos y cerrar más ventas sin fricciones."
+  },
+  {
+    question: "¿En cuánto tiempo empezaré a ver resultados o ventas de mis campañas?",
+    answer: "El tiempo de retorno es relativo y depende directamente de tus objetivos comerciales y la plataforma publicitaria elegida. No prometemos ventas mágicas el primer día. Las campañas requieren una fase inicial de testeo y aprendizaje donde el algoritmo recopila datos reales del mercado para optimizar la entrega de los anuncios. Generalmente, las primeras semanas sirven para afinar la estrategia y, en base a esa data, comenzamos a estabilizar y escalar el rendimiento para generar un retorno real."
+  },
+  {
+    question: "¿Cuánto tiempo toma el diseño y desarrollo de mi página web?",
+    answer: "El plazo de ejecución depende de la complejidad técnica de cada proyecto. Para una web con requerimientos estándar, el tiempo de desarrollo es de aproximadamente 1 mes a partir de la finalización del planteamiento inicial. Es importante destacar que este plazo se cumple siempre y cuando el cliente entregue a tiempo todo el material necesario (textos, branding, imágenes) y apruebe las etapas de diseño sin demoras."
+  },
+  {
+    question: "¿Mi empresa necesita tener un equipo de ventas grande para usar el CRM y la automatización?",
+    answer: "No. De hecho, el objetivo de nuestras automatizaciones es multiplicar la capacidad operativa de tu equipo actual. Hemos comprobado que una sola persona puede gestionar el CRM de manera eficiente si aprovecha correctamente todas las herramientas y flujos automáticos. Sin embargo, a medida que escalemos tus campañas y el volumen de leads (prospectos) aumente considerablemente, lo ideal será incorporar más asesores para asegurar la calidad de atención y maximizar la tasa de cierre."
+  },
+  {
+    question: "¿Qué pasa después de que la página web está terminada? ¿Ofrecen soporte?",
+    answer: "Totalmente. Entendemos que tu web es un activo comercial crítico. Una vez que el sitio sale a producción, incluimos 1 mes de mantenimiento gratuito. Adicionalmente, brindamos una garantía de soporte técnico por 3 meses para cubrir cualquier fallo estructural o error de código (aunque nuestros estándares de control de calidad hacen que esto sea sumamente improbable). Pasado este periodo inicial, ofrecemos planes de mantenimiento a medida según los requerimientos técnicos de tu plataforma."
+  },
+  {
+    question: "¿Cuál es el proceso y la inversión mínima para empezar a trabajar con KitStation?",
+    answer: "Cada ecosistema digital que construimos es un proyecto a medida, por lo que el presupuesto varía según el alcance técnico y estratégico que tu negocio necesite (desarrollo web, automatización, gestión de pauta, etc.). Para asegurar los estándares de calidad y el nivel de compromiso que exigimos en cada proyecto, trabajamos con implementaciones que parten desde una inversión mínima de S/ 1,000 (o $300 USD). El primer paso es contactarnos para evaluar tu caso y estructurar una propuesta exacta."
+  }
+];
+---
+
+<Layout title="Preguntas Frecuentes - KitStation" bodyClass="bg-white text-black relative overflow-x-hidden min-h-screen">
+  <HeaderKit />
+  
+  <main class="relative z-10 pt-[140px] pb-32 px-6 md:px-12 max-w-7xl mx-auto min-h-screen w-full flex flex-col items-center">
+    <div class="w-full text-center mb-16 px-4">
+      <h1 class="text-4xl md:text-[55px] leading-tight font-semibold text-[#0a0f18] tracking-tight mb-4 max-w-5xl mx-auto">
+        Respuestas claras antes de invertir<br class="hidden md:block" />
+        <span class="md:hidden"> </span>en tu ecosistema digital.
+      </h1>
+      <p class="text-gray-600 text-[15px] font-light max-w-3xl mx-auto leading-relaxed">
+        Resuelve tus consultas sobre desarrollo web, campañas en Google/Meta y automatización de CRM antes de dar el siguiente paso con tu empresa.
+      </p>
+    </div>
+
+    <div class="max-w-4xl w-full flex flex-col">
+      {faqsData.map((faq, index) => (
+        <div class="border-b border-gray-200/60 group faq-page-item">
+          <button class="w-full py-6 flex justify-between items-center text-left focus:outline-none faq-page-button gap-4">
+            <span class="text-base md:text-lg font-semibold text-[#0a0f18]">{faq.question}</span>
+            <span class="text-blue-700 text-2xl font-light transform transition-transform duration-300 faq-page-icon">
+              +
+            </span>
+          </button>
+          <div class="faq-page-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+            <p class="pb-8 text-gray-500 font-light leading-relaxed text-sm md:text-base pr-8">
+              {faq.answer}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+
+  <CallToAction bgColor="bg-white" />
+</Layout>
+
+<script>
+  const faqPageItems = document.querySelectorAll('.faq-page-item');
+
+  faqPageItems.forEach(item => {
+    const button = item.querySelector('.faq-page-button');
+    const answer = item.querySelector('.faq-page-answer') as HTMLElement;
+    const icon = item.querySelector('.faq-page-icon');
+
+    button?.addEventListener('click', () => {
+      const isOpen = answer?.style.maxHeight && answer.style.maxHeight !== '0px';
+
+      // Close all other FAQs
+      faqPageItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          const otherAnswer = otherItem.querySelector('.faq-page-answer') as HTMLElement;
+          const otherIcon = otherItem.querySelector('.faq-page-icon');
+          if (otherAnswer) otherAnswer.style.maxHeight = '0px';
+          if (otherIcon) {
+            otherIcon.textContent = '+';
+          }
+        }
+      });
+
+      // Toggle current FAQ
+      if (isOpen) {
+        if (answer) answer.style.maxHeight = '0px';
+        if (icon) {
+          icon.textContent = '+';
+        }
+      } else {
+        if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
+        if (icon) {
+          icon.textContent = '-';
+        }
+      }
+    });
+  });
+</script>
