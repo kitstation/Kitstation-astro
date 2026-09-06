@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://kitstation.pe/sitemap-index.xml
