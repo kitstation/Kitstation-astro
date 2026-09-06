@@ -1,0 +1,798 @@
+---
+// SpecificSolutions.astro
+const soluciones = [
+  {
+    file: "solu-mayor-alcance.png",
+    label: "Mayor alcance",
+    color: "rgba(74, 222, 128, 0.8)",
+    detalle: "1-ALCANCE.png",
+    detalleMobile: "1-ALCANCE-movil.png",
+  },
+  {
+    file: "solu-cero-tareas-manuales.png",
+    label: "Cero tareas manuales",
+    color: "rgba(192, 132, 252, 0.8)",
+    detalle: "2-IA.png",
+    detalleMobile: "2-IA-movil.png",
+  },
+  {
+    file: "solu-más-ventas.png",
+    label: "Más ventas",
+    color: "rgba(251, 191, 36, 0.8)",
+    detalle: "3-VENTAS.png",
+    detalleMobile: "3-VENTAS-movil.png",
+  },
+  {
+    file: "solu-alto-impacto.png",
+    label: "Alto impacto",
+    color: "rgba(244, 63, 94, 0.8)",
+    detalle: "4-IMPACTO.png",
+    detalleMobile: "4-IMPACTO-movil.png",
+  },
+  {
+    file: "solu-campañas-rentables.png",
+    label: "Campañas rentables",
+    color: "rgba(59, 130, 246, 0.8)",
+    detalle: "5-CAMPAÑA.png",
+    detalleMobile: "5-CAMPAÑA-movil.png",
+  },
+  {
+    file: "solu-tecnología-escalable.png",
+    label: "Tecnología escalable",
+    color: "rgba(6, 182, 212, 0.8)",
+    detalle: "6-DESARROLLO.png",
+    detalleMobile: "6-DESARROLLO-movil.png",
+  },
+  {
+    file: "solu-experiencia-de-usuario.png",
+    label: "Experiencia de usuario",
+    color: "rgba(239, 68, 68, 0.8)",
+    detalle: "7-BRANDING.png",
+    detalleMobile: "7-BRANDING-movil.png",
+  },
+];
+---
+
+<section
+  id="specific-solutions"
+  class="relative w-full py-24 bg-[#050505] overflow-hidden flex flex-col items-center"
+>
+  <!-- Ambient background glows -->
+  <div
+    class="absolute top-1/2 left-0 w-[800px] h-[800px] rounded-full opacity-80 pointer-events-none"
+    style="background: radial-gradient(circle, rgba(29, 78, 216, 0.95) 0%, rgba(29, 78, 216, 0) 70%);"
+    id="glow-left"
+  >
+  </div>
+  <div
+    class="absolute top-1/2 right-0 w-[800px] h-[800px] rounded-full opacity-70 pointer-events-none"
+    style="background: radial-gradient(circle, rgba(34, 211, 238, 0.95) 0%, rgba(34, 211, 238, 0) 70%);"
+    id="glow-right"
+  >
+  </div>
+
+  <div
+    class="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center"
+  >
+    <!-- Header -->
+    <div class="text-center mb-16 relative z-10">
+      <h2
+        class="text-4xl md:text-[55px] leading-[1.1] font-bold text-white tracking-tight mb-4"
+      >
+        Soluciones específicas<br />para tu empresa.
+      </h2>
+      <p
+        class="text-gray-300 text-[15px] max-w-2xl mx-auto font-light leading-relaxed"
+      >
+        Diseñamos soluciones digitales y desarrollo web para empresas en Perú
+        que necesitan ordenar su captación, fortalecer su marca y convertir
+        mejor.
+      </p>
+    </div>
+
+    <div
+      class="w-full mb-8 md:mb-12 relative z-10 max-w-7xl mx-auto px-4 md:px-12 mt-8"
+    >
+      <div
+        id="sol-carousel-track"
+        class="grid grid-cols-8 lg:grid-cols-7 gap-y-20 gap-x-4 w-full place-items-center"
+      >
+        {
+          soluciones.map((sol, i) => {
+            const mobileColStartClass = i === 4 ? "col-start-2 lg:col-start-auto" : "";
+            return (
+              <div
+                class={`sol-item flex flex-col items-center justify-center cursor-pointer group relative w-full col-span-2 lg:col-span-1 ${mobileColStartClass}`}
+                data-index={i}
+                data-label={sol.label}
+                data-detalle={sol.detalle}
+                data-detalle-mobile={sol.detalleMobile}
+                style={`--glow-color: ${sol.color};`}
+              >
+                <div class="sol-icon-wrapper w-14 h-14 md:w-[60px] md:h-[60px] lg:w-[70px] lg:h-[70px] flex items-center justify-center relative">
+                  <img
+                    src={`/soluciones/${sol.file}`}
+                    alt={sol.label}
+                    class="w-full h-full object-contain drop-shadow-md"
+                  />
+                </div>
+                <span class="sol-label absolute top-full mt-2 text-white text-[10px] md:text-xs text-center leading-tight opacity-0 transition-all duration-300 whitespace-nowrap font-bold pointer-events-none drop-shadow-lg">
+                  {sol.label}
+                </span>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <!-- Expandable Content Card Container -->
+    <div
+      id="sol-card-container"
+      class="card-wrapper w-full max-w-6xl opacity-0 translate-y-4"
+    >
+      <div class="overflow-hidden w-full">
+        <!-- La tarjeta en sí -->
+        <div
+          class="w-full relative flex flex-col items-center justify-center transform transition-all duration-300 ease-out translate-y-8 min-h-[200px] md:min-h-[500px] lg:min-h-[650px] py-4 md:py-8"
+          id="sol-card-inner"
+        >
+          <img
+            src=""
+            id="sol-card-img"
+            class="max-w-full h-auto max-h-full object-contain hidden transition-opacity duration-300 drop-shadow-2xl scale-100 md:scale-[1.15]"
+            alt="Detalle"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Nueva Sección Prioridades -->
+    <div class="w-full mt-24 mb-12 relative z-10">
+      <div class="text-center mb-12 relative z-10">
+        <h2
+          class="text-3xl md:text-[45px] leading-tight font-bold text-white tracking-tight"
+        >
+          Descubre lo que las empresas<br />están priorizando hoy
+        </h2>
+      </div>
+
+      <div
+        class="w-full bg-[#1e2025]/60 backdrop-blur-xl border border-white/10 rounded-[32px] p-8 md:p-12 md:h-[736px] flex flex-col md:flex-row gap-8 items-stretch relative overflow-hidden"
+      >
+        <!-- Left Side: Accordions -->
+        <div
+          class="w-full md:w-5/12 flex flex-col gap-4 justify-center items-start z-10"
+          id="priorities-accordion"
+        >
+          <!-- Item 1 -->
+          <button
+            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[24px] px-4 py-3 transition-all duration-300 text-left active"
+            data-target="0"
+          >
+            <div class="flex items-center gap-4 w-full">
+              <div
+                class="priority-icon w-6 h-6 rounded-full border border-white/30 flex items-center justify-center shrink-0 transition-transform duration-300"
+              >
+                <i
+                  class="bi bi-dash text-white text-sm opacity-100 transition-opacity dash-icon"
+                ></i>
+                <i
+                  class="bi bi-plus text-white text-sm opacity-0 absolute transition-opacity plus-icon"
+                ></i>
+              </div>
+              <span class="text-white font-semibold text-sm md:text-base leading-tight max-w-[180px]"
+                >Animación 2D y 3D</span
+              >
+            </div>
+            <div
+              class="priority-content grid transition-all duration-500 ease-in-out grid-rows-[1fr] opacity-100 mt-4 max-w-[280px] md:max-w-[320px]"
+            >
+              <div class="overflow-hidden">
+                <p
+                  class="text-gray-400 text-xs md:text-sm leading-relaxed pr-4 min-w-[280px] md:min-w-[320px]"
+                >
+                  Piezas dinámicas que explican lo complejo, retienen la
+                  atención y venden desde el primer segundo.
+                </p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Item 2 -->
+          <button
+            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[24px] px-4 py-3 transition-all duration-300 text-left"
+            data-target="1"
+          >
+            <div class="flex items-center gap-4 w-full">
+              <div
+                class="priority-icon w-6 h-6 rounded-full border border-white/30 flex items-center justify-center shrink-0 transition-transform duration-300"
+              >
+                <i
+                  class="bi bi-dash text-white text-sm opacity-0 absolute transition-opacity dash-icon"
+                ></i>
+                <i
+                  class="bi bi-plus text-white text-sm opacity-100 transition-opacity plus-icon"
+                ></i>
+              </div>
+              <span class="text-white font-semibold text-sm md:text-base leading-tight max-w-[180px]"
+                >Diseño web</span
+              >
+            </div>
+            <div
+              class="priority-content grid transition-all duration-500 ease-in-out grid-rows-[0fr] opacity-0 mt-0 max-w-0"
+            >
+              <div class="overflow-hidden">
+                <p
+                  class="text-gray-400 text-xs md:text-sm leading-relaxed pr-4 min-w-[280px] md:min-w-[320px]"
+                >
+                  Desarrollo de páginas y plataformas rápidas, seguras y
+                  optimizadas para máxima conversión.
+                </p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Item 3 -->
+          <button
+            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[24px] px-4 py-3 transition-all duration-300 text-left"
+            data-target="2"
+          >
+            <div class="flex items-center gap-4 w-full">
+              <div
+                class="priority-icon w-6 h-6 rounded-full border border-white/30 flex items-center justify-center shrink-0 transition-transform duration-300"
+              >
+                <i
+                  class="bi bi-dash text-white text-sm opacity-0 absolute transition-opacity dash-icon"
+                ></i>
+                <i
+                  class="bi bi-plus text-white text-sm opacity-100 transition-opacity plus-icon"
+                ></i>
+              </div>
+              <span class="text-white font-semibold text-sm md:text-base leading-tight max-w-[180px]"
+                >Efectos visuales y CGI</span
+              >
+            </div>
+            <div
+              class="priority-content grid transition-all duration-500 ease-in-out grid-rows-[0fr] opacity-0 mt-0 max-w-0"
+            >
+              <div class="overflow-hidden">
+                <p
+                  class="text-gray-400 text-xs md:text-sm leading-relaxed pr-4 min-w-[280px] md:min-w-[320px]"
+                >
+                  Impacto visual de alto nivel que distingue tu marca de la
+                  competencia de manera inmediata.
+                </p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Item 4 -->
+          <button
+            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[24px] px-4 py-3 transition-all duration-300 text-left"
+            data-target="3"
+          >
+            <div class="flex items-center gap-4 w-full">
+              <div
+                class="priority-icon w-6 h-6 rounded-full border border-white/30 flex items-center justify-center shrink-0 transition-transform duration-300"
+              >
+                <i
+                  class="bi bi-dash text-white text-sm opacity-0 absolute transition-opacity dash-icon"
+                ></i>
+                <i
+                  class="bi bi-plus text-white text-sm opacity-100 transition-opacity plus-icon"
+                ></i>
+              </div>
+              <span class="text-white font-semibold text-sm md:text-base leading-tight max-w-[180px]"
+                >Desarrollo de software</span
+              >
+            </div>
+            <div
+              class="priority-content grid transition-all duration-500 ease-in-out grid-rows-[0fr] opacity-0 mt-0 max-w-0"
+            >
+              <div class="overflow-hidden">
+                <p
+                  class="text-gray-400 text-xs md:text-sm leading-relaxed pr-4 min-w-[280px] md:min-w-[320px]"
+                >
+                  Soluciones a medida para escalar tu negocio, automatizar
+                  procesos y centralizar operaciones.
+                </p>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <!-- Right Side: Content Box (Slider Container) -->
+        <div class="w-full md:w-6/12 flex-1 flex flex-col z-10 relative md:px-16">
+            
+            <!-- Left arrow (absolute) -->
+            <button id="slider-prev" class="hidden md:flex absolute top-1/2 left-0 -translate-y-1/2 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 items-center justify-center transition-colors z-20">
+              <i class="bi bi-arrow-left text-white/50 text-sm"></i>
+            </button>
+
+            <div class="w-full flex-1 relative overflow-hidden rounded-[24px] bg-white/5 border border-white/10 pb-4">
+                <div id="priority-slides-wrapper" class="flex transition-transform duration-500 ease-in-out w-full h-full">
+                    <!-- Slides will be injected here via JS -->
+                </div>
+                
+                <!-- Dots -->
+                <div id="slider-dots" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                   <!-- Dots injected via JS -->
+                </div>
+            </div>
+
+            <!-- Right arrow (absolute) -->
+            <button id="slider-next" class="hidden md:flex absolute top-1/2 right-0 -translate-y-1/2 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 items-center justify-center transition-colors z-20">
+              <i class="bi bi-arrow-right text-white/50 text-sm"></i>
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  @keyframes sweepLeft {
+    0%,
+    100% {
+      transform: translate(-30%, -50%) scale(1);
+    }
+    25% {
+      transform: translate(30%, -80%) scale(1.15);
+    }
+    50% {
+      transform: translate(70%, -20%) scale(0.85);
+    }
+    75% {
+      transform: translate(20%, 30%) scale(1.05);
+    }
+  }
+
+  @keyframes sweepRight {
+    0%,
+    100% {
+      transform: translate(30%, -50%) scale(1);
+    }
+    25% {
+      transform: translate(-30%, 30%) scale(1.15);
+    }
+    50% {
+      transform: translate(-70%, -30%) scale(0.85);
+    }
+    75% {
+      transform: translate(-20%, -80%) scale(1.05);
+    }
+  }
+
+  #glow-left {
+    animation: sweepLeft 25s infinite ease-in-out;
+  }
+
+  #glow-right {
+    animation: sweepRight 28s infinite ease-in-out;
+  }
+
+  /* Grid trick for smooth slide-down animation on height */
+  .card-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition:
+      grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.4s ease-out,
+      transform 0.4s ease-out;
+  }
+
+  .card-wrapper.is-open {
+    grid-template-rows: 1fr;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .card-wrapper.is-open #sol-card-inner {
+    transform: translateY(0) !important;
+  }
+
+  /* Z-index management to prevent clipping */
+  .sol-item {
+    z-index: 1;
+    transition: z-index 0.3s;
+  }
+  .sol-item:hover {
+    z-index: 20;
+  }
+  .sol-item.active {
+    z-index: 30;
+  }
+
+  /* Active state (used for click/tap on all devices) */
+  .sol-item.active .sol-icon-wrapper {
+    transform: scale(1.6);
+  }
+  .sol-item.active .sol-icon-wrapper img {
+    filter: drop-shadow(0 0 25px var(--glow-color, rgba(255, 255, 255, 0.4)));
+  }
+  .sol-item.active .sol-label {
+    opacity: 1 !important;
+    font-weight: 700;
+    transform: translateY(16px);
+  }
+  @media (min-width: 768px) {
+    .sol-item.active .sol-label { transform: translateY(24px); }
+  }
+  @media (min-width: 1024px) {
+    .sol-item.active .sol-label { transform: translateY(32px); }
+  }
+
+  /* MacOS Dock Effect for Carousel - Hover only on supported devices to avoid iOS sticky hover */
+  .sol-icon-wrapper {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: center;
+  }
+  .sol-icon-wrapper img {
+    transition: filter 0.3s ease;
+  }
+
+  @media (hover: hover) {
+    .sol-item:hover .sol-icon-wrapper {
+      transform: scale(1.6);
+    }
+    
+    .sol-item:hover .sol-icon-wrapper img {
+      filter: drop-shadow(0 0 25px var(--glow-color, rgba(255, 255, 255, 0.4)));
+    }
+
+    .sol-item:hover + .sol-item .sol-icon-wrapper {
+      transform: scale(1.25);
+    }
+
+    #sol-carousel-track:has(.sol-item:hover)
+      .sol-item:not(:hover):has(+ .sol-item:hover)
+      .sol-icon-wrapper {
+      transform: scale(1.25);
+    }
+    
+    /* Label hover */
+    .sol-item:hover .sol-label {
+      opacity: 1 !important;
+      transform: translateY(16px);
+    }
+    @media (min-width: 768px) {
+      .sol-item:hover .sol-label { transform: translateY(24px); }
+    }
+    @media (min-width: 1024px) {
+      .sol-item:hover .sol-label { transform: translateY(32px); }
+    }
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll(".sol-item");
+  const cardContainer = document.getElementById("sol-card-container");
+  const cardInner = document.getElementById("sol-card-inner");
+  const cardTitle = document.getElementById("sol-card-title");
+  const glowLeft = document.getElementById("glow-left");
+  const glowRight = document.getElementById("glow-right");
+
+  let activeIndex = -1;
+
+  // Card toggle logic
+  const updateCardContent = (index: number, isSwitching = false) => {
+    const el = Array.from(items).find(
+      (el) => parseInt(el.getAttribute("data-index") || "-1") === index,
+    );
+    
+    const baseImage = el ? el.getAttribute("data-detalle") : "";
+    const mobileImage = el ? el.getAttribute("data-detalle-mobile") : "";
+    
+    const isMobile = window.innerWidth < 768;
+    const imageUrl = isMobile && mobileImage ? `/soluciones/detalles/${mobileImage}` : (baseImage ? `/soluciones/detalles/${baseImage}` : "");
+
+    const cardImg = document.getElementById(
+      "sol-card-img",
+    ) as HTMLImageElement | null;
+    const cardInnerObj = document.getElementById("sol-card-inner");
+
+    if (cardImg && baseImage) {
+      const newSrc = imageUrl;
+
+      if (isSwitching) {
+        // 1. Fade out current image and slightly scale down the card
+        cardImg.style.opacity = "0";
+        if (cardInnerObj) cardInnerObj.style.transform = "scale(0.98)";
+
+        setTimeout(() => {
+          cardImg.onload = () => {
+            // 3. Fade in new image and scale card back up
+            cardImg.style.opacity = "1";
+            if (cardInnerObj) cardInnerObj.style.transform = "scale(1)";
+          };
+          
+          cardImg.onerror = () => {
+             cardImg.onerror = null; // Prevent infinite loops
+             cardImg.src = `/soluciones/detalles/${baseImage}`;
+             cardImg.style.opacity = "1";
+             if (cardInnerObj) cardInnerObj.style.transform = "scale(1)";
+          };
+          
+          // 2. Change image source while invisible
+          cardImg.src = newSrc;
+        }, 300);
+      } else {
+        // Direct load (first time opening)
+        cardImg.onload = null;
+        cardImg.onerror = () => {
+             cardImg.onerror = null;
+             cardImg.src = `/soluciones/detalles/${baseImage}`;
+        };
+        cardImg.src = newSrc;
+        cardImg.classList.remove("hidden");
+        setTimeout(() => {
+          cardImg.style.opacity = "1";
+        }, 10);
+      }
+    }
+  };
+
+  const toggleCard = (index: number) => {
+    if (activeIndex === index) {
+      // Close
+      activeIndex = -1;
+      if (cardContainer) {
+        cardContainer.classList.remove("is-open");
+        cardContainer.style.opacity = "0";
+        cardContainer.style.transform = "translateY(16px)";
+      }
+    } else {
+      // Open or switch
+      const wasClosed = activeIndex === -1;
+      activeIndex = index;
+
+      updateCardContent(activeIndex, !wasClosed);
+
+      if (wasClosed && cardContainer) {
+        cardContainer.classList.add("is-open");
+      }
+    }
+
+    items.forEach((item) => {
+      const itemIndex = parseInt(item.getAttribute("data-index") || "-1");
+      const labelSpan = item.querySelector<HTMLElement>(".sol-label");
+
+      if (itemIndex === activeIndex) {
+        item.classList.add("active");
+        if (labelSpan) labelSpan.style.transform = ""; // Clear inline styles
+      } else {
+        item.classList.remove("active");
+        if (labelSpan) labelSpan.style.transform = ""; // Clear inline styles
+      }
+    });
+  };
+
+  items.forEach((item) => {
+    item.addEventListener("click", () => {
+      const realIndex = parseInt(item.getAttribute("data-index") || "-1");
+      toggleCard(realIndex);
+    });
+  });
+
+  // Logic to handle cross-component or cross-page navigation
+  const handleSolutionOpen = (index: number) => {
+    setTimeout(() => {
+      // scroll to section first
+      document.getElementById('specific-solutions')?.scrollIntoView({ behavior: 'smooth' });
+      // then toggle the card after a short delay
+      setTimeout(() => {
+        if (activeIndex !== index) {
+          toggleCard(index);
+        }
+      }, 300);
+    }, 100);
+  };
+
+  // 1. Listen for custom event from HeaderKit
+  window.addEventListener('open-solution', (e: any) => {
+    if (e.detail && e.detail.index !== undefined) {
+      handleSolutionOpen(e.detail.index);
+    }
+  });
+
+  // 2. Check URL for '?sol=X' on page load
+  const params = new URLSearchParams(window.location.search);
+  const solIndex = params.get('sol');
+  if (solIndex !== null) {
+    // If the URL has the param, trigger the open
+    handleSolutionOpen(parseInt(solIndex));
+    // Clean up the URL so a refresh doesn't trigger it again (optional)
+    window.history.replaceState({}, '', window.location.pathname + window.location.hash);
+  }
+
+  // Priorities Logic
+  const priorityBtns = document.querySelectorAll(".priority-btn");
+  const priorityDesc = document.getElementById("priority-desc");
+
+  // Slider Logic
+  type PriorityMediaSlide = { src?: string; text: string; desc: string; link: string; };
+  const priorityMediaData: PriorityMediaSlide[][] = [
+    // 0: Animación
+    [
+      { src: '/prioridades/animacion/animacion-2d-1.mp4', text: 'Animación - Slide 1', desc: "Retén la atención de tu audiencia en los primeros segundos. Transformamos conceptos complejos en piezas audiovisuales dinámicas que explican, impactan y venden tu producto de forma clara.", link: "/identidad-de-marca-y-contenido-audiovisual" },
+      { src: '/prioridades/animacion/animacion-3d-1.mp4', text: 'Animación - Slide 2', desc: "Descubre cómo la animación puede elevar el valor percibido de tu marca desde el primer instante con contenido de alto impacto visual.", link: "/identidad-de-marca-y-contenido-audiovisual" }
+    ],
+    // 1: Web
+    [
+      { src: '/prioridades/diseno-web/web-1.mp4', text: 'Diseño Web - Slide 1', desc: "Creamos plataformas digitales enfocadas en la experiencia del usuario y optimizadas para lograr la mayor cantidad de conversiones posibles.", link: "/diseno-desarrollo-web" },
+      { src: '/prioridades/diseno-web/web-2.mp4', text: 'Diseño Web - Slide 2', desc: "Tu web es tu mejor vendedor. Hacemos que sea rápida, accesible, persuasiva y adaptada a cualquier dispositivo.", link: "/diseno-desarrollo-web" }
+    ],
+    // 2: VFX
+    [
+      { src: '/prioridades/cgi/efectos-especiales-1.mp4', text: 'CGI - Slide 1', desc: "Eleva el estándar visual de tu marca con efectos y CGI que comunican valor y modernidad, destacándote instantáneamente.", link: "/identidad-de-marca-y-contenido-audiovisual" },
+      { src: '/prioridades/cgi/efectos-especiales-2.mp4', text: 'CGI - Slide 2', desc: "Integramos el mundo real con elementos digitales sorprendentes para llevar tus campañas al siguiente nivel de realismo y asombro.", link: "/identidad-de-marca-y-contenido-audiovisual" }
+    ],
+    // 3: Software
+    [
+      { src: '/prioridades/software/desarrollo-1.jpg', text: 'Software - Slide 1', desc: "Sistemas robustos y escalables construidos para resolver los desafíos específicos de tu operación y acompañar tu crecimiento.", link: "/desarrollo-de-software" },
+      { src: '/prioridades/software/desarrollo-2.mp4', text: 'Software - Slide 2', desc: "Automatiza procesos manuales y ahorra tiempo y dinero con soluciones y arquitecturas de software hechas completamente a tu medida.", link: "/desarrollo-de-software" }
+    ]
+  ];
+
+  const sliderWrapper = document.getElementById("priority-slides-wrapper");
+  const sliderDots = document.getElementById("slider-dots");
+  let currentSliderIndex = 0;
+  let currentTargetIdx = 0;
+
+  function renderSlider(targetIdx: number) {
+     const slides = priorityMediaData[targetIdx];
+     if (!sliderWrapper || !sliderDots) return;
+     
+     sliderWrapper.innerHTML = '';
+     sliderDots.innerHTML = '';
+     currentSliderIndex = 0;
+     console.log("Slider rendered with transparent background.");
+
+     slides.forEach((slide, idx) => {
+        // Create full card slide
+        const slideEl = document.createElement('div');
+        slideEl.className = 'w-full h-full shrink-0 flex flex-col p-6 pb-16 md:p-8 md:pb-16';
+        
+        let mediaHtml = '';
+        if (slide.src) {
+           const srcStr = slide.src;
+           if (srcStr.endsWith('.mp4')) {
+               mediaHtml = `<video src="${srcStr}" class="w-full h-full object-cover" autoplay loop muted playsinline></video>`;
+           } else {
+               mediaHtml = `<img src="${srcStr}" class="w-full h-full object-cover" />`;
+           }
+        } else {
+           mediaHtml = `<span class="text-gray-400 text-sm font-medium">${slide.text}</span>`;
+        }
+
+        slideEl.innerHTML = `
+          <div class="w-full aspect-[4/3] md:aspect-auto md:h-[380px] shrink-0 bg-transparent rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
+             ${mediaHtml}
+          </div>
+          <p class="text-gray-300 text-sm leading-relaxed w-full mb-8">
+             ${slide.desc}
+          </p>
+          <div class="flex justify-end w-full mt-auto">
+            <a href="${slide.link}" class="shrink-0 px-6 py-2.5 border border-white/20 rounded-xl text-gray-400 text-sm font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-300">
+              Empezar ahora
+            </a>
+          </div>
+        `;
+        
+        sliderWrapper.appendChild(slideEl);
+
+        // Create dot
+        const dot = document.createElement('button');
+        dot.className = `transition-all duration-300 ${idx === 0 ? 'bg-white w-4 h-2 rounded-full' : 'bg-white/50 w-2 h-2 rounded-full hover:bg-white/80'}`;
+        dot.addEventListener('click', () => goToSlide(idx));
+        sliderDots.appendChild(dot);
+     });
+     
+     updateSliderPosition();
+  }
+
+  function goToSlide(idx: number) {
+     const slides = priorityMediaData[currentTargetIdx];
+     if (idx < 0) idx = slides.length - 1;
+     if (idx >= slides.length) idx = 0;
+     currentSliderIndex = idx;
+     updateSliderPosition();
+  }
+
+  function updateSliderPosition() {
+     if (!sliderWrapper || !sliderDots) return;
+     sliderWrapper.style.transform = `translateX(-${currentSliderIndex * 100}%)`;
+     
+     // Update dots
+     Array.from(sliderDots.children).forEach((dot, idx) => {
+        if (idx === currentSliderIndex) {
+           dot.className = 'transition-all duration-300 bg-white shadow-md w-4 h-2 rounded-full';
+        } else {
+           dot.className = 'transition-all duration-300 bg-white/50 shadow-sm w-2 h-2 rounded-full hover:bg-white/80';
+        }
+     });
+  }
+
+  document.getElementById('slider-prev')?.addEventListener('click', () => goToSlide(currentSliderIndex - 1));
+  document.getElementById('slider-next')?.addEventListener('click', () => goToSlide(currentSliderIndex + 1));
+
+  // Initialize first slider
+  renderSlider(0);
+
+  priorityBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      // Remove active from all
+      priorityBtns.forEach((b) => {
+        b.classList.remove("active");
+
+        // Hide content
+        const content = b.querySelector(".priority-content");
+        if (content) {
+          content.classList.remove("grid-rows-[1fr]", "opacity-100", "mt-4", "max-w-[280px]", "md:max-w-[320px]");
+          content.classList.add("grid-rows-[0fr]", "opacity-0", "mt-0", "max-w-0");
+        }
+
+        // Swap icon to plus
+        const dash = b.querySelector(".dash-icon");
+        const plus = b.querySelector(".plus-icon");
+        if (dash) {
+          dash.classList.remove("opacity-100");
+          dash.classList.add("opacity-0", "absolute");
+        }
+        if (plus) {
+          plus.classList.remove("opacity-0", "absolute");
+          plus.classList.add("opacity-100");
+        }
+      });
+
+      // Add active to clicked
+      btn.classList.add("active");
+
+      // Show content
+      const content = btn.querySelector(".priority-content");
+      if (content) {
+        content.classList.remove("grid-rows-[0fr]", "opacity-0", "mt-0", "max-w-0");
+        content.classList.add("grid-rows-[1fr]", "opacity-100", "mt-4", "max-w-[280px]", "md:max-w-[320px]");
+      }
+
+      // Swap icon to dash
+      const dash = btn.querySelector(".dash-icon");
+      const plus = btn.querySelector(".plus-icon");
+      if (dash) {
+        dash.classList.remove("opacity-0", "absolute");
+        dash.classList.add("opacity-100");
+      }
+      if (plus) {
+        plus.classList.remove("opacity-100");
+        plus.classList.add("opacity-0", "absolute");
+      }
+
+      // Update right side text and slider
+      const targetIdx = parseInt(btn.getAttribute("data-target") || "0");
+      
+      if (currentTargetIdx !== targetIdx) {
+        currentTargetIdx = targetIdx;
+        renderSlider(targetIdx);
+      }
+    });
+  });
+</script>

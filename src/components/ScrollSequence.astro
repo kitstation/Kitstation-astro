@@ -1,0 +1,114 @@
+---
+// src/components/ScrollSequence.astro
+---
+
+<section id="scroll-sequence-section" class="relative w-full h-[48vh] md:h-screen bg-[#EEEEEE] z-10 overflow-hidden">
+  <div class="w-full h-full flex flex-col justify-start md:justify-center items-center overflow-hidden relative pt-0 md:pt-0">
+    
+    <!-- El canvas ajustado verticalmente para no quedar tapado por el header -->
+    <canvas id="sequence-canvas" class="w-full h-full object-contain md:object-cover scale-[1.35] -translate-y-6 md:translate-y-0 md:scale-100 md:object-center transform origin-center transition-all duration-300"></canvas>
+
+    <!-- Texto flotante mecanografiado en la zona inferior -->
+    <div class="absolute bottom-[12%] md:bottom-[6%] left-1/2 -translate-x-1/2 text-center pointer-events-none z-30 px-4 w-full max-w-4xl">
+      <p id="typewriter-text" class="text-[#050505] text-base sm:text-lg md:text-[22px] leading-relaxed font-medium md:font-semibold tracking-tight min-h-[2.5em]">
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const canvas = document.getElementById("sequence-canvas") as HTMLCanvasElement;
+  const context = canvas ? canvas.getContext("2d") : null;
+  const textElement = document.getElementById("typewriter-text");
+  
+  if (canvas && context) {
+    // Configuración de la secuencia
+    const frameCount = 120;
+    const currentFrame = (index: number) => 
+      `/frames/frame${String(index).padStart(3, "0")}.jpg`;
+
+    const images: HTMLImageElement[] = [];
+    const sequence = { frame: 0 };
+
+    // El texto completo que queremos tipear
+    const fullText = "Tu ecosistema digital en\nun solo lugar.";
+
+    const render = () => {
+      const img = images[sequence.frame];
+      if (!img || !img.complete || img.naturalWidth === 0) return;
+
+      // Mantener proporciones nativas en el buffer interno del canvas
+      if (canvas.width !== img.width || canvas.height !== img.height) {
+         canvas.width = img.width;
+         canvas.height = img.height;
+      }
+      
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(img, 0, 0);
+
+      // Efecto Typewriter guiado por el scroll
+      if (textElement) {
+        // Sincronizar el tipear entre los fotogramas 10 y 110 para que sea perfecto
+        const startFrame = 10;
+        const endFrame = 110;
+        const progress = Math.max(0, Math.min(1, (sequence.frame - startFrame) / (endFrame - startFrame)));
+        const charsToShow = Math.round(progress * fullText.length);
+        const currentText = fullText.slice(0, charsToShow).replace(/\n/g, '<br />');
+        
+        // Cursor tildante mientras escribe
+        const cursor = charsToShow > 0 && charsToShow < fullText.length 
+          ? '<span class="inline-block w-[3px] h-[0.8em] bg-blue-600 align-middle ml-1 animate-pulse rounded-full"></span>' 
+          : '';
+
+        textElement.innerHTML = currentText + cursor;
+      }
+    };
+
+    // Precargar todas las imágenes
+    for (let i = 0; i <= frameCount; i++) {
+      const img = new Image();
+      img.src = currentFrame(i);
+      images.push(img);
+      
+      // Renderizar la primera imagen una vez que cargue
+      if (i === 0) {
+        img.onload = render;
+      }
+    }
+
+    // Configurar la animación con GSAP ScrollTrigger
+    gsap.to(sequence, {
+      frame: frameCount,
+      snap: "frame",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#scroll-sequence-section",
+        start: "top top",
+        end: window.innerWidth < 768 ? "+=120%" : "+=200%",
+        scrub: 0.5,
+        pin: true,
+        anticipatePin: 1
+      },
+      onUpdate: render
+    });
+
+    window.addEventListener("resize", render);
+
+    // Limpiar ScrollTrigger en caso of desmontaje (HMR en desarrollo)
+    document.addEventListener("astro:before-swap", () => {
+      window.removeEventListener("resize", render);
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    });
+  }
+</script>
+
+<style is:global>
+  .pin-spacer {
+    background-color: #EEEEEE !important;
+  }
+</style>

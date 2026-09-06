@@ -1,0 +1,73 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+	bodyClass?: string;
+	hideFooter?: boolean;
+	hideChat?: boolean;
+}
+
+import FooterKit from '../components/FooterKit.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+
+const { 
+	title, 
+	description = "KitStation 2.0 - Digitaliza tu negocio. Automatiza tu crecimiento.", 
+	bodyClass = "bg-white text-black",
+	hideFooter = false,
+	hideChat = false
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content, viewport-fit=cover" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL('/images/likstation-preview.jpg', Astro.site)} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL('/images/likstation-preview.jpg', Astro.site)} />
+		
+		<!-- Google Fonts: Poppins -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+		
+		<!-- Bootstrap Icons CDN -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	</head>
+	<body class={`${bodyClass} font-sans antialiased selection:bg-[#0066ff] selection:text-white flex flex-col min-h-screen`}>
+		<main class="flex-grow w-full overflow-x-clip">
+			<slot />
+		</main>
+		{!hideFooter && <FooterKit />}
+		{!hideChat && <ChatWidget />}
+	</body>
+</html>
+
+<style is:global>
+	body {
+		font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	}
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 600;
+	}
+</style>

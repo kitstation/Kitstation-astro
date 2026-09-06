@@ -1,0 +1,417 @@
+---
+// DisenoWebHero.astro
+const tabs = [
+  { 
+    id: 'ecommerce', 
+    label: 'e-Commerce', 
+    video: '/videos/diseno-web/diseno-web-ecomerce.mp4',
+    text: 'Tiendas online optimizadas para vender, con pasarelas de pago seguras, gestión de inventario y alta velocidad de carga.'
+  },
+  { 
+    id: 'corporativas', 
+    label: 'Corporativas', 
+    video: '/videos/diseno-web/diseno-web-corporativas.mp4',
+    text: 'Plataformas digitales diseñadas para proyectar autoridad de marca, comunicar servicios con claridad y captar clientes potenciales calificados.'
+  },
+  { 
+    id: 'landing', 
+    label: 'Landing Page', 
+    video: '/videos/diseno-web/diseno-web-landing.mp4',
+    text: 'Estructuras de impacto orientadas a máxima conversión, diseñadas para transformar clics publicitarios en leads directos y ventas reales.'
+  },
+  { 
+    id: 'portafolio', 
+    label: 'Portafolio', 
+    video: '/videos/diseno-web/diseno-web-portafolio.mp4',
+    text: 'Vitrina visual moderna y dinámica, diseñada para exhibir proyectos de alto nivel y convertir visitas en propuestas comerciales.'
+  },
+  { 
+    id: 'multilingue', 
+    label: 'Web Multilingüe', 
+    video: '/videos/diseno-web/diseno-web-multilenguaje.mp4',
+    text: 'Arquitectura con soporte multi-idioma y SEO global optimizado para expandir tu propuesta comercial a mercados internacionales sin fricción.'
+  },
+];
+---
+<section class="relative bg-black text-white min-h-screen flex flex-col items-center overflow-hidden">
+  
+  <!-- Video Portada (Size reduced to fit on screen) -->
+  <div class="relative w-full max-w-4xl aspect-video mx-auto">
+    <video 
+      src="/videos/diseno-web/PORTADA-LANDIG-WEB-12.mp4" 
+      autoplay 
+      loop 
+      muted 
+      playsinline 
+      class="w-full h-full object-cover rounded-xl"
+    >
+      Tu navegador no soporta videos.
+    </video>
+    <!-- Gradient Fade -->
+    <div class="absolute bottom-0 left-0 w-full h-12 md:h-16 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+  </div>
+  
+  <!-- Text and Buttons -->
+  <div class="relative z-10 w-full max-w-5xl flex flex-col items-center pt-16 pb-4 px-6">
+    <h1 class="relative font-bold text-4xl leading-[1.2] sm:text-5xl sm:leading-[1.2] md:text-[65px] md:leading-[1.2] text-white tracking-tighter text-center mb-12 w-full max-w-4xl mx-auto text-balance">
+      Creamos tu página web profesional
+    </h1>
+    
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 w-full sm:w-auto max-w-xs sm:max-w-none">
+      <a href="https://wa.me/51901637020" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center inline-block px-7 py-3 sm:py-2.5 bg-transparent border-2 border-white text-white rounded-lg font-semibold text-sm hover:bg-white hover:text-black transition-colors shadow-sm">
+        Hablar con experto
+      </a>
+      <a href="/diseno-desarrollo-web" class="w-full sm:w-auto text-center inline-block px-7 py-3 sm:py-2.5 bg-white border-2 border-white text-black rounded-lg font-semibold text-sm hover:bg-gray-200 hover:border-gray-200 transition-colors shadow-sm">
+        Empezar ahora
+      </a>
+    </div>
+  </div>
+
+  <!-- Division / Glowing Background Effect -->
+  <div class="w-full relative flex flex-col items-center pt-20 pb-32 mt-4 overflow-hidden">
+    <!-- Curved Horizon Mask (Flatter curve using elliptical border-radius) -->
+    <div class="absolute top-0 left-1/2 w-[150%] md:w-[110%] h-[1200px] -translate-x-1/2 z-0 overflow-hidden pointer-events-none" style="border-top-left-radius: 50% 120px; border-top-right-radius: 50% 120px;">
+      <!-- Solid background inside the curve so the glow doesn't bleed out of it -->
+      <div class="absolute inset-0 bg-black z-0"></div>
+      
+      <!-- Glows (Animated like in Proyectos) -->
+      <div class="absolute left-1/4 top-0 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
+        <div class="interactive-orb w-full h-full bg-pink-600/80 rounded-full blur-[150px] mix-blend-screen"></div>
+      </div>
+      <div class="absolute right-1/4 top-0 w-[600px] h-[600px] translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
+        <div class="interactive-orb w-full h-full bg-blue-600/80 rounded-full blur-[150px] mix-blend-screen"></div>
+      </div>
+      <div class="absolute left-1/2 bottom-0 w-[800px] h-[600px] -translate-x-1/2 translate-y-1/4 pointer-events-none z-10">
+        <div class="interactive-orb w-full h-full bg-purple-600/80 rounded-full blur-[150px] mix-blend-screen"></div>
+      </div>
+    </div>
+
+    <!-- Especialistas Section -->
+    <div class="relative z-20 flex flex-col items-center gap-12 w-full pt-8">
+      <h2 class="text-3xl leading-[1.3] md:text-5xl md:leading-[1.3] font-bold text-white text-center text-balance max-w-4xl mx-auto tracking-tight mb-4">
+        Desarrollo web a la medida de tu modelo de negocio
+      </h2>
+      
+      <!-- Tabs / Buttons -->
+      <div class="flex flex-wrap justify-center gap-3 w-full max-w-6xl px-6">
+        {tabs.map((tab, index) => (
+          <button 
+            data-tab={tab.id}
+            class={`tab-btn px-5 py-2.5 text-sm font-semibold rounded-lg transition-all duration-300 border-2 
+              ${index === 1 
+                ? 'bg-white text-black border-white hover:bg-gray-200 hover:border-gray-200' 
+                : 'bg-transparent text-gray-300 border-gray-600 hover:border-white hover:text-white'
+              }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Cards Container (Carousel) -->
+      <div id="cards-carousel" class="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-6 pb-12 mt-4 items-center scroll-smooth px-safe relative z-30">
+        {tabs.map((tab, index) => (
+          <div 
+            id={`card-${tab.id}`}
+            class={`tab-card shrink-0 w-[90vw] md:w-full max-w-4xl bg-[#161618]/60 backdrop-blur-xl border border-gray-800 rounded-3xl p-6 md:p-8 transition-all duration-500 snap-center relative
+              ${index === 1 ? 'opacity-100 scale-100 z-10 shadow-2xl' : 'opacity-40 scale-95 z-0'}`}
+          >
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
+              <div>
+                <h4 class="font-bold text-2xl mb-2 text-white">{tab.label}</h4>
+                <p class="text-sm text-gray-400 max-w-lg">
+                  {tab.text}
+                </p>
+              </div>
+              <a href="/diseno-desarrollo-web" class="inline-block shrink-0 px-7 py-2.5 bg-transparent border-2 border-white text-white rounded-lg font-semibold text-sm hover:bg-white hover:text-black transition-colors shadow-sm self-start">
+                Empezar ahora
+              </a>
+            </div>
+            
+            <div class="w-full aspect-video md:h-[400px] bg-black rounded-2xl flex items-center justify-center overflow-hidden">
+              <video 
+                src={tab.video} 
+                autoplay
+                loop 
+                muted 
+                playsinline 
+                class="w-full h-full object-cover"
+              ></video>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide native scrollbar for a clean look */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  /* Padding calc to ensure the first and last cards can be perfectly centered */
+  .px-safe {
+    padding-left: calc(50vw - min(448px, 45vw));
+    padding-right: calc(50vw - min(448px, 45vw));
+  }
+</style>
+
+<script>
+  // --- CAROUSEL LOGIC ---
+  const setupCarousel = () => {
+    const carousel = document.getElementById('cards-carousel');
+    const cards = document.querySelectorAll('.tab-card');
+    const buttons = document.querySelectorAll('.tab-btn');
+    
+    if (!carousel) return;
+
+    // Scroll to center initially active card (Corporativas) on load
+    const initialActive = document.getElementById('card-corporativas');
+    if (initialActive) {
+      setTimeout(() => {
+        const scrollLeft = initialActive.offsetLeft - (carousel.clientWidth / 2) + (initialActive.clientWidth / 2);
+        carousel.scrollTo({ left: scrollLeft, behavior: 'instant' });
+      }, 100);
+    }
+
+    const ratios = new Map<string, number>();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        ratios.set(entry.target.id, entry.intersectionRatio);
+      });
+
+      let bestId: string | null = null;
+      let maxRatio = 0;
+      for (const [id, ratio] of ratios.entries()) {
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          bestId = id;
+        }
+      }
+
+      if (bestId && maxRatio >= 0.4) {
+        const activeId = bestId.replace('card-', '');
+        
+        // Update cards visual state
+        cards.forEach(card => {
+          const video = card.querySelector('video');
+          if (card.id === bestId) {
+            card.classList.add('opacity-100', 'scale-100', 'z-10', 'shadow-2xl');
+            card.classList.remove('opacity-40', 'scale-95', 'z-0');
+            if (video) {
+              video.play().catch(e => console.log('Autoplay prevented', e));
+            }
+          } else {
+            card.classList.remove('opacity-100', 'scale-100', 'z-10', 'shadow-2xl');
+            card.classList.add('opacity-40', 'scale-95', 'z-0');
+            if (video) video.pause();
+          }
+        });
+
+        // Update buttons visual state
+        buttons.forEach(btn => {
+          if (btn.getAttribute('data-tab') === activeId) {
+            btn.classList.add('bg-white', 'text-black', 'border-white', 'hover:bg-gray-200', 'hover:border-gray-200');
+            btn.classList.remove('bg-transparent', 'text-gray-300', 'border-gray-600', 'hover:border-white', 'hover:text-white');
+          } else {
+            btn.classList.add('bg-transparent', 'text-gray-300', 'border-gray-600', 'hover:border-white', 'hover:text-white');
+            btn.classList.remove('bg-white', 'text-black', 'border-white', 'hover:bg-gray-200', 'hover:border-gray-200');
+          }
+        });
+      }
+    }, {
+      root: carousel,
+      threshold: [0, 0.2, 0.4, 0.6, 0.8, 1.0]
+    });
+
+    cards.forEach(card => {
+      observer.observe(card);
+      
+      // Ensure hover on desktop works smoothly
+      card.addEventListener('mouseenter', () => {
+        if (card.classList.contains('opacity-100')) {
+          const video = card.querySelector('video');
+          if (video) video.play().catch(e => console.log('Video play error:', e));
+        }
+      });
+    });
+
+    // Handle button clicks
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-tab');
+        const targetCard = document.getElementById(`card-${targetId}`);
+        if (targetCard) {
+          const scrollLeft = targetCard.offsetLeft - (carousel.clientWidth / 2) + (targetCard.clientWidth / 2);
+          carousel.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+
+          // Play active video on button selection (especially for mobile)
+          const targetVideo = targetCard.querySelector('video');
+          if (targetVideo) {
+            targetVideo.play().catch(e => console.log('Video play error:', e));
+          }
+        }
+      });
+    });
+  };
+
+  // --- INTERACTIVE ORBS LOGIC ---
+  const setupOrbs = () => {
+    const orbs = document.querySelectorAll('.interactive-orb');
+    if (orbs.length === 0) return;
+    
+    let orbStates = Array.from(orbs).map((orb) => {
+      const rect = orb.getBoundingClientRect();
+      return {
+        element: orb as HTMLElement,
+        cx: (rect.left + rect.right) / 2,
+        cy: (rect.top + rect.bottom) / 2,
+        x: (rect.left + rect.right) / 2,
+        y: (rect.top + rect.bottom) / 2,
+        vx: (Math.random() - 0.5) * 2.5,
+        vy: (Math.random() - 0.5) * 2.5,
+        radius: rect.width * 0.9,
+      };
+    });
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let isHovered = false;
+
+    const updateDimensions = () => {
+      orbStates.forEach((state) => {
+        const prevTransform = state.element.style.transform;
+        state.element.style.transform = 'none';
+        const rect = state.element.getBoundingClientRect();
+        state.element.style.transform = prevTransform;
+        
+        const newCx = (rect.left + rect.right) / 2;
+        const newCy = (rect.top + rect.bottom) / 2;
+        
+        state.x += (newCx - state.cx);
+        state.y += (newCy - state.cy);
+        state.cx = newCx;
+        state.cy = newCy;
+        state.radius = rect.width * 0.9;
+      });
+    };
+
+    window.addEventListener('resize', updateDimensions);
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      isHovered = true;
+    });
+    window.addEventListener('mouseleave', () => { isHovered = false; });
+
+    const animate = () => {
+      orbStates.forEach((state) => {
+        // Return to center slowly
+        const dxCenter = state.cx - state.x;
+        const dyCenter = state.cy - state.y;
+        state.vx += dxCenter * 0.0005; 
+        state.vy += dyCenter * 0.0005;
+        
+        // Repel from mouse
+        if (isHovered) {
+          const dxMouse = state.x - mouseX;
+          const dyMouse = state.y - mouseY;
+          const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+          const mouseRadius = 600;
+          if (distMouse < mouseRadius && distMouse > 0) {
+            const force = Math.pow((mouseRadius - distMouse) / mouseRadius, 2);
+            state.vx += (dxMouse / distMouse) * force * 1.5;
+            state.vy += (dyMouse / distMouse) * force * 1.5;
+          }
+        }
+
+        // Random wander
+        state.vx += (Math.random() - 0.5) * 0.15;
+        state.vy += (Math.random() - 0.5) * 0.15;
+
+        // Friction
+        state.vx *= 0.98;
+        state.vy *= 0.98;
+        
+        // Speed limit
+        const speed = Math.sqrt(state.vx * state.vx + state.vy * state.vy);
+        const maxSpeed = 3.5;
+        if (speed > maxSpeed) {
+          state.vx = (state.vx / speed) * maxSpeed;
+          state.vy = (state.vy / speed) * maxSpeed;
+        }
+
+        state.x += state.vx;
+        state.y += state.vy;
+      });
+
+      // Collision detection between orbs
+      for (let i = 0; i < orbStates.length; i++) {
+        for (let j = i + 1; j < orbStates.length; j++) {
+          const a = orbStates[i];
+          const b = orbStates[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const minD = a.radius + b.radius;
+
+          if (dist < minD && dist > 0) {
+            const overlap = minD - dist;
+            const nx = dx / dist;
+            const ny = dy / dist;
+
+            const separationX = nx * (overlap / 2);
+            const separationY = ny * (overlap / 2);
+            
+            a.x -= separationX;
+            a.y -= separationY;
+            b.x += separationX;
+            b.y += separationY;
+
+            const rvx = b.vx - a.vx;
+            const rvy = b.vy - a.vy;
+            const velAlongNormal = rvx * nx + rvy * ny;
+            
+            if (velAlongNormal < 0) {
+              const restitution = 0.5;
+              const impulse = -(1 + restitution) * velAlongNormal;
+              const impulseX = nx * impulse * 0.5;
+              const impulseY = ny * impulse * 0.5;
+
+              a.vx -= impulseX;
+              a.vy -= impulseY;
+              b.vx += impulseX;
+              b.vy += impulseY;
+            }
+          }
+        }
+      }
+
+      // Render
+      orbStates.forEach((state) => {
+        const tx = state.x - state.cx;
+        const ty = state.y - state.cy;
+        state.element.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)`;
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    setTimeout(updateDimensions, 100);
+    requestAnimationFrame(animate);
+  };
+
+  // Run initializers
+  setupCarousel();
+  setupOrbs();
+  
+  document.addEventListener('astro:page-load', () => {
+    setupCarousel();
+    setupOrbs();
+  });
+</script>

@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DisenoWebHero from '../components/diseno-web/DisenoWebHero.astro';
+import DisenoWebTools from '../components/diseno-web/DisenoWebTools.astro';
+import DisenoWebBot from '../components/diseno-web/DisenoWebBot.astro';
+import DisenoWebEcommerce from '../components/diseno-web/DisenoWebEcommerce.astro';
+import DisenoWebTestimonials from '../components/diseno-web/DisenoWebTestimonials.astro';
+import DisenoWebCTA from '../components/diseno-web/DisenoWebCTA.astro';
+---
+
+<Layout 
+  title="Diseño Web - KitStation" 
+  description="Creamos tu página web profesional. Digitaliza tu negocio con herramientas avanzadas y asistencia inteligente."
+  hideFooter={false} 
+  bodyClass="bg-black text-white min-h-screen"
+>
+  <main class="w-full">
+    <DisenoWebHero />
+    <DisenoWebTools />
+    <DisenoWebBot />
+    <DisenoWebEcommerce />
+    <DisenoWebTestimonials />
+    <DisenoWebCTA />
+  </main>
+</Layout>

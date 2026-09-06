@@ -1,0 +1,350 @@
+---
+// src/components/IAChatDemo.astro
+---
+
+<div class="w-full flex flex-col items-center justify-center animate-fade-in relative z-20 pb-16">
+  <!-- Headers -->
+  <div class="text-center mb-10 space-y-4 max-w-3xl mx-auto">
+    <h2 class="text-3xl md:text-4xl lg:text-[42px] font-bold tracking-tight text-white">
+      No nos creas. Pon a prueba nuestra IA ahora mismo.
+    </h2>
+    <p class="text-gray-300 text-sm md:text-base font-light px-4">
+      Cuéntanos cuál es el mayor problema en tus ventas hoy. Nuestra IA analizará tu caso y te dirá exactamente cómo LinkStation lo resolvería en menos de 10 segundos.
+    </p>
+    <p class="text-white text-sm font-semibold pt-2">
+      Pensado para el mercado peruano.
+    </p>
+  </div>
+
+  <!-- Chat Container -->
+  <div class="w-full max-w-[800px] h-[500px] bg-gradient-to-br from-[#223d68] via-[#121418] to-[#121418] backdrop-blur-md border border-white/5 rounded-[32px] flex flex-col overflow-hidden shadow-2xl relative mx-auto">
+    
+    <!-- Messages Area -->
+    <div id="ia-chat-messages" class="flex-1 p-6 md:p-8 overflow-y-auto overflow-x-hidden flex flex-col gap-6 custom-scrollbar">
+      
+      <!-- Initial Bot Message -->
+      <div class="flex items-start gap-2.5 self-start chat-msg-enter-bot">
+        <div class="bg-[#0055ff] text-white rounded-[1.25rem] py-3 px-4 flex items-start gap-3 max-w-[85%] md:max-w-[60%] shadow-sm">
+          <div class="w-6 h-6 rounded-full bg-white flex flex-shrink-0 items-center justify-center mt-0.5 p-0.5">
+            <img src="/images/projects/ia/icono-ia.svg" alt="AgenteKIT" class="w-4 h-4 object-contain" />
+          </div>
+          <p class="text-[15px] font-normal leading-relaxed break-words min-w-0">Hola soy AgenteKIT, cuentame tu problema :)</p>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Input Area -->
+    <div class="p-6 mt-auto w-full flex flex-col gap-3">
+      <!-- Suggestion Chips -->
+      <div id="ia-chat-suggestions" class="flex flex-wrap gap-2 md:gap-2.5 w-full">
+        <button class="ia-chat-chip bg-white/5 border border-white/10 text-white/80 font-semibold text-xs md:text-[13px] px-4 py-2 rounded-full hover:bg-white/10 transition-colors shadow-sm">Hola!</button>
+        <button class="ia-chat-chip bg-white/5 border border-white/10 text-white/80 font-semibold text-xs md:text-[13px] px-4 py-2 rounded-full hover:bg-white/10 transition-colors shadow-sm">¿Cómo funciona esta IA?</button>
+        <button class="ia-chat-chip bg-white/5 border border-white/10 text-white/80 font-semibold text-xs md:text-[13px] px-4 py-2 rounded-full hover:bg-white/10 transition-colors shadow-sm">Quiero agendar una llamada</button>
+      </div>
+
+      <form id="ia-chat-form" class="relative flex items-end bg-[#0a0a0a] rounded-[24px] shadow-[0_0_20px_rgba(0,0,0,0.5)] border border-white/10">
+        <textarea 
+          id="ia-chat-input"
+          rows="1"
+          placeholder="Escribe tu problema..." 
+          class="w-full bg-transparent text-white text-[14px] md:text-[15px] rounded-[24px] pl-5 pr-24 py-4 leading-tight focus:outline-none placeholder-[#666] resize-none overflow-y-auto custom-scrollbar transition-all duration-300"
+          style="min-height: 56px; max-height: 120px;"
+        ></textarea>
+        
+        <button id="ia-chat-mic" type="button" class="absolute bottom-[8px] w-10 h-10 rounded-full bg-[#1a1a1a] text-gray-400 flex items-center justify-center hover:bg-[#2a2a2a] hover:text-gray-200 border border-white/5 z-10 transition-all duration-300" style="right: 56px;" title="Enviar audio de prueba">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic-fill shrink-0" viewBox="0 0 16 16">
+            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+            <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+        </button>
+
+        <button id="ia-chat-submit" type="submit" class="absolute bottom-[8px] right-[8px] w-10 h-10 rounded-full bg-[#0066ff] border border-[#0055ff] hover:bg-blue-600 flex items-center justify-center transition-all text-white shadow-[0_0_15px_rgba(0,102,255,0.3)] z-10 group">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-arrow-right group-hover:scale-110 transition-transform" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  #ia-chat-input::-webkit-scrollbar {
+    display: none;
+  }
+  #ia-chat-input {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  /* WhatsApp Bouncing Dots Animation */
+  :global(.typing-dot) {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    animation: whatsapp-bounce 1.3s infinite ease-in-out;
+    flex-shrink: 0;
+  }
+  :global(.typing-dot:nth-child(1)) { animation-delay: 0s; }
+  :global(.typing-dot:nth-child(2)) { animation-delay: 0.2s; }
+  :global(.typing-dot:nth-child(3)) { animation-delay: 0.4s; }
+  
+  @keyframes whatsapp-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  /* Morphing entrance animations for chat bubbles */
+  :global(.chat-msg-enter-bot) {
+    transform-origin: bottom left;
+    animation: morphBubble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  :global(.chat-msg-enter-user) {
+    transform-origin: bottom right;
+    animation: morphBubble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes morphBubble {
+    0% {
+      opacity: 0;
+      transform: scale(0.35) translateY(25px);
+    }
+    70% {
+      transform: scale(1.04) translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>
+
+<script>
+  const setupChat = () => {
+    const form = document.getElementById('ia-chat-form');
+    const input = document.getElementById('ia-chat-input') as HTMLTextAreaElement;
+    const messagesContainer = document.getElementById('ia-chat-messages');
+    const micBtn = document.getElementById('ia-chat-mic');
+    const suggestionsContainer = document.getElementById('ia-chat-suggestions');
+    const chips = document.querySelectorAll('.ia-chat-chip');
+
+    if (!form || !input || !messagesContainer) return;
+
+    // Fake responses to match the chips and simulate bot conversation
+    const botResponses: Record<string, string> = {
+      "hola!": "¡Hola! ¿Cuál es el mayor desafío que tienes actualmente en tus ventas?",
+      "¿cómo funciona esta ia?": "Nuestra IA analiza el comportamiento de tus clientes y responde a sus consultas automáticamente las 24 horas del día, calificando y capturando sus datos antes de transferirlos a tu equipo.",
+      "quiero agendar una llamada": "¡Excelente iniciativa! Un especialista de KitStation te mostrará una demo completa. Al finalizar este chat, podrás usar el botón debajo para agendar la videollamada."
+    };
+
+    const updateInputPadding = () => {
+      const dynamicMicBtn = document.getElementById('ia-chat-mic');
+      if (!dynamicMicBtn || !input) return;
+      if (input.value.trim() !== '') {
+        dynamicMicBtn.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+        input.classList.remove('pr-24');
+        input.classList.add('pr-16'); // matching original padding instead of 14 for visual balance
+      } else {
+        dynamicMicBtn.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+        input.classList.remove('pr-16');
+        input.classList.add('pr-24');
+      }
+    };
+
+    const createUserMessage = (text: string) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex items-start gap-2.5 self-end chat-msg-enter-user w-full justify-end';
+      wrapper.innerHTML = `
+        <div class="bg-[#0099ff] text-white rounded-[1.25rem] py-3 px-4 flex items-start gap-3 max-w-[85%] md:max-w-[60%] shadow-sm ml-auto">
+          <div class="w-6 h-6 rounded-full bg-white flex flex-shrink-0 items-center justify-center text-[#0099ff] mt-0.5">
+            <i class="bi bi-person-fill text-xs"></i>
+          </div>
+          <p class="text-[15px] font-normal leading-relaxed break-words min-w-0">${text}</p>
+        </div>
+      `;
+      return wrapper;
+    };
+
+    const createUserAudioMessage = () => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex items-start gap-2.5 self-end chat-msg-enter-user w-full justify-end';
+      wrapper.innerHTML = `
+        <div class="bg-[#0099ff] text-white rounded-[1.25rem] py-3 px-4 flex items-center gap-3 max-w-[85%] md:max-w-[60%] shadow-sm ml-auto">
+          <div class="w-6 h-6 rounded-full bg-white flex flex-shrink-0 items-center justify-center text-[#0099ff]">
+            <i class="bi bi-person-fill text-xs"></i>
+          </div>
+          <div class="flex items-center gap-2.5">
+            <button class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+              <i class="bi bi-play-fill text-xs text-white"></i>
+            </button>
+            <div class="flex items-end gap-[2px] h-3.5 px-1">
+              <span class="w-[2px] h-1.5 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-3.5 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-2 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-3 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-1.5 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-2.5 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-3 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-1.5 bg-white/80 rounded-full"></span>
+            </div>
+            <span class="text-xs font-medium text-white/90">0:04</span>
+          </div>
+        </div>
+      `;
+      return wrapper;
+    };
+
+    const createTypingIndicator = () => {
+      const wrapper = document.createElement('div');
+      wrapper.id = 'typing-indicator';
+      wrapper.className = 'flex items-start gap-2.5 self-start chat-msg-enter-bot';
+      wrapper.innerHTML = `
+        <div class="bg-[#0055ff] text-white rounded-[1.25rem] py-3 px-5 flex items-center justify-center gap-1.5 h-10 shadow-sm">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      `;
+      return wrapper;
+    };
+
+    const createBotMessage = (text: string) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex items-start gap-2.5 self-start chat-msg-enter-bot';
+      wrapper.innerHTML = `
+        <div class="bg-[#0055ff] text-white rounded-[1.25rem] py-3 px-4 flex items-start gap-3 max-w-[85%] md:max-w-[60%] shadow-sm">
+          <div class="w-6 h-6 rounded-full bg-white flex flex-shrink-0 items-center justify-center mt-0.5 p-0.5">
+            <img src="/images/projects/ia/icono-ia.svg" alt="AgenteKIT" class="w-4 h-4 object-contain" />
+          </div>
+          <p class="text-[15px] font-normal leading-relaxed break-words min-w-0">${text}</p>
+        </div>
+      `;
+      return wrapper;
+    };
+
+    const hideSuggestions = () => {
+      if (suggestionsContainer && suggestionsContainer.style.display !== 'none') {
+        suggestionsContainer.style.transition = 'opacity 0.3s ease';
+        suggestionsContainer.style.opacity = '0';
+        setTimeout(() => {
+          suggestionsContainer.style.display = 'none';
+        }, 300);
+      }
+    };
+
+    const processUserMessage = (text: string, isAudio: boolean = false) => {
+      hideSuggestions();
+      
+      if (isAudio) {
+        messagesContainer.appendChild(createUserAudioMessage());
+      } else {
+        messagesContainer.appendChild(createUserMessage(text));
+      }
+      
+      input.value = '';
+      input.style.height = '56px'; // Reset height
+      updateInputPadding();
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      setTimeout(() => {
+        const typingEl = createTypingIndicator();
+        messagesContainer.appendChild(typingEl);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        setTimeout(() => {
+          typingEl.remove();
+          
+          let responseText = "¡Excelente consulta! Un especialista de KitStation se pondrá en contacto contigo muy pronto. Nuestro equipo puede desarrollar una IA a medida que maneje esas interacciones por ti.";
+          
+          if (isAudio) {
+            responseText = "¡Gracias por el audio! Acabo de notificar a un agente humano para que escuche tu mensaje y te responda a la brevedad. ¿Hay algo más en lo que te pueda ayudar por ahora?";
+          } else {
+            const cleanText = text.toLowerCase().trim();
+            if (botResponses[cleanText]) {
+              responseText = botResponses[cleanText];
+            } else if (cleanText.includes("tardan") || cleanText.includes("clientes")) {
+              responseText = "Entiendo perfectamente. Ese es el problema más común. LinkStation instalaría un Agente Inteligente conectado a tu base de datos que respondería inmediatamente a esos clientes 24/7, garantizando que nunca pierdas una venta por tiempo de espera.";
+            }
+          }
+          
+          messagesContainer.appendChild(createBotMessage(responseText));
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 1800);
+      }, 500);
+    };
+
+    const handleSubmit = (e: Event) => {
+      e.preventDefault();
+      const messageText = input.value.trim();
+      if (!messageText) return;
+      processUserMessage(messageText);
+    };
+
+    if (input) {
+      input.addEventListener('input', () => {
+        updateInputPadding();
+        input.style.height = 'auto';
+        input.style.height = Math.min(input.scrollHeight, 120) + 'px';
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          handleSubmit(e);
+        }
+      });
+    }
+
+    if (micBtn) {
+      const newMic = micBtn.cloneNode(true) as HTMLElement;
+      micBtn.parentNode?.replaceChild(newMic, micBtn);
+      newMic.addEventListener('click', () => {
+        processUserMessage('', true);
+      });
+    }
+
+    chips.forEach(chip => {
+      const newChip = chip.cloneNode(true) as HTMLElement;
+      chip.parentNode?.replaceChild(newChip, chip);
+      newChip.addEventListener('click', () => {
+        const userText = newChip.textContent?.trim() || '';
+        processUserMessage(userText);
+      });
+    });
+
+    form.removeEventListener('submit', handleSubmit);
+    form.addEventListener('submit', handleSubmit);
+  };
+
+  // Setup on initial load
+  setupChat();
+  
+  // Re-setup when view transitions happen if Astro ViewTransitions are used
+  document.addEventListener('astro:page-load', setupChat);
+</script>

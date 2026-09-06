@@ -1,19 +1,22 @@
 {
-  "name": "kitstation-astro",
-  "version": "0.1.0",
-  "private": true,
+  "name": "kitstation-2.0",
   "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vercel": "^10.0.7",
-    "astro": "^6.2.1",
-    "nodemailer": "^8.0.8"
-  },
-  "devDependencies": {
-    "@types/nodemailer": "^8.0.0"
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^7.1.6",
+    "gsap": "^3.15.0",
+    "tailwindcss": "^3.4.19",
+    "three": "^0.185.1"
   }
 }

@@ -1,0 +1,548 @@
+---
+import { Image } from 'astro:assets';
+import imgWeb from '../assets/carrusel/img-carru-desarrollo-web.jpg';
+import imgIA from '../assets/carrusel/img-carru-inteligencia-artificial.jpg';
+import imgCampanas from '../assets/carrusel/img-carru-campañas.jpg';
+import imgAudiovisual from '../assets/carrusel/img-carru-audiovisual.jpg';
+import imgSoftware from '../assets/carrusel/img-carru-desarrollo-software.jpg';
+---
+
+<section class="py-10 md:py-12 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 mb-8">
+    <h2 class="text-3xl md:text-[35px] md:leading-tight text-center text-black tracking-tight">
+      ¿Cuál es tu <span class="font-bold">próximo objetivo</span>?
+    </h2>
+  </div>
+
+  <div class="relative w-full max-w-[100vw]">
+    <!-- Fade Masks to replicate the white edge fading from the image -->
+    <div class="hidden md:block absolute top-0 left-0 h-[360px] w-20 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+    <div class="hidden md:block absolute top-0 right-0 h-[360px] w-20 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+    <div id="carousel-track" class="flex gap-6 overflow-x-auto px-[calc(50vw-140px)] md:px-12 pb-8 hide-scrollbar cursor-grab active:cursor-grabbing">
+      <!-- Cards -->
+      <!-- Card 1 -->
+      <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#c099eb] overflow-hidden relative group cursor-pointer">
+        <Image src={imgWeb} alt="Diseño y desarrollo web" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[200px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
+          <span>Ver detalles</span>
+          <i class="bi bi-chevron-up text-[10px]"></i>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-3 transform translate-y-[120%] group-[.is-open]:translate-y-0 md:group-hover:translate-y-0 transition-transform duration-[800ms] ease-out z-20">
+          <div class="bg-white rounded-[1.5rem] p-5 shadow-xl flex flex-col gap-4 relative">
+            <button type="button" class="close-card-btn absolute top-3 right-3 w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors z-30 cursor-pointer md:hidden" aria-label="Cerrar detalles">
+              <i class="bi bi-x-lg text-xs"></i>
+            </button>
+            <ul class="text-[0.8rem] md:text-sm text-gray-700 space-y-2 pr-4">
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#c099eb] font-bold">&bull;</span>
+                <span>Diseño UX/UI enfocado en conversión.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#c099eb] font-bold">&bull;</span>
+                <span>Tiendas virtuales 100% autogestionables.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#c099eb] font-bold">&bull;</span>
+                <span>Formularios avanzados y bases de datos integradas.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#c099eb] font-bold">&bull;</span>
+                <span>Canales de contacto directo e integración de WhatsApp.</span>
+              </li>
+            </ul>
+            <a href="/diseno-desarrollo-web" class="block w-full py-1.5 md:py-2 px-4 text-center text-sm font-medium text-[#c099eb] border border-[#c099eb]/40 rounded-full hover:bg-[#c099eb]/10 transition-colors">
+              Empezar ahora
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#2e8ffc] overflow-hidden relative group cursor-pointer">
+        <Image src={imgIA} alt="Automatizaciones con inteligencia artificial" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[220px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
+          <span>Ver detalles</span>
+          <i class="bi bi-chevron-up text-[10px]"></i>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-3 transform translate-y-[120%] group-[.is-open]:translate-y-0 md:group-hover:translate-y-0 transition-transform duration-[800ms] ease-out z-20">
+          <div class="bg-white rounded-[1.5rem] p-5 shadow-xl flex flex-col gap-4 relative">
+            <button type="button" class="close-card-btn absolute top-3 right-3 w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors z-30 cursor-pointer md:hidden" aria-label="Cerrar detalles">
+              <i class="bi bi-x-lg text-xs"></i>
+            </button>
+            <ul class="text-[0.8rem] md:text-sm text-gray-700 space-y-2 pr-4">
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#2e8ffc] font-bold">&bull;</span>
+                <span>Chatbots avanzados de atención al cliente 24/7.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#2e8ffc] font-bold">&bull;</span>
+                <span>Automatización de flujos y procesos de venta.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#2e8ffc] font-bold">&bull;</span>
+                <span>Calificación automática de prospectos (leads).</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#2e8ffc] font-bold">&bull;</span>
+                <span>Reducción de tareas operativas repetitivas.</span>
+              </li>
+            </ul>
+            <a href="/automatizaciones-con-ia" class="block w-full py-1.5 md:py-2 px-4 text-center text-sm font-medium text-[#2e8ffc] border border-[#2e8ffc]/40 rounded-full hover:bg-[#2e8ffc]/10 transition-colors">
+              Empezar ahora
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#5fd3b0] overflow-hidden relative group cursor-pointer">
+        <Image src={imgCampanas} alt="Estrategias y campañas digitales" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[180px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
+          <span>Ver detalles</span>
+          <i class="bi bi-chevron-up text-[10px]"></i>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-3 transform translate-y-[120%] group-[.is-open]:translate-y-0 md:group-hover:translate-y-0 transition-transform duration-[800ms] ease-out z-20">
+          <div class="bg-white rounded-[1.5rem] p-5 shadow-xl flex flex-col gap-4 relative">
+            <button type="button" class="close-card-btn absolute top-3 right-3 w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors z-30 cursor-pointer md:hidden" aria-label="Cerrar detalles">
+              <i class="bi bi-x-lg text-xs"></i>
+            </button>
+            <ul class="text-[0.8rem] md:text-sm text-gray-700 space-y-2 pr-4">
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#5fd3b0] font-bold">&bull;</span>
+                <span>Posicionamiento SEO y anuncios en Google Ads.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#5fd3b0] font-bold">&bull;</span>
+                <span>Campañas de alta conversión en Meta Ads (FB/IG).</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#5fd3b0] font-bold">&bull;</span>
+                <span>Estrategias de alcance y ventas en TikTok Ads.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#5fd3b0] font-bold">&bull;</span>
+                <span>Configuración de analítica y tracking de píxeles.</span>
+              </li>
+            </ul>
+            <a href="/estrategias-y-campanas-digitales" class="block w-full py-1.5 md:py-2 px-4 text-center text-sm font-medium text-[#5fd3b0] border border-[#5fd3b0]/40 rounded-full hover:bg-[#5fd3b0]/10 transition-colors">
+              Empezar ahora
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#fd8b57] overflow-hidden relative group cursor-pointer">
+        <Image src={imgAudiovisual} alt="Identidad de marca y contenido audiovisual" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[180px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
+          <span>Ver detalles</span>
+          <i class="bi bi-chevron-up text-[10px]"></i>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-3 transform translate-y-[120%] group-[.is-open]:translate-y-0 md:group-hover:translate-y-0 transition-transform duration-[800ms] ease-out z-20">
+          <div class="bg-white rounded-[1.5rem] p-5 shadow-xl flex flex-col gap-4 relative">
+            <button type="button" class="close-card-btn absolute top-3 right-3 w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors z-30 cursor-pointer md:hidden" aria-label="Cerrar detalles">
+              <i class="bi bi-x-lg text-xs"></i>
+            </button>
+            <ul class="text-[0.8rem] md:text-sm text-gray-700 space-y-2 pr-4">
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#fd8b57] font-bold">&bull;</span>
+                <span>Branding y diseño de identidad visual.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#fd8b57] font-bold">&bull;</span>
+                <span>Producción de contenido digital estratégico.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#fd8b57] font-bold">&bull;</span>
+                <span>Animación 2D y 3D de alto impacto.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#fd8b57] font-bold">&bull;</span>
+                <span>Storytelling enfocado en conectar y vender.</span>
+              </li>
+            </ul>
+            <a href="/identidad-de-marca-y-contenido-audiovisual" class="block w-full py-1.5 md:py-2 px-4 text-center text-sm font-medium text-[#fd8b57] border border-[#fd8b57]/40 rounded-full hover:bg-[#fd8b57]/10 transition-colors">
+              Empezar ahora
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Card 5 -->
+      <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#0b709b] overflow-hidden relative group cursor-pointer">
+        <Image src={imgSoftware} alt="Soporte técnico y desarrollo de software" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[190px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
+          <span>Ver detalles</span>
+          <i class="bi bi-chevron-up text-[10px]"></i>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-3 transform translate-y-[120%] group-[.is-open]:translate-y-0 md:group-hover:translate-y-0 transition-transform duration-[800ms] ease-out z-20">
+          <div class="bg-white rounded-[1.5rem] p-5 shadow-xl flex flex-col gap-4 relative">
+            <button type="button" class="close-card-btn absolute top-3 right-3 w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center justify-center transition-colors z-30 cursor-pointer md:hidden" aria-label="Cerrar detalles">
+              <i class="bi bi-x-lg text-xs"></i>
+            </button>
+            <ul class="text-[0.8rem] md:text-sm text-gray-700 space-y-2 pr-4">
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#0b709b] font-bold">&bull;</span>
+                <span>Desarrollo de software y sistemas a medida.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#0b709b] font-bold">&bull;</span>
+                <span>Integración de plataformas, CRMs y APIs.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#0b709b] font-bold">&bull;</span>
+                <span>Seguridad digital y protección de datos.</span>
+              </li>
+              <li class="flex items-start gap-2 leading-tight">
+                <span class="text-[#0b709b] font-bold">&bull;</span>
+                <span>Soporte técnico y mantenimiento continuo.</span>
+              </li>
+            </ul>
+            <a href="/desarrollo-de-software" class="block w-full py-1.5 md:py-2 px-4 text-center text-sm font-medium text-[#0b709b] border border-[#0b709b]/40 rounded-full hover:bg-[#0b709b]/10 transition-colors">
+              Empezar ahora
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows Mobile -->
+  <div class="flex md:hidden items-center justify-center gap-8 mt-6 pb-12">
+    <button id="carousel-prev-btn" class="w-11 h-11 rounded-full bg-black text-white hover:bg-gray-800 flex items-center justify-center shadow-lg active:scale-95 transition-all z-20 cursor-pointer" aria-label="Anterior">
+      <i class="bi bi-chevron-left text-lg"></i>
+    </button>
+    <button id="carousel-next-btn" class="w-11 h-11 rounded-full bg-black text-white hover:bg-gray-800 flex items-center justify-center shadow-lg active:scale-95 transition-all z-20 cursor-pointer" aria-label="Siguiente">
+      <i class="bi bi-chevron-right text-lg"></i>
+    </button>
+  </div>
+
+  <!-- Custom Scrollbar PC -->
+  <div class="hidden md:block w-full max-w-md mx-auto mt-2 pb-12 px-6">
+    <div id="custom-scrollbar-track" class="w-full h-2 bg-gray-200 rounded-full relative cursor-pointer">
+      <div id="custom-scrollbar-thumb" class="absolute top-0 left-0 h-full bg-black rounded-full w-1/4 cursor-grab active:cursor-grabbing hover:bg-gray-800 transition-colors"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide native scrollbar */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  const track = document.getElementById('carousel-track');
+
+  if (track) {
+    // 1. Clone cards for infinite loop
+    const originalCards = Array.from(track.children);
+    // Clone 4 times to ensure a huge buffer for fast scrolling
+    for (let i = 0; i < 4; i++) {
+      originalCards.forEach(card => track.appendChild(card.cloneNode(true)));
+    }
+
+    let isHovered = false;
+    let isNativeScrolling = false;
+
+    // Track dragging state
+    let isDraggingTrack = false;
+    let trackDragStartX = 0;
+    let trackInitialScroll = 0;
+    let hasDraggedTrack = false; // To prevent click after drag
+    
+    // Custom scrollbar dragging state
+    let isDraggingThumb = false;
+    let dragStartX = 0;
+    let dragInitialScroll = 0;
+    let dragInitialProgress = 0;
+
+    // Controladores de los botones de flechas (< y >)
+    const prevBtn = document.getElementById('carousel-prev-btn');
+    const nextBtn = document.getElementById('carousel-next-btn');
+
+    let isPermanentlyPaused = false;
+
+    // Resumir el auto-desplazamiento si el usuario hace scroll en la página
+    window.addEventListener('scroll', () => {
+      if (isPermanentlyPaused) {
+        isPermanentlyPaused = false;
+      }
+    }, { passive: true });
+
+    const getNearestCardScrollLeft = (direction: number) => {
+      const cards = Array.from(track.children) as HTMLElement[];
+      const trackCenter = track.scrollLeft + track.clientWidth / 2;
+      
+      let minDiff = Infinity;
+      let nearestIndex = 0;
+      
+      cards.forEach((card, i) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const diff = Math.abs(cardCenter - trackCenter);
+        if (diff < minDiff) {
+          minDiff = diff;
+          nearestIndex = i;
+        }
+      });
+
+      let targetIndex = nearestIndex + direction;
+      if (targetIndex < 0) targetIndex = 0;
+      if (targetIndex >= cards.length) targetIndex = cards.length - 1;
+
+      const targetCard = cards[targetIndex];
+      return targetCard.offsetLeft - track.clientWidth / 2 + targetCard.offsetWidth / 2;
+    };
+
+    const centerTrackIfNeeded = () => {
+      const jumpDist = getJumpDistance();
+      if (jumpDist > 0) {
+        if (track.scrollLeft > jumpDist * 3) {
+          track.scrollLeft -= jumpDist;
+        } else if (track.scrollLeft < jumpDist * 1) {
+          track.scrollLeft += jumpDist;
+        }
+      }
+    };
+
+    prevBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      isPermanentlyPaused = true;
+      currentVelocity = 0;
+      centerTrackIfNeeded();
+      const targetScroll = getNearestCardScrollLeft(-1);
+      track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    });
+
+    nextBtn?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      isPermanentlyPaused = true;
+      currentVelocity = 0;
+      centerTrackIfNeeded();
+      const targetScroll = getNearestCardScrollLeft(1);
+      track.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    });
+
+    // Lógica táctil para abrir/cerrar tarjetas al tocar en móviles
+    const setupCardToggles = () => {
+      const allCards = Array.from(track.children) as HTMLElement[];
+      allCards.forEach(card => {
+        // Listener para el botón X de cerrar
+        const closeBtn = card.querySelector('.close-card-btn');
+        closeBtn?.addEventListener('click', (e) => {
+          e.stopPropagation();
+          card.classList.remove('is-open');
+        });
+
+        card.addEventListener('click', (e) => {
+          // Prevent opening card if we just finished a drag
+          if (hasDraggedTrack) {
+            e.preventDefault();
+            return;
+          }
+
+          // Si hace clic en el enlace interno o en el botón X, omitir
+          if ((e.target as HTMLElement).closest('a') || (e.target as HTMLElement).closest('.close-card-btn')) return;
+
+          const isOpen = card.classList.contains('is-open');
+          // Cerrar otras tarjetas abiertas
+          allCards.forEach(c => c.classList.remove('is-open'));
+          if (!isOpen) {
+            card.classList.add('is-open');
+          } else {
+            card.classList.remove('is-open');
+          }
+        });
+      });
+    };
+
+    // Inicializar listeners táctiles
+    setupCardToggles();
+
+    // Mouse drag directly on the track
+    track.addEventListener('mousedown', (e) => {
+      if ((e.target as HTMLElement).closest('a') || (e.target as HTMLElement).closest('button') || (e.target as HTMLElement).closest('.close-card-btn')) return;
+      
+      isDraggingTrack = true;
+      hasDraggedTrack = false;
+      isNativeScrolling = true;
+      isPermanentlyPaused = true;
+      currentVelocity = 0;
+      trackDragStartX = e.clientX;
+      trackInitialScroll = track.scrollLeft;
+      track.style.cursor = 'grabbing';
+      track.style.userSelect = 'none';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDraggingTrack) {
+        const dx = e.clientX - trackDragStartX;
+        if (Math.abs(dx) > 5) {
+           hasDraggedTrack = true;
+        }
+        track.scrollLeft = trackInitialScroll - dx;
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDraggingTrack) {
+        isDraggingTrack = false;
+        track.style.cursor = '';
+        track.style.userSelect = '';
+        setTimeout(() => {
+          isNativeScrolling = false;
+        }, 100);
+        setTimeout(() => {
+          hasDraggedTrack = false;
+        }, 0);
+      }
+    });
+
+    // Para que en móvil no se bloquee de forma permanente accidentalmente por toques ligeros,
+    // pero que pause mientras interactúan.
+    track.addEventListener('touchstart', () => { isNativeScrolling = true; currentVelocity = 0; isPermanentlyPaused = true; }, { passive: true });
+    track.addEventListener('touchend', () => { setTimeout(() => isNativeScrolling = false, 100); });
+
+    // Calculate exact jump distance using element offsets
+    // This perfectly accounts for gaps, margins, and paddings.
+    const getJumpDistance = () => {
+      if (track.children.length <= originalCards.length) return 1;
+      const firstOriginal = track.children[0] as HTMLElement;
+      const firstClone = track.children[originalCards.length] as HTMLElement;
+      return firstClone.offsetLeft - firstOriginal.offsetLeft;
+    };
+
+    // Initialize scroll position to the middle clone so we can swipe right infinitely from the start
+    setTimeout(() => {
+      if (track.scrollLeft < getJumpDistance() * 2) {
+        track.scrollLeft = getJumpDistance() * 2;
+      }
+    }, 100);
+
+    // Custom Scrollbar Logic
+    const scrollThumb = document.getElementById('custom-scrollbar-thumb');
+    const scrollTrack = document.getElementById('custom-scrollbar-track');
+
+    if (scrollThumb && scrollTrack) {
+      const updateThumbPosition = () => {
+        if (scrollThumb && scrollTrack) {
+          const jump = getJumpDistance();
+          if (jump > 1) {
+             let progress;
+             if (isDraggingThumb) {
+               let deltaScroll = track.scrollLeft - dragInitialScroll;
+               progress = dragInitialProgress + (deltaScroll / jump);
+             } else {
+               progress = (track.scrollLeft % jump) / jump;
+               if (progress < 0) progress += 1;
+             }
+             
+             if (progress < 0) progress = 0;
+             if (progress > 1) progress = 1;
+             
+             const maxTx = scrollTrack.clientWidth - scrollThumb.clientWidth;
+             scrollThumb.style.transform = `translateX(${progress * maxTx}px)`;
+          }
+        }
+      };
+
+      const onThumbMouseMove = (e: MouseEvent) => {
+        if (!isDraggingThumb) return;
+        const dx = e.clientX - dragStartX;
+        const maxTx = scrollTrack.clientWidth - scrollThumb.clientWidth;
+        const jump = getJumpDistance();
+        
+        let deltaProgress = dx / maxTx;
+        let newProgress = dragInitialProgress + deltaProgress;
+        
+        if (newProgress < 0) newProgress = 0;
+        if (newProgress > 1) newProgress = 1;
+        
+        let clampedDeltaProgress = newProgress - dragInitialProgress;
+        let newScroll = dragInitialScroll + clampedDeltaProgress * jump;
+        
+        track.scrollLeft = newScroll;
+      };
+
+      const onThumbMouseUp = () => {
+        isDraggingThumb = false;
+        isNativeScrolling = false;
+        window.removeEventListener('mousemove', onThumbMouseMove);
+        window.removeEventListener('mouseup', onThumbMouseUp);
+      };
+
+      scrollThumb.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDraggingThumb = true;
+        isNativeScrolling = true; // Pause auto-scroll
+        currentVelocity = 0; // stop auto-scroll immediately
+        dragStartX = e.clientX;
+        dragInitialScroll = track.scrollLeft;
+        
+        const jump = getJumpDistance();
+        let initialProgress = (dragInitialScroll % jump) / jump;
+        if (initialProgress < 0) initialProgress += 1;
+        dragInitialProgress = initialProgress;
+        
+        window.addEventListener('mousemove', onThumbMouseMove);
+        window.addEventListener('mouseup', onThumbMouseUp);
+      });
+      
+      track.addEventListener('scroll', updateThumbPosition);
+    }
+
+    // 3. Auto Scroll Animation with Smooth Velocity (Lerp)
+    let currentVelocity = 0.5;
+    let targetVelocity = 0.5;
+
+    const autoScroll = () => {
+      // Determine target speed based on user interaction
+      const normalSpeed = window.innerWidth < 768 ? 0.5 : 0.8;
+      
+      if (isNativeScrolling || isPermanentlyPaused) {
+        targetVelocity = 0;
+      } else {
+        targetVelocity = normalSpeed;
+      }
+
+      // Smoothly transition current velocity towards target 
+      currentVelocity += (targetVelocity - currentVelocity) * 0.35;
+
+      if (!isNativeScrolling && currentVelocity > 0.01) {
+        track.scrollLeft += currentVelocity;
+      }
+      
+      // Native and auto-scroll wrap around logic buffered comfortably inside the clones
+      const jumpDist = getJumpDistance();
+      if (jumpDist > 0 && !isDraggingThumb && !isDraggingTrack && !isNativeScrolling) {
+        if (track.scrollLeft > jumpDist * 3) {
+          track.scrollLeft -= jumpDist;
+        } else if (track.scrollLeft < jumpDist * 1) {
+          track.scrollLeft += jumpDist;
+        }
+      }
+      
+      requestAnimationFrame(autoScroll);
+    };
+
+    requestAnimationFrame(autoScroll);
+  }
+</script>

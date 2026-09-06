@@ -1,0 +1,624 @@
+---
+// ChatWidget.astro
+---
+
+<!-- The Chat Container. Can be Widget or Sidebar -->
+<div 
+  id="chat-container" 
+  class="fixed inset-0 md:inset-auto md:bottom-24 md:right-6 md:left-auto w-full md:w-[380px] md:max-w-[calc(100vw-24px)] h-[100dvh] md:h-auto bg-white md:rounded-2xl shadow-[0_15px_50px_rgba(0,0,0,0.18)] z-[9999] flex flex-col hidden opacity-0 transition-all duration-300 transform md:scale-95 md:border md:border-gray-100 overflow-hidden"
+>
+  
+  <!-- Header -->
+  <div class="bg-black text-white p-3.5 flex justify-between items-center shrink-0 select-none z-10">
+    <div class="flex items-center gap-3">
+      <div class="relative">
+        <div class="w-9 h-9 bg-white rounded-full flex items-center justify-center p-1.5 shadow-sm border border-white/20">
+          <img src="/images/projects/ia/icono-ia.svg" alt="Agente Kit" class="w-full h-full object-contain" />
+        </div>
+        <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-[#4ade80] border-[2px] border-black rounded-full"></div>
+      </div>
+      <div class="flex flex-col text-left">
+        <h3 class="font-bold text-[14px] m-0 leading-tight tracking-wide text-white">Agente Kit</h3>
+        <p class="text-[#60a5fa] text-[12px] m-0 mt-0.5 flex items-center gap-1.5 font-medium">
+          <span class="w-1.5 h-1.5 bg-[#4ade80] rounded-full inline-block animate-pulse"></span>
+          En línea
+        </p>
+      </div>
+    </div>
+    <div class="flex items-center gap-1">
+      <button 
+        id="toggle-size-btn" 
+        type="button"
+        title="Expandir a barra lateral" 
+        class="text-gray-400 hover:text-white transition-colors p-1.5 hidden md:block rounded-lg hover:bg-white/10"
+      >
+        <i class="bi bi-arrows-angle-expand text-[15px] leading-none" id="size-icon"></i>
+      </button>
+      <button 
+        id="close-chat" 
+        type="button"
+        title="Cerrar chat" 
+        class="text-gray-400 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/10"
+      >
+        <i class="bi bi-x-lg text-[15px] leading-none"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- State 1: Registration Form -->
+  <div id="chat-registration" class="flex-1 min-h-0 overflow-y-auto p-4 md:p-5 bg-[#f8f9fa] flex flex-col md:h-[500px] md:max-h-[75vh] transition-all duration-300 -webkit-overflow-scrolling-touch">
+    <div class="bg-white p-4 md:p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col my-auto">
+      <div class="w-10 h-10 md:w-11 md:h-11 bg-black text-white rounded-xl flex items-center justify-center mb-2.5 md:mb-3 text-lg md:text-xl shadow-sm">
+        👋
+      </div>
+      <h4 class="text-base md:text-[17px] font-bold text-gray-900 mb-1">¡Hola! Bienvenido a KitStation</h4>
+      <p class="text-gray-600 text-xs md:text-[13px] mb-4 md:mb-5 leading-relaxed">
+        Ingresa tus datos para conectarte con un asistente y recibir atención personalizada.
+      </p>
+      
+      <form id="registration-form" class="space-y-3">
+        <div>
+          <label for="user-name" class="block text-[11px] md:text-[12px] font-bold uppercase tracking-wider text-gray-500 mb-1">Nombre completo</label>
+          <input 
+            type="text" 
+            id="user-name" 
+            required 
+            class="w-full bg-[#f3f4f6] text-gray-900 text-base md:text-[13px] rounded-xl px-3.5 py-2.5 md:py-2 focus:outline-none focus:ring-2 focus:ring-black/15 placeholder-gray-400 border border-transparent transition-all" 
+            placeholder="Ej. Juan Pérez"
+          />
+        </div>
+        <div>
+          <label for="user-phone" class="block text-[11px] md:text-[12px] font-bold uppercase tracking-wider text-gray-500 mb-1">Número de teléfono</label>
+          <input 
+            type="tel" 
+            id="user-phone" 
+            required 
+            class="w-full bg-[#f3f4f6] text-gray-900 text-base md:text-[13px] rounded-xl px-3.5 py-2.5 md:py-2 focus:outline-none focus:ring-2 focus:ring-black/15 placeholder-gray-400 border border-transparent transition-all" 
+            placeholder="Ej. +51 987 654 321"
+          />
+        </div>
+        <div>
+          <label for="user-email" class="block text-[11px] md:text-[12px] font-bold uppercase tracking-wider text-gray-500 mb-1">Correo electrónico</label>
+          <input 
+            type="email" 
+            id="user-email" 
+            required 
+            class="w-full bg-[#f3f4f6] text-gray-900 text-base md:text-[13px] rounded-xl px-3.5 py-2.5 md:py-2 focus:outline-none focus:ring-2 focus:ring-black/15 placeholder-gray-400 border border-transparent transition-all" 
+            placeholder="Ej. juan@ejemplo.com"
+          />
+        </div>
+        <button 
+          type="submit" 
+          class="w-full bg-black hover:bg-gray-800 text-white font-semibold text-xs md:text-[13px] py-3 md:py-2.5 px-4 rounded-xl transition-all duration-200 mt-2 flex items-center justify-center gap-2 shadow-md active:scale-98"
+        >
+          <span>Iniciar conversación</span>
+          <i class="bi bi-arrow-right leading-none"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- State 2: Chat Interface (Hidden by default) -->
+  <div id="chat-interface" class="flex-1 min-h-0 flex flex-col hidden md:h-[460px] md:max-h-[70vh] overflow-hidden transition-all duration-300">
+    <!-- Messages Area -->
+    <div id="chat-messages" class="flex-1 min-h-0 bg-[#f8f9fa] p-4 overflow-y-auto flex flex-col gap-3.5 scroll-smooth custom-scrollbar -webkit-overflow-scrolling-touch">
+      <!-- Messages injected here dynamically -->
+    </div>
+
+    <!-- Quick Suggestion Chips -->
+    <div id="chat-quick-suggestions" class="px-3 py-2 bg-[#f8f9fa] border-t border-gray-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+      <button type="button" class="chat-chip shrink-0 bg-white border border-gray-200 text-gray-700 text-xs font-medium px-3 py-1.5 rounded-full hover:bg-gray-100 hover:border-gray-300 transition-colors shadow-xs">
+        ¿Qué servicios tienen?
+      </button>
+      <button type="button" class="chat-chip shrink-0 bg-white border border-gray-200 text-gray-700 text-xs font-medium px-3 py-1.5 rounded-full hover:bg-gray-100 hover:border-gray-300 transition-colors shadow-xs">
+        Cotizar proyecto
+      </button>
+      <button type="button" class="chat-chip shrink-0 bg-white border border-gray-200 text-gray-700 text-xs font-medium px-3 py-1.5 rounded-full hover:bg-gray-100 hover:border-gray-300 transition-colors shadow-xs">
+        Hablar con un asesor
+      </button>
+    </div>
+
+    <!-- Input Area via Native Form -->
+    <form id="chat-input-form" class="p-3 bg-white border-t border-gray-100 flex items-center gap-2 shrink-0 shadow-[0_-5px_15px_rgba(0,0,0,0.02)] pb-[calc(0.75rem+env(safe-area-inset-bottom))] md:pb-3">
+      <input 
+        type="text" 
+        id="chat-input" 
+        placeholder="Escribe un mensaje..." 
+        autocomplete="off"
+        class="flex-grow bg-[#f3f4f6] text-gray-800 text-base md:text-[13px] rounded-full px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-black/15 placeholder-gray-400 border border-transparent transition-all" 
+      />
+      <button 
+        type="submit" 
+        id="send-btn" 
+        class="w-9 h-9 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 hover:bg-gray-800 active:scale-95 transition-all shadow-sm"
+        title="Enviar mensaje"
+      >
+        <i class="bi bi-arrow-right text-[16px] leading-none"></i>
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Floating Action Button Group -->
+<div id="fab-group" class="fixed bottom-6 right-6 z-[9998] flex flex-col items-center group mix-blend-difference transition-all duration-300">
+  
+  <!-- Secondary Buttons (Desktop hover only) -->
+  <div id="fab-secondary-buttons" class="hidden md:flex flex-col gap-3 opacity-0 translate-y-4 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out pb-3">
+    <!-- Instagram -->
+    <a 
+      href="https://www.instagram.com/kitstationpe/reels/" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="w-[56px] h-[56px] bg-white text-black rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform" 
+      title="Síguenos en Instagram"
+    >
+      <i class="bi bi-instagram text-[24px] leading-none"></i>
+    </a>
+    
+    <!-- WhatsApp -->
+    <a 
+      href="https://wa.me/51901637020" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="w-[56px] h-[56px] bg-white text-black rounded-full shadow-2xl flex items-center justify-center hover:scale-105 transition-transform" 
+      title="Escríbenos por WhatsApp"
+    >
+      <i class="bi bi-whatsapp text-[24px] leading-none"></i>
+    </a>
+  </div>
+
+  <!-- Primary Toggle Button -->
+  <button 
+    id="toggle-chat-btn" 
+    type="button"
+    class="w-[56px] h-[56px] bg-white text-black rounded-full shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-200"
+    title="Abrir chat de soporte"
+    aria-label="Abrir chat"
+  >
+    <i class="bi bi-chat-dots text-[24px] leading-none" id="toggle-icon-chat"></i>
+    <i class="bi bi-x-lg text-[22px] leading-none hidden" id="toggle-icon-close"></i>
+  </button>
+</div>
+
+<style>
+  /* Custom scrollbar for chat */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* WhatsApp Bouncing Dots Animation */
+  :global(.typing-dot) {
+    width: 5px;
+    height: 5px;
+    background-color: #9ca3af;
+    border-radius: 50%;
+    display: inline-block;
+    animation: whatsapp-bounce 1.3s infinite ease-in-out;
+    flex-shrink: 0;
+  }
+  :global(.typing-dot:nth-child(1)) { animation-delay: 0s; }
+  :global(.typing-dot:nth-child(2)) { animation-delay: 0.2s; }
+  :global(.typing-dot:nth-child(3)) { animation-delay: 0.4s; }
+  
+  @keyframes whatsapp-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+  }
+
+  /* Morphing entrance animations for chat bubbles */
+  :global(.chat-msg-enter-bot) {
+    transform-origin: bottom left;
+    animation: morphBubble 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  :global(.chat-msg-enter-user) {
+    transform-origin: bottom right;
+    animation: morphBubble 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes morphBubble {
+    0% {
+      opacity: 0;
+      transform: scale(0.6) translateY(12px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Ocultar botones secundarios de WhatsApp e Instagram cuando el chat está abierto */
+  #fab-group.chat-open #fab-secondary-buttons {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Ocultar botón flotante cuando el chat está abierto en pantallas móviles para evitar solapamientos */
+  @media (max-width: 639px) {
+    #fab-group.chat-open {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: scale(0.7) !important;
+    }
+  }
+
+  /* Sidebar mode on Desktop */
+  @media (min-width: 768px) {
+    #chat-container.is-sidebar-mode {
+      top: 0 !important;
+      bottom: 0 !important;
+      right: 0 !important;
+      left: auto !important;
+      width: 400px !important;
+      max-width: 100% !important;
+      height: 100% !important;
+      border-radius: 0 !important;
+      border-top: 0 !important;
+      border-bottom: 0 !important;
+      border-right: 0 !important;
+      border-left: 1px solid #e5e7eb !important;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15) !important;
+      transform: none !important;
+    }
+
+    #chat-container.is-sidebar-mode #chat-registration,
+    #chat-container.is-sidebar-mode #chat-interface {
+      height: 100% !important;
+      max-height: 100% !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const chatContainer = document.getElementById('chat-container');
+    const toggleBtn = document.getElementById('toggle-chat-btn');
+    const fabGroup = document.getElementById('fab-group');
+    const toggleIconChat = document.getElementById('toggle-icon-chat');
+    const toggleIconClose = document.getElementById('toggle-icon-close');
+    
+    const closeBtn = document.getElementById('close-chat');
+    const sizeBtn = document.getElementById('toggle-size-btn');
+    const sizeIcon = document.getElementById('size-icon');
+    
+    const registrationSection = document.getElementById('chat-registration');
+    const registrationForm = document.getElementById('registration-form');
+    const userNameInput = document.getElementById('user-name') as HTMLInputElement;
+    const userEmailInput = document.getElementById('user-email') as HTMLInputElement;
+    const userPhoneInput = document.getElementById('user-phone') as HTMLInputElement;
+    
+    const chatInterface = document.getElementById('chat-interface');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInputForm = document.getElementById('chat-input-form');
+    const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+    const chips = chatContainer?.querySelectorAll('.chat-chip') || [];
+
+    let isOpen = false;
+    let isSidebarMode = false;
+    let chatStarted = false;
+    let userName = '';
+    let userEmail = '';
+    let userPhone = '';
+
+    // Mobile scroll lock & visual viewport handling
+    function lockBodyScroll() {
+      if (window.innerWidth < 768) {
+        document.body.style.overflow = 'hidden';
+        document.body.style.touchAction = 'none';
+      }
+    }
+
+    function unlockBodyScroll() {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+
+    function handleVisualViewport() {
+      if (!chatContainer || !isOpen) return;
+
+      if (window.innerWidth < 768 && window.visualViewport) {
+        const vh = window.visualViewport.height;
+        const offsetTop = window.visualViewport.offsetTop;
+        chatContainer.style.height = `${vh}px`;
+        chatContainer.style.transform = `translateY(${offsetTop}px)`;
+      } else {
+        chatContainer.style.height = '';
+        chatContainer.style.transform = '';
+      }
+    }
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleVisualViewport);
+      window.visualViewport.addEventListener('scroll', handleVisualViewport);
+    }
+
+    window.addEventListener('resize', () => {
+      if (!isOpen && window.innerWidth >= 768) {
+        unlockBodyScroll();
+      } else if (isOpen) {
+        handleVisualViewport();
+      }
+    });
+
+    // Smart Responses Library
+    function getBotResponse(userText: string): { text: string; showWhatsAppBtn?: boolean } {
+      const lower = userText.toLowerCase().trim();
+
+      if (lower.includes('hola') || lower.includes('buenas') || lower.includes('saludos') || lower.includes('hey')) {
+        return {
+          text: `¡Hola${userName ? ' ' + userName : ''}! 👋 Con gusto te asesoro. ¿En cuál de nuestras soluciones estás más interesado? (Diseño Web, Automatizaciones con IA, Desarrollo de Software o Identidad de Marca).`
+        };
+      }
+
+      if (lower.includes('servicio') || lower.includes('ofrec') || lower.includes('hacen') || lower.includes('que tienen')) {
+        return {
+          text: `En <b>KitStation</b> ofrecemos 4 áreas estratégicas:<br/>
+          • 🌐 <b>Diseño y Desarrollo Web:</b> Sitios ultra rápidos y conversion-focused.<br/>
+          • 🤖 <b>Automatizaciones con IA:</b> Asistentes y flujos que atienden 24/7.<br/>
+          • 💻 <b>Software a Medida:</b> Sistemas escalables para tu operación.<br/>
+          • 🎨 <b>Identidad de Marca y Audiovisual:</b> Branding de alto impacto.<br/><br/>
+          ¿Cuál se alinea mejor con tus objetivos actuales?`
+        };
+      }
+
+      if (lower.includes('precio') || lower.includes('costo') || lower.includes('cotiz') || lower.includes('cuanto') || lower.includes('presupuesto')) {
+        return {
+          text: `El costo varía según el alcance y especificaciones de tu proyecto. Diseñamos propuestas a la medida de tu modelo de negocio.<br/><br/>
+          ¿Deseas que un asesor te envíe una cotización personalizada ahora mismo?`,
+          showWhatsAppBtn: true
+        };
+      }
+
+      if (lower.includes('web') || lower.includes('pagina') || lower.includes('sitio') || lower.includes('ecommerce') || lower.includes('tienda')) {
+        return {
+          text: `Creamos plataformas web modernas, veloces y optimizadas para SEO. Cuéntanos, ¿tienes ya un sitio que buscas renovar o empezamos un proyecto desde cero?`
+        };
+      }
+
+      if (lower.includes('ia') || lower.includes('bot') || lower.includes('automatiz') || lower.includes('inteligencia')) {
+        return {
+          text: `Nuestras soluciones de IA te permiten responder mensajes al instante, agendar citas y calificar prospectos en WhatsApp o en tu web sin intervención manual.`
+        };
+      }
+
+      if (lower.includes('asesor') || lower.includes('humano') || lower.includes('whatsapp') || lower.includes('telefono') || lower.includes('contacto') || lower.includes('hablar')) {
+        return {
+          text: `¡Por supuesto! Puedes contactarte directamente con nuestro equipo de especialistas vía WhatsApp:`,
+          showWhatsAppBtn: true
+        };
+      }
+
+      // Default smart fallback
+      return {
+        text: `Comprendo perfectamente. Para brindarte una respuesta precisa y analizar tu caso al detalle, nuestro equipo comercial está listo para atenderte por WhatsApp.`,
+        showWhatsAppBtn: true
+      };
+    }
+
+    function toggleChat() {
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        lockBodyScroll();
+        fabGroup?.classList.add('chat-open');
+        chatContainer?.classList.remove('hidden');
+        handleVisualViewport();
+        
+        setTimeout(() => {
+          if (isSidebarMode && window.innerWidth >= 768) {
+            chatContainer?.classList.remove('translate-x-full', 'opacity-0');
+            chatContainer?.classList.add('translate-x-0', 'opacity-100');
+            if (window.innerWidth >= 1024) {
+              document.body.style.marginRight = '400px';
+            }
+          } else {
+            chatContainer?.classList.remove('opacity-0', 'scale-95');
+            chatContainer?.classList.add('opacity-100', 'scale-100');
+          }
+        }, 10);
+        
+        toggleIconChat?.classList.add('hidden');
+        toggleIconClose?.classList.remove('hidden');
+        
+        setTimeout(() => {
+          if (chatStarted) {
+            chatInput?.focus();
+          } else {
+            userNameInput?.focus();
+          }
+        }, 300);
+
+      } else {
+        unlockBodyScroll();
+        if (chatContainer) {
+          chatContainer.style.height = '';
+          chatContainer.style.transform = '';
+        }
+        fabGroup?.classList.remove('chat-open');
+        if (isSidebarMode && window.innerWidth >= 768) {
+          chatContainer?.classList.remove('translate-x-0', 'opacity-100');
+          chatContainer?.classList.add('translate-x-full', 'opacity-0');
+          document.body.style.marginRight = '0px';
+        } else {
+          chatContainer?.classList.remove('opacity-100', 'scale-100');
+          chatContainer?.classList.add('opacity-0', 'scale-95');
+        }
+        
+        setTimeout(() => {
+          chatContainer?.classList.add('hidden');
+        }, 300);
+        
+        toggleIconChat?.classList.remove('hidden');
+        toggleIconClose?.classList.add('hidden');
+      }
+    }
+
+    function toggleSizeMode() {
+      if (window.innerWidth < 768) return; // Prevent sidebar on mobile screens
+
+      isSidebarMode = !isSidebarMode;
+      
+      if (isSidebarMode) {
+        chatContainer?.classList.add('is-sidebar-mode');
+        if (sizeIcon) sizeIcon.className = 'bi bi-arrows-angle-contract text-[15px] leading-none';
+        if (sizeBtn) sizeBtn.title = 'Reducir a burbuja';
+        if (window.innerWidth >= 1024) {
+          document.body.style.marginRight = '400px';
+          document.body.style.transition = 'margin-right 0.3s ease';
+        }
+      } else {
+        chatContainer?.classList.remove('is-sidebar-mode');
+        document.body.style.marginRight = '0px';
+        if (sizeIcon) sizeIcon.className = 'bi bi-arrows-angle-expand text-[15px] leading-none';
+        if (sizeBtn) sizeBtn.title = 'Expandir a barra lateral';
+      }
+    }
+
+    toggleBtn?.addEventListener('click', toggleChat);
+    closeBtn?.addEventListener('click', () => {
+      if (isOpen) toggleChat();
+    });
+    sizeBtn?.addEventListener('click', toggleSizeMode);
+
+    function addMessage(text: string, isUser: boolean, showWhatsAppBtn: boolean = false) {
+      if (!chatMessages) return;
+      
+      const msgDiv = document.createElement('div');
+      
+      if (isUser) {
+        msgDiv.className = 'flex justify-end max-w-[85%] self-end chat-msg-enter-user';
+        msgDiv.innerHTML = `<div class="bg-black text-white text-[13px] px-3.5 py-2 rounded-2xl rounded-tr-sm shadow-sm leading-normal break-words w-fit max-w-full text-left">${text}</div>`;
+      } else {
+        msgDiv.className = 'flex items-start gap-2 max-w-[88%] chat-msg-enter-bot self-start';
+        
+        let whatsappHtml = '';
+        if (showWhatsAppBtn) {
+          whatsappHtml = `
+            <div class="mt-2">
+              <a 
+                href="https://wa.me/51901637020" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20bd5a] text-white text-[11px] font-semibold px-3 py-1.5 rounded-lg transition-colors shadow-xs"
+              >
+                <i class="bi bi-whatsapp text-[13px]"></i>
+                <span>Chatear por WhatsApp</span>
+              </a>
+            </div>
+          `;
+        }
+
+        msgDiv.innerHTML = `
+          <div class="w-7 h-7 bg-white rounded-full flex-shrink-0 flex items-center justify-center p-1 border border-gray-200 mt-0.5 shadow-xs">
+            <img src="/images/projects/ia/icono-ia.svg" alt="AK" class="w-full h-full object-contain" />
+          </div>
+          <div class="bg-white border border-gray-100 text-gray-800 text-[13px] px-3.5 py-2.5 rounded-2xl rounded-tl-sm shadow-sm leading-relaxed break-words w-fit max-w-full text-left">
+            <div>${text}</div>
+            ${whatsappHtml}
+          </div>
+        `;
+      }
+      
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function createTypingIndicator() {
+      const msgDiv = document.createElement('div');
+      msgDiv.id = 'typing-indicator';
+      msgDiv.className = 'flex items-start gap-2 max-w-[85%] chat-msg-enter-bot self-start';
+      msgDiv.innerHTML = `
+        <div class="w-7 h-7 bg-white rounded-full flex-shrink-0 flex items-center justify-center p-1 border border-gray-200 mt-0.5 shadow-xs">
+          <img src="/images/projects/ia/icono-ia.svg" alt="AK" class="w-full h-full object-contain" />
+        </div>
+        <div class="bg-white border border-gray-100 px-3.5 py-2 rounded-2xl rounded-tl-xs shadow-sm flex items-center justify-center gap-[3px] h-[34px] w-fit">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      `;
+      return msgDiv;
+    }
+
+    // Handle initial registration
+    registrationForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      userName = userNameInput.value.trim();
+      userEmail = userEmailInput?.value.trim() || '';
+      userPhone = userPhoneInput?.value.trim() || '';
+      
+      // Transition to chat interface
+      registrationSection?.classList.add('hidden');
+      chatInterface?.classList.remove('hidden');
+      chatInterface?.classList.add('flex');
+      
+      // Personalized welcome
+      addMessage(`¡Hola <b>${userName}</b>! 👋 Gracias por contactarnos. ¿En qué podemos ayudarte hoy?`, false);
+      chatStarted = true;
+      chatInput?.focus();
+    });
+
+    // Handle Send Message
+    function handleSend() {
+      if (!chatInput) return;
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      // 1. Add user message
+      addMessage(text, true);
+      chatInput.value = '';
+
+      // 2. Add typing indicator
+      setTimeout(() => {
+        const typingEl = createTypingIndicator();
+        if (chatMessages) {
+          chatMessages.appendChild(typingEl);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // 3. Add bot response
+        setTimeout(() => {
+          typingEl.remove();
+          const response = getBotResponse(text);
+          addMessage(response.text, false, response.showWhatsAppBtn);
+        }, 1000);
+      }, 300);
+    }
+
+    // Submit handler for input form
+    chatInputForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleSend();
+    });
+
+    // Chips quick actions
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const chipText = chip.textContent?.trim();
+        if (chipText && chatInput) {
+          chatInput.value = chipText;
+          handleSend();
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,476 @@
+---
+const currentPath = Astro.url.pathname;
+const isProyectos = currentPath.startsWith('/proyectos');
+const isSobreKit = currentPath.startsWith('/sobre-kit');
+---
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-gray-100 bg-white py-4">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between relative">
+    <!-- Logo (Left) -->
+    <div class="flex-1 flex justify-start">
+      <a href="/" class="hover:opacity-90 transition block">
+        <img src="/logokit/logo-it.svg" alt="KitStation" class="h-[20px] w-auto" />
+      </a>
+    </div>
+
+    <!-- Center-aligned Nav Links -->
+    <nav class="hidden md:flex items-center justify-center gap-8">
+        <div class="group">
+           <button class="flex items-center gap-1 text-[15px] font-medium text-gray-700 hover:text-black transition py-2">
+            Qué ofrecemos
+            <i class="bi bi-chevron-down text-[10px] transition-transform duration-200 group-hover:rotate-180"></i>
+          </button>
+          <!-- Mega Menu Dropdown -->
+          <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[95vw] lg:w-[1200px] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50">
+            <div class="bg-white border border-gray-100 rounded-2xl shadow-xl p-8 flex gap-8">
+            
+            <!-- Col 1: SERVICIOS -->
+            <div class="w-[55%] flex flex-col gap-6">
+              <h3 class="text-[#0066ff] text-sm font-bold">Servicios</h3>
+              <div class="flex flex-col gap-5">
+                <!-- Item 1 -->
+                <a href="/diseno-desarrollo-web" class="flex items-start gap-4 hover:bg-[#c099eb]/5 p-2 -m-2 rounded-xl transition group/item">
+                  <div class="w-12 h-12 bg-gray-100 border border-gray-200 rounded-lg shrink-0 flex items-center justify-center overflow-hidden transition-colors group-hover/item:border-[#c099eb] group-hover/item:bg-[#c099eb]/10">
+                    <img src="/iconos-menu/servicios/icono-submenu-web.jpg" alt="Diseño Web" class="w-full h-full object-cover transition-transform duration-300 group-hover/item:scale-110" />
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-gray-900">Diseño y desarrollo web</h4>
+                    <p class="text-xs text-gray-500 mt-1 leading-relaxed">Sitios rápidos y optimizados para convertir tráfico en clientes.</p>
+                  </div>
+                </a>
+                <!-- Item 2 -->
+                <a href="/automatizaciones-con-ia" class="flex items-start gap-4 hover:bg-[#2e8ffc]/5 p-2 -m-2 rounded-xl transition group/item">
+                  <div class="w-12 h-12 bg-gray-100 border border-gray-200 rounded-lg shrink-0 flex items-center justify-center overflow-hidden transition-colors group-hover/item:border-[#2e8ffc] group-hover/item:bg-[#2e8ffc]/10">
+                    <img src="/iconos-menu/servicios/icono-submenu-ia.jpg" alt="IA" class="w-full h-full object-cover transition-transform duration-300 group-hover/item:scale-110" />
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-gray-900">Automatizaciones con IA</h4>
+                    <p class="text-xs text-gray-500 mt-1 leading-relaxed">Flujos que reducen costos al delegar tareas repetitivas a la IA.</p>
+                  </div>
+                </a>
+                <!-- Item 3 -->
+                <a href="/estrategias-y-campanas-digitales" class="flex items-start gap-4 hover:bg-[#5fd3b0]/5 p-2 -m-2 rounded-xl transition group/item">
+                  <div class="w-12 h-12 bg-gray-100 border border-gray-200 rounded-lg shrink-0 flex items-center justify-center overflow-hidden transition-colors group-hover/item:border-[#5fd3b0] group-hover/item:bg-[#5fd3b0]/10">
+                    <img src="/iconos-menu/servicios/icono-submenu-campaña.jpg" alt="Campañas Digitales" class="w-full h-full object-cover transition-transform duration-300 group-hover/item:scale-110" />
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-gray-900">Estrategias y campañas digitales</h4>
+                    <p class="text-xs text-gray-500 mt-1 leading-relaxed">Campañas de pago enfocadas en leads calificados.</p>
+                  </div>
+                </a>
+                <!-- Item 4 -->
+                <a href="/desarrollo-de-software" class="flex items-start gap-4 hover:bg-[#0b709b]/5 p-2 -m-2 rounded-xl transition group/item">
+                  <div class="w-12 h-12 bg-gray-100 border border-gray-200 rounded-lg shrink-0 flex items-center justify-center overflow-hidden transition-colors group-hover/item:border-[#0b709b] group-hover/item:bg-[#0b709b]/10">
+                    <img src="/iconos-menu/servicios/icono-submenu-desarrollo.jpg" alt="Desarrollo Software" class="w-full h-full object-cover transition-transform duration-300 group-hover/item:scale-110" />
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-gray-900">Desarrollo de software</h4>
+                    <p class="text-xs text-gray-500 mt-1 leading-relaxed">Soluciones a medida para escalar y optimizar procesos.</p>
+                  </div>
+                </a>
+                <!-- Item 5 -->
+                <a href="/identidad-de-marca-y-contenido-audiovisual" class="flex items-start gap-4 hover:bg-[#fd8b57]/5 p-2 -m-2 rounded-xl transition group/item">
+                  <div class="w-12 h-12 bg-gray-100 border border-gray-200 rounded-lg shrink-0 flex items-center justify-center overflow-hidden transition-colors group-hover/item:border-[#fd8b57] group-hover/item:bg-[#fd8b57]/10">
+                    <img src="/iconos-menu/servicios/icono-submenu-visual.jpg" alt="Identidad y Contenido" class="w-full h-full object-cover transition-transform duration-300 group-hover/item:scale-110" />
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-gray-900">Identidad de marca y contenido audiovisual</h4>
+                    <p class="text-xs text-gray-500 mt-1 leading-relaxed">Identidad y piezas visuales diseñadas para captar atención.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Vertical Divider -->
+            <div class="w-px bg-gray-100 shrink-0"></div>
+
+            <!-- Col 2: PLATAFORMAS DE GESTIÓN -->
+            <div class="flex-1 flex flex-col gap-6">
+              <h3 class="text-[#0066ff] text-sm font-bold">Plataformas de gestión</h3>
+              <div class="flex flex-col gap-6 h-full group/plat">
+                <a 
+                  href="https://linkstation.pe/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="card-glow-container block -m-2 group/item transition-transform duration-300 hover:-translate-y-0.5"
+                  id="linkstation-btn"
+                >
+                  <div class="card-glow-blur"></div>
+                  <div class="card-glow-rotator"></div>
+                  <div class="card-glow-content flex items-start gap-4 p-2">
+                    <!-- Content (Icon + Text) -->
+                    <div class="w-10 h-10 bg-gray-100 border border-gray-200 rounded-lg shrink-0 flex items-center justify-center transition-all duration-300 group-hover/item:border-transparent group-hover/item:bg-blue-50/50 group-hover/item:shadow-sm">
+                      <i class="bi bi-inboxes text-gray-400 text-lg transition-colors duration-300 group-hover/item:text-[#0066FF]"></i>
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-gray-900 transition-colors duration-300 group-hover/item:text-transparent group-hover/item:bg-clip-text group-hover/item:bg-gradient-to-r group-hover/item:from-[#0066FF] group-hover/item:to-[#00E636]">LinkStation</h4>
+                      <p class="text-xs text-gray-500 mt-1 leading-relaxed">Centraliza todos tus canales de comunicación en una sola bandeja para responder más rápido y no perder ninguna venta.</p>
+                    </div>
+                  </div>
+                </a>
+                
+                <!-- Recuadro para imagen/video -->
+                <a 
+                  href="https://linkstation.pe/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="mt-2 rounded-2xl overflow-hidden bg-gray-50 relative group border border-gray-100 flex-1 min-h-[200px] flex items-center justify-center block cursor-pointer"
+                  id="linkstation-preview-box"
+                >
+                  <!-- Imagen estática (se oculta al hacer hover en el contenedor de Plataformas) -->
+                  <img src="/images/likstation-preview.jpg" alt="LinkStation" id="linkstation-img" class="absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-300 opacity-100 group-hover/plat:opacity-0 group-hover:scale-105" onerror="this.style.display='none'; document.getElementById('ls-placeholder').style.display='flex';" />
+                  
+                  <!-- Video oculto que se muestra al hacer hover -->
+                  <video src="/videos/linkstation-hover.mp4" id="linkstation-video" autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-20 transition-opacity duration-300 opacity-0 group-hover/plat:opacity-100 group-hover:scale-105 pointer-events-none"></video>
+                  
+                  <div id="ls-placeholder" class="hidden flex-col items-center justify-center text-gray-400 gap-3 relative z-0 w-full h-full absolute inset-0">
+                    <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center">
+                      <i class="bi bi-image text-xl text-gray-300"></i>
+                    </div>
+                    <span class="text-xs font-medium text-gray-400">Falta la imagen en /public/images/likstation-preview.jpg</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="group">
+          <button class="flex items-center gap-1 text-[15px] font-medium text-gray-700 hover:text-black transition py-2">
+            Soluciones
+            <i class="bi bi-chevron-down text-[10px] transition-transform duration-200 group-hover:rotate-180"></i>
+          </button>
+          <!-- Soluciones Dropdown -->
+          <div class="absolute top-full left-1/2 -translate-x-1/2 pt-4 w-[900px] opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 z-50">
+            <div class="bg-white border border-gray-100 rounded-2xl shadow-xl p-6 flex flex-col gap-6">
+              <h3 class="text-[#0066ff] text-sm font-bold">Nuestras soluciones para tu negocio</h3>
+              <div class="flex gap-6">
+                <!-- Columna Izquierda -->
+                <div class="flex flex-col gap-6 w-1/2">
+                  <!-- Item 1: Mayor Alcance -->
+                  <a href="/?sol=0#specific-solutions" data-sol-index="0" class="flex items-center gap-4 hover:bg-gray-50 p-2 -m-2 rounded-xl transition group/item">
+                    <div class="w-12 h-12 rounded-lg shrink-0 overflow-hidden transition-transform group-hover/item:scale-105">
+                      <img src="/soluciones/solu-mayor-alcance.png" alt="Mayor alcance" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-gray-900">Mayor alcance</h4>
+                      <p class="text-xs text-gray-500 mt-1 leading-relaxed">Expande tu visibilidad en canales digitales clave.</p>
+                    </div>
+                  </a>
+
+                  <!-- Item 2: Más Ventas -->
+                  <a href="/?sol=2#specific-solutions" data-sol-index="2" class="flex items-center gap-4 hover:bg-gray-50 p-2 -m-2 rounded-xl transition group/item">
+                    <div class="w-12 h-12 rounded-lg shrink-0 overflow-hidden transition-transform group-hover/item:scale-105">
+                      <img src="/soluciones/solu-más-ventas.png" alt="Más ventas" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-gray-900">Más ventas</h4>
+                      <p class="text-xs text-gray-500 mt-1 leading-relaxed">Optimiza tus embudos para incrementar conversiones.</p>
+                    </div>
+                  </a>
+
+                  <!-- Item 3: Campañas Rentables -->
+                  <a href="/?sol=4#specific-solutions" data-sol-index="4" class="flex items-center gap-4 hover:bg-gray-50 p-2 -m-2 rounded-xl transition group/item">
+                    <div class="w-12 h-12 rounded-lg shrink-0 overflow-hidden transition-transform group-hover/item:scale-105">
+                      <img src="/soluciones/solu-campañas-rentables.png" alt="Campañas rentables" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-gray-900">Campañas rentables</h4>
+                      <p class="text-xs text-gray-500 mt-1 leading-relaxed">Maximiza el retorno de inversión en publicidad digital.</p>
+                    </div>
+                  </a>
+
+                  <!-- Item 4: Experiencia de Usuario -->
+                  <a href="/?sol=6#specific-solutions" data-sol-index="6" class="flex items-center gap-4 hover:bg-gray-50 p-2 -m-2 rounded-xl transition group/item">
+                    <div class="w-12 h-12 rounded-lg shrink-0 overflow-hidden transition-transform group-hover/item:scale-105">
+                      <img src="/soluciones/solu-experiencia-de-usuario.png" alt="Experiencia de usuario" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-gray-900">Experiencia de usuario</h4>
+                      <p class="text-xs text-gray-500 mt-1 leading-relaxed">Interfaces intuitivas centradas en tus clientes.</p>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Columna Derecha -->
+                <div class="flex flex-col gap-6 w-1/2">
+                  <!-- Item 5: Cero Tareas Manuales -->
+                  <a href="/?sol=1#specific-solutions" data-sol-index="1" class="flex items-center gap-4 hover:bg-gray-50 p-2 -m-2 rounded-xl transition group/item">
+                    <div class="w-12 h-12 rounded-lg shrink-0 overflow-hidden transition-transform group-hover/item:scale-105">
+                      <img src="/soluciones/solu-cero-tareas-manuales.png" alt="Cero tareas manuales" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-gray-900">Cero tareas manuales</h4>
+                      <p class="text-xs text-gray-500 mt-1 leading-relaxed">Automatiza flujos de trabajo repetitivos y ahorra tiempo.</p>
+                    </div>
+                  </a>
+
+                  <!-- Item 6: Alto Impacto -->
+                  <a href="/?sol=3#specific-solutions" data-sol-index="3" class="flex items-center gap-4 hover:bg-gray-50 p-2 -m-2 rounded-xl transition group/item">
+                    <div class="w-12 h-12 rounded-lg shrink-0 overflow-hidden transition-transform group-hover/item:scale-105">
+                      <img src="/soluciones/solu-alto-impacto.png" alt="Alto impacto" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-gray-900">Alto impacto</h4>
+                      <p class="text-xs text-gray-500 mt-1 leading-relaxed">Destaca con propuestas de alto valor y diseño impecable.</p>
+                    </div>
+                  </a>
+
+                  <!-- Item 7: Tecnología Escalable -->
+                  <a href="/?sol=5#specific-solutions" data-sol-index="5" class="flex items-center gap-4 hover:bg-gray-50 p-2 -m-2 rounded-xl transition group/item">
+                    <div class="w-12 h-12 rounded-lg shrink-0 overflow-hidden transition-transform group-hover/item:scale-105">
+                      <img src="/soluciones/solu-tecnología-escalable.png" alt="Tecnología escalable" class="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-gray-900">Tecnología escalable</h4>
+                      <p class="text-xs text-gray-500 mt-1 leading-relaxed">Desarrollo robusto preparado para crecer contigo.</p>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="/proyectos" class={`text-[15px] font-medium transition py-2 ${isProyectos ? 'text-[#0066ff]' : 'text-gray-700 hover:text-black'}`}>Proyectos</a>
+        <a href="/sobre-kit" class={`text-[15px] font-medium transition py-2 ${isSobreKit ? 'text-[#0066ff]' : 'text-gray-700 hover:text-black'}`}>Sobre Kit</a>
+      </nav>
+
+      <!-- Right CTA -->
+      <div class="hidden md:flex flex-1 justify-end items-center">
+        <a href="/contacto" class="bg-[#0066ff] hover:bg-black text-white text-sm font-semibold rounded-lg px-5 py-2.5 transition-colors duration-250 shadow-sm shadow-blue-500/10">
+          Contáctanos
+        </a>
+      </div>
+
+    <!-- Mobile Menu Toggle Button (Mobile) -->
+    <div class="flex items-center gap-2 md:hidden">
+      <button id="mobile-menu-toggle" class="text-2xl text-gray-700 hover:text-black focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg active:bg-gray-100" aria-label="Toggle Menu">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu (Overlay) -->
+<div id="mobile-menu" class="fixed inset-0 top-[74px] bg-white z-40 flex flex-col p-6 border-t border-gray-100 transition-transform duration-300 transform translate-x-full md:hidden overflow-y-auto">
+  <nav class="flex flex-col gap-2 text-lg font-medium text-gray-800">
+    <a href="#" id="mobile-services-toggle" class="flex items-center justify-between border-b border-gray-50 py-4 min-h-[44px]">
+      <span>Qué ofrecemos</span>
+      <i class="bi bi-chevron-right text-sm transition-transform duration-300" id="mobile-services-icon"></i>
+    </a>
+    <div id="mobile-services-menu" class="hidden flex-col gap-2 pl-4 border-b border-gray-50 py-2">
+      <a href="/diseno-desarrollo-web" class="py-2 text-gray-600 text-base">Diseño y Desarrollo Web</a>
+      <a href="/automatizaciones-con-ia" class="py-2 text-gray-600 text-base">Automatizaciones con IA</a>
+      <a href="/estrategias-y-campanas-digitales" class="py-2 text-gray-600 text-base">Estrategias y Campañas</a>
+      <a href="/desarrollo-de-software" class="py-2 text-gray-600 text-base">Desarrollo de Software</a>
+      <a href="/identidad-de-marca-y-contenido-audiovisual" class="py-2 text-gray-600 text-base">Identidad de Marca</a>
+    </div>
+    <a href="/#specific-solutions" id="mobile-soluciones-link" class="border-b border-gray-50 py-4 min-h-[44px] flex items-center">Soluciones</a>
+    <a href="/proyectos" class={`border-b border-gray-50 py-4 min-h-[44px] flex items-center ${isProyectos ? 'text-[#0066ff]' : ''}`}>Proyectos</a>
+    <a href="/sobre-kit" class={`border-b border-gray-50 py-4 min-h-[44px] flex items-center ${isSobreKit ? 'text-[#0066ff]' : ''}`}>Sobre Kit</a>
+    <a href="/contacto" class="mt-6 bg-[#0066ff] hover:bg-black text-white text-center rounded-lg py-4 font-semibold transition-colors duration-250 min-h-[48px]">
+      Contáctanos
+    </a>
+  </nav>
+</div>
+
+<script>
+  // Sticky header scroll behavior
+  const header = document.getElementById('main-header');
+  
+  const handleScroll = () => {
+    if (window.scrollY > 10) {
+      header?.classList.add('shadow-sm', 'bg-white/95', 'backdrop-blur-sm');
+      header?.classList.remove('bg-white');
+    } else {
+      header?.classList.remove('shadow-sm', 'bg-white/95', 'backdrop-blur-sm');
+      header?.classList.add('bg-white');
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  // Initial check
+  handleScroll();
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const toggleIcon = mobileToggle?.querySelector('i');
+
+  const closeMobileMenu = () => {
+    if (mobileMenu?.classList.contains('translate-x-0')) {
+      mobileMenu.classList.remove('translate-x-0');
+      mobileMenu.classList.add('translate-x-full');
+      document.body.style.overflow = '';
+      if (toggleIcon) {
+        toggleIcon.classList.remove('bi-x');
+        toggleIcon.classList.add('bi-list');
+      }
+    }
+  };
+
+  mobileToggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('translate-x-0');
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      mobileMenu?.classList.remove('translate-x-full');
+      mobileMenu?.classList.add('translate-x-0');
+      document.body.style.overflow = 'hidden';
+      if (toggleIcon) {
+        toggleIcon.classList.remove('bi-list');
+        toggleIcon.classList.add('bi-x');
+      }
+    }
+  });
+
+  // Mobile 'Qué ofrecemos' toggle
+  const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+  const mobileServicesMenu = document.getElementById('mobile-services-menu');
+  const mobileServicesIcon = document.getElementById('mobile-services-icon');
+
+  mobileServicesToggle?.addEventListener('click', (e) => {
+    e.preventDefault();
+    mobileServicesMenu?.classList.toggle('hidden');
+    mobileServicesMenu?.classList.toggle('flex');
+    if (mobileServicesMenu?.classList.contains('hidden')) {
+      mobileServicesIcon?.classList.remove('rotate-90');
+    } else {
+      mobileServicesIcon?.classList.add('rotate-90');
+    }
+  });
+
+  // Mobile 'Soluciones' link smooth scroll and close menu
+  const mobileSolucionesLink = document.getElementById('mobile-soluciones-link');
+  mobileSolucionesLink?.addEventListener('click', (e) => {
+    closeMobileMenu();
+
+    if (window.location.pathname === '/' || window.location.pathname === '') {
+      e.preventDefault();
+      const solSection = document.getElementById('specific-solutions');
+      if (solSection) {
+        solSection.scrollIntoView({ behavior: 'smooth' });
+        history.pushState(null, '', '#specific-solutions');
+      }
+    }
+  });
+
+  // Close mobile menu on clicking any navigation link
+  const mobileNavLinks = mobileMenu?.querySelectorAll('a:not(#mobile-services-toggle)');
+  mobileNavLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+  });
+
+  // Soluciones links logic
+  const solLinks = document.querySelectorAll('a[data-sol-index]');
+  solLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const index = link.getAttribute('data-sol-index');
+      
+      closeMobileMenu();
+
+      // Check if we are on the homepage
+      if (window.location.pathname === '/' || window.location.pathname === '') {
+        e.preventDefault();
+        const solSection = document.getElementById('specific-solutions');
+        if (solSection) {
+          solSection.scrollIntoView({ behavior: 'smooth' });
+          // Dispatch custom event to tell SpecificSolutions to open the card
+          window.dispatchEvent(new CustomEvent('open-solution', { detail: { index: parseInt(index || '0') } }));
+        }
+      } else {
+        // If on another page, let the default anchor behavior navigate to /?sol=X#specific-solutions
+      }
+    });
+  });
+</script>
+
+<style>
+.card-glow-container {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 2px;
+  background: transparent;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-glow-container:hover {
+  /* Sombra más profunda + resplandor exterior */
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.12), 0 0 20px rgba(0, 102, 255, 0.25);
+}
+
+/* Capa 1: Resplandor Exterior Amplo */
+.card-glow-blur {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 55%,
+    #FF003B 65%,
+    #00E636 73%,
+    #FFC700 81%,
+    #0066FF 88%,
+    #0066FF 98%,
+    transparent 100%
+  );
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: spin-rotator 3s linear infinite;
+  z-index: 1;
+}
+
+/* Capa 2: Línea con Desenfoque Ligero (1.5px) */
+.card-glow-rotator {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 55%,
+    #FF003B 65%,
+    #00E636 73%,
+    #FFC700 81%,
+    #0066FF 88%,
+    #0066FF 98%,
+    transparent 100%
+  );
+  filter: blur(1.5px); /* DESENFOQUE LIGERO EN LA LÍNEA */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: spin-rotator 3s linear infinite;
+  z-index: 2;
+}
+
+.card-glow-container:hover .card-glow-blur,
+.card-glow-container:hover .card-glow-rotator {
+  opacity: 1;
+}
+
+.card-glow-content {
+  position: relative;
+  background: #ffffff !important;
+  border-radius: 14px;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+@keyframes spin-rotator {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+</style>

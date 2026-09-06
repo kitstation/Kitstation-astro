@@ -1,0 +1,478 @@
+---
+---
+
+<section id="hero-container" class="relative overflow-hidden h-[680px] max-h-[680px] flex items-center bg-white pt-20">
+  <!-- Interactive blurred color orbs in background -->
+  <!-- Orb 1: Pink/Red (Top-Left) -->
+  <div 
+    class="interactive-orb absolute rounded-full blur-[80px] pointer-events-none transition-opacity duration-1000 bg-gradient-to-br from-rose-600 via-pink-600 to-red-500 opacity-100 w-[200px] h-[200px] md:w-[300px] md:h-[300px] -top-24 -left-24"
+    style="will-change: transform;"
+  ></div>
+
+  <!-- Orb 2: Green/Lime (Center-Top) -->
+  <div 
+    class="interactive-orb absolute rounded-full blur-[100px] pointer-events-none transition-opacity duration-1000 bg-gradient-to-br from-emerald-500 via-green-500 to-lime-400 opacity-100 w-[250px] h-[250px] md:w-[350px] md:h-[350px] -top-32 left-[30%]"
+    style="will-change: transform;"
+  ></div>
+
+  <!-- Orb 3: Blue (Middle-Right) -->
+  <div 
+    class="interactive-orb absolute rounded-full blur-[110px] pointer-events-none transition-opacity duration-1000 bg-gradient-to-br from-blue-700 via-indigo-600 to-cyan-500 opacity-100 w-[300px] h-[300px] md:w-[450px] md:h-[450px] top-[10%] -right-32"
+    style="will-change: transform;"
+  ></div>
+
+  <!-- Orb 4: Yellow/Lime (Bottom-Center) -->
+  <div 
+    class="interactive-orb absolute rounded-full blur-[100px] pointer-events-none transition-opacity duration-1000 bg-gradient-to-br from-yellow-500 via-amber-400 to-lime-500 opacity-100 w-[250px] h-[250px] md:w-[350px] md:h-[350px] -bottom-32 left-[20%]"
+    style="will-change: transform;"
+  ></div>
+
+  <!-- Foreground Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-8 md:pt-0 flex flex-col md:flex-row items-center justify-between gap-12">
+    <div class="max-w-3xl shrink-1">
+      <!-- Title Heading -->
+      <h1 class="relative font-semibold text-5xl sm:text-6xl md:text-[75px] leading-[1.05] text-black tracking-tighter select-none">
+        <span class="opacity-0 pointer-events-none select-none" aria-hidden="true">
+          Digitaliza tu negocio.<br />
+          Automatiza tu<br />
+          crecimiento.
+        </span>
+        <span id="hero-title-type" class="absolute top-0 left-0 w-full h-full"></span>
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="relative text-[15px] text-gray-800 max-w-2xl mt-6 leading-relaxed font-medium">
+        <span class="opacity-0 pointer-events-none select-none" aria-hidden="true">
+          Menos tareas manuales. Más ventas, más control y procesos más inteligentes.
+        </span>
+        <span id="hero-subtitle-type" class="absolute top-0 left-0 w-full h-full"></span>
+      </p>
+      
+      <!-- CTA Button -->
+      <div class="mt-8">
+        <a 
+          href="/contacto" 
+          id="hero-cta"
+          class="inline-block bg-transparent text-black border-2 border-black text-sm font-semibold rounded-lg px-7 py-2.5 transition-all duration-300 hover:bg-black hover:text-white opacity-0 shadow-sm"
+        >
+          Empieza ahora
+        </a>
+      </div>
+    </div>
+
+    <!-- Orbital Galaxy Component -->
+    <div class="galaxy-hero-container relative shrink-0 w-[320px] h-[320px] md:w-[420px] md:h-[420px] hidden md:flex items-center justify-center">
+      <!-- Rings -->
+      <div class="absolute inset-0 m-auto w-[45%] h-[45%] border border-gray-400/30 rounded-full pointer-events-none"></div>
+      <div class="absolute inset-0 m-auto w-[70%] h-[70%] border border-gray-400/20 rounded-full pointer-events-none"></div>
+      <div class="absolute inset-0 m-auto w-[95%] h-[95%] border border-gray-400/10 rounded-full pointer-events-none"></div>
+
+      <!-- Center Node 0 -->
+      <div id="galaxy-node-0" class="liquid-node absolute inset-0 m-auto w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center font-bold text-2xl pointer-events-none z-10 opacity-0 scale-50 transition-all duration-500">
+        <img src="/galaxy/icono-0.png" alt="Icono 0" class="w-full h-full object-cover rounded-full" />
+      </div>
+
+      <!-- Rotating Container -->
+      <div class="absolute inset-0 w-full h-full animate-orbit">
+        
+        <!-- Node 1 (Outer, 0° / Top) -->
+        <div class="absolute left-[50%] top-[2.5%]">
+          <a href="/contacto" class="animate-counter-orbit absolute left-0 top-0 block group" title="Contáctanos">
+            <div id="galaxy-node-1" class="liquid-node w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 group-hover:scale-[1.15] opacity-0 scale-50 overflow-hidden"><img src="/galaxy/icono-1.png" alt="Icono 1" class="w-full h-full object-cover" /></div>
+          </a>
+        </div>
+        <!-- Node 2 (Inner, 45° / Top-Right) -->
+        <div class="absolute left-[65.9%] top-[34.1%]">
+          <a href="/contacto" class="animate-counter-orbit absolute left-0 top-0 block group" title="Contáctanos">
+            <div id="galaxy-node-2" class="liquid-node w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 group-hover:scale-[1.15] opacity-0 scale-50 overflow-hidden"><img src="/galaxy/icono-2.png" alt="Icono 2" class="w-full h-full object-cover" /></div>
+          </a>
+        </div>
+        
+        <!-- Node 3 (Middle, 90° / Right) -->
+        <div class="absolute left-[85%] top-[50%]">
+          <a href="/contacto" class="animate-counter-orbit absolute left-0 top-0 block group" title="Contáctanos">
+            <div id="galaxy-node-3" class="liquid-node w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 group-hover:scale-[1.15] opacity-0 scale-50 overflow-hidden"><img src="/galaxy/icono-3.png" alt="Icono 3" class="w-full h-full object-cover" /></div>
+          </a>
+        </div>
+        <!-- Node 4 (Outer, 135° / Bottom-Right) -->
+        <div class="absolute left-[83.6%] top-[83.6%]">
+          <a href="/contacto" class="animate-counter-orbit absolute left-0 top-0 block group" title="Contáctanos">
+            <div id="galaxy-node-4" class="liquid-node w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 group-hover:scale-[1.15] opacity-0 scale-50 overflow-hidden"><img src="/galaxy/icono-4.png" alt="Icono 4" class="w-full h-full object-cover" /></div>
+          </a>
+        </div>
+        <!-- Node 5 (Inner, 180° / Bottom) -->
+        <div class="absolute left-[50%] top-[72.5%]">
+          <a href="/contacto" class="animate-counter-orbit absolute left-0 top-0 block group" title="Contáctanos">
+            <div id="galaxy-node-5" class="liquid-node w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 group-hover:scale-[1.15] opacity-0 scale-50 overflow-hidden"><img src="/galaxy/icono-5.png" alt="Icono 5" class="w-full h-full object-cover" /></div>
+          </a>
+        </div>
+
+        <!-- Node 6 (Middle, 225° / Bottom-Left) -->
+        <div class="absolute left-[25.3%] top-[74.7%]">
+          <a href="/contacto" class="animate-counter-orbit absolute left-0 top-0 block group" title="Contáctanos">
+            <div id="galaxy-node-6" class="liquid-node w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 group-hover:scale-[1.15] opacity-0 scale-50 overflow-hidden"><img src="/galaxy/icono-6.png" alt="Icono 6" class="w-full h-full object-cover" /></div>
+          </a>
+        </div>
+        <!-- Node 7 (Outer, 270° / Left) -->
+        <div class="absolute left-[2.5%] top-[50%]">
+          <a href="/contacto" class="animate-counter-orbit absolute left-0 top-0 block group" title="Contáctanos">
+            <div id="galaxy-node-7" class="liquid-node w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 group-hover:scale-[1.15] opacity-0 scale-50 overflow-hidden"><img src="/galaxy/icono-7.png" alt="Icono 7" class="w-full h-full object-cover" /></div>
+          </a>
+        </div>
+        <!-- Node 8 (Middle, 315° / Top-Left) -->
+        <div class="absolute left-[25.3%] top-[25.3%]">
+          <a href="/contacto" class="animate-counter-orbit absolute left-0 top-0 block group" title="Contáctanos">
+            <div id="galaxy-node-8" class="liquid-node w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 group-hover:scale-[1.15] opacity-0 scale-50 overflow-hidden"><img src="/galaxy/icono-8.png" alt="Icono 8" class="w-full h-full object-cover" /></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes zoomIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .animate-zoom-in {
+    opacity: 0;
+    animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+  
+  @keyframes pulseCenter {
+    0% { transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+    50% { transform: scale(1.3); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+    100% { transform: scale(1); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+  }
+  .animate-pulse-center {
+    animation: pulseCenter 1.5s infinite ease-in-out !important;
+  }
+
+  @keyframes orbitSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes counterOrbitSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(-360deg); }
+  }
+  .animate-orbit {
+    animation: orbitSpin 35s linear infinite;
+  }
+  .animate-counter-orbit {
+    animation: counterOrbitSpin 35s linear infinite;
+  }
+
+  /* Reverted to Solid Black Nodes */
+  .liquid-node {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .group:hover .liquid-node {
+    background-color: transparent;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .liquid-node > span {
+    position: relative;
+    z-index: 10;
+  }
+</style>
+
+<script>
+  // --- Typewriter Animation ---
+  const titleType = document.getElementById('hero-title-type');
+  const subtitleType = document.getElementById('hero-subtitle-type');
+  
+  const titleHtml = "Digitaliza tu negocio.<br />Automatiza tu<br />crecimiento.";
+  const subtitleHtml = "Menos tareas manuales. Más ventas, más control y procesos más inteligentes.";
+
+  function typeWriter(element: HTMLElement | null, htmlContent: string, speed: number, delay: number, callback?: () => void) {
+    if (!element) return;
+    
+    // Parse HTML string to handle <br /> as single tokens
+    const tokens: string[] = [];
+    let current = htmlContent;
+    while(current.length > 0) {
+      if (current.startsWith('<br />')) {
+        tokens.push('<br />');
+        current = current.slice(6);
+      } else {
+        tokens.push(current[0]);
+        current = current.slice(1);
+      }
+    }
+
+    setTimeout(() => {
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < tokens.length) {
+          element.innerHTML += tokens[i];
+          i++;
+        } else {
+          clearInterval(interval);
+          if (callback) callback();
+        }
+      }, speed);
+    }, delay);
+  }
+
+  // Run typewriter on load
+  typeWriter(titleType, titleHtml, 30, 200, () => {
+    typeWriter(subtitleType, subtitleHtml, 20, 100, () => {
+      // Show CTA button after subtitle finishes
+      const cta = document.getElementById('hero-cta');
+      if (cta) {
+        cta.classList.remove('opacity-0');
+        cta.classList.add('animate-zoom-in');
+      }
+    });
+  });
+
+  // Animate Galaxy Nodes from 0 to 8 while title is typing
+  const animateNodes = () => {
+    for (let i = 0; i <= 8; i++) {
+      setTimeout(() => {
+        const node = document.getElementById(`galaxy-node-${i}`);
+        if (node) {
+          node.classList.remove('opacity-0', 'scale-50');
+          node.classList.add('opacity-100', 'scale-100');
+        }
+      }, 300 + (i * 200)); // Start near title typing, stagger by 200ms
+    }
+  };
+  animateNodes();
+
+  // --- Hover interaction on CTA ---
+  const ctaBtn = document.getElementById('hero-cta');
+  const centerNodeObj = document.getElementById('galaxy-node-0');
+  const centerNodeImg = centerNodeObj?.querySelector('img');
+
+  if (ctaBtn && centerNodeObj && centerNodeImg) {
+    ctaBtn.addEventListener('mouseenter', () => {
+      // 1 by 1 fusion animation totaling ~3 seconds
+      const staggerDelay = 250; // ms
+      const animDuration = 1000; // ms
+
+      for (let i = 1; i <= 8; i++) {
+        const node = document.getElementById(`galaxy-node-${i}`);
+        if (node) {
+          const wrapper = node.parentElement?.parentElement;
+          const delay = (i - 1) * staggerDelay;
+          
+          if (wrapper) {
+            wrapper.style.transition = `all ${animDuration}ms ease-in-out ${delay}ms`;
+            wrapper.style.left = '50%';
+            wrapper.style.top = '50%';
+          }
+
+          node.style.transition = `all ${animDuration}ms ease-in-out ${delay}ms`;
+          node.classList.remove('opacity-100', 'scale-100');
+          node.classList.add('opacity-0', 'scale-0');
+        }
+      }
+      
+      // Animate center node and change image
+      centerNodeObj.classList.add('animate-pulse-center');
+      centerNodeImg.src = '/galaxy/icono-9.png';
+    });
+
+    ctaBtn.addEventListener('mouseleave', () => {
+      // Restore outer nodes quickly and simultaneously
+      for (let i = 1; i <= 8; i++) {
+        const node = document.getElementById(`galaxy-node-${i}`);
+        if (node) {
+          const wrapper = node.parentElement?.parentElement;
+          
+          if (wrapper) {
+            wrapper.style.transition = `all 800ms ease-out 0ms`;
+            wrapper.style.left = '';
+            wrapper.style.top = '';
+          }
+
+          node.style.transition = `all 800ms ease-out 0ms`;
+          node.classList.remove('opacity-0', 'scale-0');
+          node.classList.add('opacity-100', 'scale-100');
+        }
+      }
+      
+      // Reset center node
+      centerNodeObj.classList.remove('animate-pulse-center');
+      centerNodeImg.src = '/galaxy/icono-0.png';
+    });
+  }
+
+  // --- High-performance client-side repel animation ---
+  const container = document.getElementById('hero-container');
+  const orbs = document.querySelectorAll('.interactive-orb') as NodeListOf<HTMLElement>;
+
+  if (container && orbs.length > 0) {
+    let parentRect = container.getBoundingClientRect();
+    
+    // Initial state storage
+    let orbStates = Array.from(orbs).map((orb) => {
+      const rect = orb.getBoundingClientRect();
+      return {
+        element: orb,
+        // Store original center relative to container
+        cx: (rect.left + rect.right) / 2 - parentRect.left,
+        cy: (rect.top + rect.bottom) / 2 - parentRect.top,
+        x: (rect.left + rect.right) / 2 - parentRect.left,
+        y: (rect.top + rect.bottom) / 2 - parentRect.top,
+        vx: (Math.random() - 0.5) * 3, // Initial Velocity X
+        vy: (Math.random() - 0.5) * 3, // Initial Velocity Y
+        radius: rect.width * 0.9, // Massive collision radius so they repel before mixing visual blurs
+      };
+    });
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let isHovered = false;
+
+    // Update coordinates when window is resized
+    const updateDimensions = () => {
+      parentRect = container.getBoundingClientRect();
+      orbStates.forEach((state) => {
+        // Temporarily clear transform to calculate original position
+        const prevTransform = state.element.style.transform;
+        state.element.style.transform = 'none';
+        const rect = state.element.getBoundingClientRect();
+        state.element.style.transform = prevTransform;
+        
+        const newCx = (rect.left + rect.right) / 2 - parentRect.left;
+        const newCy = (rect.top + rect.bottom) / 2 - parentRect.top;
+        
+        // Update anchor points and also shift current x/y to prevent extreme teleporting
+        state.x += (newCx - state.cx);
+        state.y += (newCy - state.cy);
+        state.cx = newCx;
+        state.cy = newCy;
+        state.radius = rect.width * 0.9;
+      });
+    };
+
+    window.addEventListener('resize', updateDimensions);
+
+    container.addEventListener('mousemove', (e: MouseEvent) => {
+      mouseX = e.clientX - parentRect.left;
+      mouseY = e.clientY - parentRect.top;
+      isHovered = true;
+    });
+
+    container.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    // Physics Animation Loop
+    const animate = () => {
+      // 1. Update positions based on velocity and forces
+      orbStates.forEach((state) => {
+        // Soft tether to original anchor center so they don't fly off screen
+        const dxCenter = state.cx - state.x;
+        const dyCenter = state.cy - state.y;
+        state.vx += dxCenter * 0.0005; 
+        state.vy += dyCenter * 0.0005;
+
+        // Apply mouse repel
+        if (isHovered) {
+          const dxMouse = state.x - mouseX;
+          const dyMouse = state.y - mouseY;
+          const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+          
+          const mouseRadius = 650;
+          if (distMouse < mouseRadius && distMouse > 0) {
+            const force = Math.pow((mouseRadius - distMouse) / mouseRadius, 2);
+            state.vx += (dxMouse / distMouse) * force * 1.5;
+            state.vy += (dyMouse / distMouse) * force * 1.5;
+          }
+        }
+
+        // Add some random wandering jitter
+        state.vx += (Math.random() - 0.5) * 0.15;
+        state.vy += (Math.random() - 0.5) * 0.15;
+
+        // Apply friction / velocity limit
+        state.vx *= 0.98;
+        state.vy *= 0.98;
+        
+        const speed = Math.sqrt(state.vx * state.vx + state.vy * state.vy);
+        const maxSpeed = 3.5;
+        if (speed > maxSpeed) {
+          state.vx = (state.vx / speed) * maxSpeed;
+          state.vy = (state.vy / speed) * maxSpeed;
+        }
+
+        state.x += state.vx;
+        state.y += state.vy;
+      });
+
+      // 2. Collision detection and response between orbs
+      for (let i = 0; i < orbStates.length; i++) {
+        for (let j = i + 1; j < orbStates.length; j++) {
+          const a = orbStates[i];
+          const b = orbStates[j];
+          const dx = b.x - a.x;
+          const dy = b.y - a.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const minD = a.radius + b.radius;
+
+          if (dist < minD && dist > 0) {
+            // Overlapping! Push them apart
+            const overlap = minD - dist;
+            const nx = dx / dist;
+            const ny = dy / dist;
+
+            // Separate physically
+            const separationX = nx * (overlap / 2);
+            const separationY = ny * (overlap / 2);
+            
+            a.x -= separationX;
+            a.y -= separationY;
+            b.x += separationX;
+            b.y += separationY;
+
+            // Elastic bounce
+            const rvx = b.vx - a.vx;
+            const rvy = b.vy - a.vy;
+            const velAlongNormal = rvx * nx + rvy * ny;
+            
+            if (velAlongNormal < 0) {
+              const restitution = 0.6; // Bounciness
+              const impulse = -(1 + restitution) * velAlongNormal;
+              const impulseX = nx * impulse * 0.5;
+              const impulseY = ny * impulse * 0.5;
+
+              a.vx -= impulseX;
+              a.vy -= impulseY;
+              b.vx += impulseX;
+              b.vy += impulseY;
+            }
+          }
+        }
+      }
+
+      // 3. Render Transform
+      orbStates.forEach((state) => {
+        // Element's CSS relies on being relative to its original position
+        const tx = state.x - state.cx;
+        const ty = state.y - state.cy;
+        state.element.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)`;
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    // Run layout recalculation on load to ensure accuracy
+    setTimeout(updateDimensions, 100);
+    
+    // Start animation loop
+    requestAnimationFrame(animate);
+  }
+</script>

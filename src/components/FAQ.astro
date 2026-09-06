@@ -1,0 +1,91 @@
+---
+// FAQ.astro
+const faqs = [
+  {
+    question: "¿Qué servicios de marketing digital y desarrollo web ofrece KitStation en Perú?",
+    answer: "Diseñamos ecosistemas digitales completos para escalar negocios. Nuestro enfoque incluye el desarrollo de páginas y sistemas web a medida, gestión estratégica de pauta digital (Google Ads y Meta Ads), y optimización de ventas mediante la automatización de WhatsApp y sistemas CRM personalizados. Atendemos a empresas en Lima y todo el Perú, adaptando cada solución a su etapa comercial."
+  },
+  {
+    question: "¿Es mejor invertir en una página web profesional o en campañas de Ads?",
+    answer: "Ambas herramientas cumplen roles distintos en un embudo de ventas exitoso. Una página web profesional o landing page es tu motor de conversión (donde el cliente decide comprar), mientras que Google Ads y Meta Ads son el combustible que genera tráfico hacia ella. En KitStation desarrollamos tu plataforma web y activamos campañas publicitarias de alto rendimiento para asegurar un retorno de inversión (ROI) medible."
+  },
+  {
+    question: "¿Qué estrategia de publicidad digital necesita mi empresa: Google Ads o Meta Ads?",
+    answer: "Depende de cómo compren tus clientes. Google Ads es ideal para capturar demanda activa (clientes que ya buscan tu servicio o producto exacto en el buscador). Meta Ads (Facebook e Instagram) es perfecto para generar demanda, interceptar a tu cliente ideal mediante segmentación avanzada y mostrar tu propuesta de valor. Analizamos tu modelo de negocio para ejecutar la plataforma que te brinde el costo por adquisición (CPA) más rentable."
+  },
+  {
+    question: "¿Cómo ayuda la automatización de WhatsApp y un CRM a escalar mis ventas?",
+    answer: "El principal problema de las empresas es perder clientes por respuestas lentas o falta de seguimiento. En KitStation automatizamos WhatsApp creando flujos inteligentes para calificar leads, responder consultas frecuentes 24/7 y asignar prospectos a tu equipo comercial. Toda esta información se centraliza en un CRM personalizado que diseñamos según la operación exacta de tu empresa, permitiéndote medir métricas, controlar procesos y cerrar más ventas sin fricciones."
+  }
+];
+---
+
+<section class="w-full py-24 bg-white text-black flex flex-col items-center px-6 md:px-12">
+  <div class="w-full text-center mb-16 px-4">
+    <h2 class="text-4xl md:text-[55px] leading-tight font-semibold text-[#0a0f18] tracking-tight mb-4 max-w-5xl mx-auto">
+      Respuestas claras antes de invertir<br class="hidden md:block" />
+      <span class="md:hidden"> </span>en tu ecosistema digital.
+    </h2>
+    <p class="text-gray-600 text-[15px] font-light max-w-3xl mx-auto leading-relaxed">
+      Resuelve tus consultas sobre desarrollo web, campañas en Google/Meta y automatización de CRM antes de dar el siguiente paso con tu empresa.
+    </p>
+  </div>
+
+  <div class="max-w-4xl w-full flex flex-col">
+    {faqs.map((faq, index) => (
+      <div class="border-b border-gray-200/60 group faq-item">
+        <button class="w-full py-6 flex justify-between items-center text-left focus:outline-none faq-button gap-4">
+          <span class="text-base md:text-lg font-semibold text-[#0a0f18]">{faq.question}</span>
+          <span class="text-blue-700 text-2xl font-light transform transition-transform duration-300 faq-icon">
+            <!-- Icon can be a plus or minus, let's use SVG for precision or just text -->
+            +
+          </span>
+        </button>
+        <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <p class="pb-8 text-gray-500 font-light leading-relaxed text-sm md:text-base pr-8">
+            {faq.answer}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const button = item.querySelector('.faq-button');
+    const answer = item.querySelector('.faq-answer') as HTMLElement;
+    const icon = item.querySelector('.faq-icon');
+
+    button?.addEventListener('click', () => {
+      const isOpen = answer?.style.maxHeight && answer.style.maxHeight !== '0px';
+
+      // Close all other FAQs
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          const otherAnswer = otherItem.querySelector('.faq-answer') as HTMLElement;
+          const otherIcon = otherItem.querySelector('.faq-icon');
+          if (otherAnswer) otherAnswer.style.maxHeight = '0px';
+          if (otherIcon) {
+            otherIcon.textContent = '+';
+          }
+        }
+      });
+
+      // Toggle current FAQ
+      if (isOpen) {
+        if (answer) answer.style.maxHeight = '0px';
+        if (icon) {
+          icon.textContent = '+';
+        }
+      } else {
+        if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
+        if (icon) {
+          icon.textContent = '-';
+        }
+      }
+    });
+  });
+</script>

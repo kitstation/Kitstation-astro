@@ -1,0 +1,532 @@
+---
+// DisenoWebBot.astro
+---
+<section id="diseno-web-bot-section" class="relative bg-white text-black py-24 px-6 overflow-hidden">
+  <!-- Top glow effect for transition from black to white -->
+  <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-black to-transparent pointer-events-none z-10 opacity-10"></div>
+  
+  <!-- Colored ambient background glows (Animated Orbs like Specialists section - Increased Intensity & Mockup Positions) -->
+  <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute left-1/4 top-1/4 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2">
+      <div class="interactive-orb w-full h-full bg-[#0066ff]/80 rounded-full blur-[140px]"></div>
+    </div>
+    <div class="absolute right-1/4 bottom-1/4 w-[600px] h-[600px] translate-x-1/2 translate-y-1/2">
+      <div class="interactive-orb w-full h-full bg-[#e040fb]/65 rounded-full blur-[140px]"></div>
+    </div>
+  </div>
+
+  <div class="relative z-20 w-full max-w-4xl mx-auto flex flex-col items-center text-center">
+    <h2 class="text-2xl leading-[1.3] md:text-4xl md:leading-[1.3] lg:text-[45px] lg:leading-[1.3] font-bold mb-6 max-w-4xl tracking-tight w-full text-balance mx-auto">
+      Automatiza tu atención al cliente 24/7 con Inteligencia Artificial
+    </h2>
+    <p class="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-16 text-balance">
+      Interactúa con la demo y descubre cómo transformar visitantes en prospectos listos para comprar.
+    </p>
+
+    <!-- Glassmorphism Chat Container with Blue Border -->
+    <div class="relative z-10 w-full max-w-3xl h-[450px] bg-white/50 backdrop-blur-md border-2 border-[#3399ff]/70 rounded-[2rem] p-4 md:p-6 flex flex-col gap-4 shadow-xl">
+      
+      <!-- Chat Body -->
+      <div id="dw-bot-body" class="flex-1 flex flex-col gap-4 overflow-y-auto overflow-x-hidden custom-scroll pb-2 pr-2">
+        
+        <!-- Bot Message (Initial) -->
+        <div class="flex items-start gap-2.5 self-start">
+          <div class="bg-[#0055ff] text-white rounded-[1.25rem] py-2 px-3.5 flex items-start gap-2.5 max-w-[85%] md:max-w-[70%] w-fit shadow-sm chat-msg-enter-bot">
+            <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-white flex flex-shrink-0 items-center justify-center mt-0.5 p-0.5">
+              <img src="/images/projects/ia/icono-ia.svg" alt="AgenteKIT" class="w-3.5 h-3.5 md:w-4 md:h-4 object-contain" />
+            </div>
+            <p class="text-xs md:text-sm font-normal leading-relaxed break-words min-w-0 text-left" style="text-align: left;">Hola soy AgenteKIT, ¿quieres saber cómo funciono?</p>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- Suggestions & Input Area -->
+      <div class="mt-auto flex flex-col gap-3">
+        <!-- Suggestion Chips -->
+        <div id="dw-bot-suggestions" class="flex flex-wrap gap-1.5 md:gap-2.5 w-full">
+          <button class="dw-bot-chip bg-white border border-gray-200/80 text-gray-700 font-semibold text-[11px] md:text-[13px] px-3 py-1.5 md:px-4 md:py-2 rounded-full hover:bg-gray-50 transition-colors shadow-sm">Hola!</button>
+          <button class="dw-bot-chip bg-white border border-gray-200/80 text-gray-700 font-semibold text-[11px] md:text-[13px] px-3 py-1.5 md:px-4 md:py-2 rounded-full hover:bg-gray-50 transition-colors shadow-sm">¿Cómo funciona este chat?</button>
+          <button class="dw-bot-chip bg-white border border-gray-200/80 text-gray-700 font-semibold text-[11px] md:text-[13px] px-3 py-1.5 md:px-4 md:py-2 rounded-full hover:bg-gray-50 transition-colors shadow-sm">¿Qué es AgenteKit?</button>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="relative w-full shadow-sm rounded-3xl bg-white border border-gray-200/80 flex items-center">
+          <textarea id="dw-bot-input" rows="1" placeholder="Escribe tu consulta a AgenteKit..." class="w-full bg-transparent rounded-3xl py-2.5 md:py-3 pl-4 md:pl-5 pr-20 md:pr-24 text-xs md:text-sm focus:outline-none placeholder:text-gray-400 placeholder:text-xs md:placeholder:text-sm transition-all duration-300 resize-none overflow-hidden text-left" style="min-height: 42px; height: 42px; max-height: 120px; text-align: left; line-height: 22px; scrollbar-width: none;"></textarea>
+          
+          <button id="dw-bot-mic" class="absolute right-[42px] md:right-[46px] top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 rounded-full bg-gray-50 text-gray-500 flex items-center justify-center hover:bg-gray-100 hover:text-gray-700 border border-gray-100 z-10 transition-all duration-300 shadow-sm" title="Enviar audio de prueba">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-mic-fill shrink-0" viewBox="0 0 16 16">
+              <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+              <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+            </svg>
+          </button>
+          
+          <button id="dw-bot-submit" class="absolute right-1.5 md:right-2 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 rounded-full bg-[#0066ff] text-white flex items-center justify-center hover:bg-blue-600 transition-colors z-10 shadow-sm" title="Enviar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bottom Buttons: Only Hablar con experto (WhatsApp) -->
+    <div class="mt-8 md:mt-10 flex justify-center w-full">
+       <a 
+        href="https://wa.me/51901637020" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="w-full sm:w-auto max-w-xs sm:max-w-none text-center inline-block px-8 py-3 bg-black border-2 border-black text-white rounded-xl font-semibold text-sm hover:bg-gray-800 hover:border-gray-800 transition-all shadow-md active:scale-95"
+       >
+        Hablar con un experto
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hide-scrollbar::-webkit-scrollbar,
+  #dw-bot-input::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar,
+  #dw-bot-input {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Custom subtle scrollbar for chat body */
+  .custom-scroll::-webkit-scrollbar {
+    width: 5px;
+  }
+  .custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 9999px;
+  }
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.25);
+  }
+  
+  /* WhatsApp Bouncing Dots Animation (Global modifier so dynamic JS elements can access it) */
+  :global(.typing-dot) {
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    animation: whatsapp-bounce 1.3s infinite ease-in-out;
+    flex-shrink: 0;
+  }
+  :global(.typing-dot:nth-child(1)) { animation-delay: 0s; }
+  :global(.typing-dot:nth-child(2)) { animation-delay: 0.2s; }
+  :global(.typing-dot:nth-child(3)) { animation-delay: 0.4s; }
+  
+  @keyframes whatsapp-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  /* Morphing entrance animations for chat bubbles */
+  .chat-msg-enter-bot {
+    transform-origin: bottom left;
+    animation: morphBubble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .chat-msg-enter-user {
+    transform-origin: bottom right;
+    animation: morphBubble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  :global(.chat-msg-enter-bot) {
+    transform-origin: bottom left;
+    animation: morphBubble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  :global(.chat-msg-enter-user) {
+    transform-origin: bottom right;
+    animation: morphBubble 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes morphBubble {
+    0% {
+      opacity: 0;
+      transform: scale(0.35) translateY(25px);
+    }
+    70% {
+      transform: scale(1.04) translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // --- CHAT SYSTEM LOGIC ---
+  const setupChat = () => {
+    const chatBody = document.getElementById('dw-bot-body');
+    const suggestionsContainer = document.getElementById('dw-bot-suggestions');
+    const chips = document.querySelectorAll('.dw-bot-chip');
+    const chatInput = document.getElementById('dw-bot-input') as HTMLTextAreaElement;
+    const chatSubmit = document.getElementById('dw-bot-submit');
+    const chatMic = document.getElementById('dw-bot-mic');
+    
+    if (!chatBody) return;
+
+    // Respuestas inteligentes para la demo
+    const botResponses: Record<string, string> = {
+      "hola!": "¡Hola! Qué gusto saludarte. ¿En qué te puedo asesorar sobre tu nueva página web hoy?",
+      "hola": "¡Hola! Qué gusto saludarte. ¿En qué te puedo asesorar sobre tu nueva página web hoy?",
+      "¿cómo funciona este chat?": "Este chat utiliza Inteligencia Artificial avanzada para responder las preguntas de tus clientes de manera autónoma las 24 horas del día.",
+      "como funciona este chat": "Este chat utiliza Inteligencia Artificial avanzada para responder las preguntas de tus clientes de manera autónoma las 24 horas del día.",
+      "¿qué es agentekit?": "AgenteKit es nuestra solución premium de asistentes virtuales inteligentes, diseñados para captar leads y dar soporte técnico sin intervención humana.",
+      "que es agentekit": "AgenteKit es nuestra solución premium de asistentes virtuales inteligentes, diseñados para captar leads y dar soporte técnico sin intervención humana."
+    };
+
+    // Control dinámico de la visibilidad del botón de micrófono e input padding
+    const updateInputPadding = () => {
+      const dynamicChatMic = document.getElementById('dw-bot-mic');
+      if (!dynamicChatMic || !chatInput) return;
+      if (chatInput.value.trim() !== '') {
+        dynamicChatMic.classList.add('opacity-0', 'scale-90', 'pointer-events-none');
+        chatInput.classList.remove('pr-20', 'md:pr-24');
+        chatInput.classList.add('pr-12', 'md:pr-14');
+      } else {
+        dynamicChatMic.classList.remove('opacity-0', 'scale-90', 'pointer-events-none');
+        chatInput.classList.remove('pr-12', 'md:pr-14');
+        chatInput.classList.add('pr-20', 'md:pr-24');
+      }
+    };
+
+    if (chatInput) {
+      chatInput.addEventListener('input', () => {
+        updateInputPadding();
+        // Auto-resize textarea
+        chatInput.style.height = 'auto';
+        chatInput.style.height = Math.min(Math.max(chatInput.scrollHeight, 42), 120) + 'px';
+      });
+    }
+
+    const createUserMessage = (text: string) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex items-start gap-2.5 self-end chat-msg-enter-user w-full justify-end';
+      wrapper.innerHTML = `
+        <div class="bg-[#0099ff] text-white rounded-[1.25rem] py-2 px-3.5 flex items-center gap-2 max-w-[85%] md:max-w-[70%] w-fit shadow-sm ml-auto">
+          <p class="text-xs md:text-sm font-normal leading-relaxed break-words min-w-0 text-left" style="text-align: left;">${text}</p>
+          <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-white flex flex-shrink-0 items-center justify-center text-[#0099ff] mt-0.5">
+            <i class="bi bi-person-fill text-[11px] md:text-xs"></i>
+          </div>
+        </div>
+      `;
+      return wrapper;
+    };
+
+    const createUserAudioMessage = () => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex items-start gap-2.5 self-end chat-msg-enter-user w-full justify-end';
+      wrapper.innerHTML = `
+        <div class="bg-[#0099ff] text-white rounded-[1.25rem] py-2 px-3.5 flex items-center gap-2 max-w-[85%] md:max-w-[70%] w-fit shadow-sm ml-auto">
+          <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-white flex flex-shrink-0 items-center justify-center text-[#0099ff]">
+            <i class="bi bi-person-fill text-[11px] md:text-xs"></i>
+          </div>
+          <div class="flex items-center gap-2">
+            <button class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+              <i class="bi bi-play-fill text-xs text-white"></i>
+            </button>
+            <div class="flex items-end gap-[2px] h-3.5 px-1">
+              <span class="w-[2px] h-1.5 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-3.5 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-2 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-3 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-1.5 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-2.5 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-3 bg-white/80 rounded-full"></span>
+              <span class="w-[2px] h-1.5 bg-white/80 rounded-full"></span>
+            </div>
+            <span class="text-xs font-medium text-white/90">0:04</span>
+          </div>
+        </div>
+      `;
+      return wrapper;
+    };
+
+    const createTypingIndicator = () => {
+      const wrapper = document.createElement('div');
+      wrapper.id = 'dw-bot-typing-indicator';
+      wrapper.className = 'flex items-start gap-2.5 self-start chat-msg-enter-bot';
+      wrapper.innerHTML = `
+        <div class="bg-[#0055ff] text-white rounded-[1.25rem] py-2 px-3.5 flex items-center justify-center gap-1.5 h-8 w-fit shadow-sm">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      `;
+      return wrapper;
+    };
+
+    const createBotMessage = (text: string) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'flex items-start gap-2.5 self-start chat-msg-enter-bot';
+      wrapper.innerHTML = `
+        <div class="bg-[#0055ff] text-white rounded-[1.25rem] py-2 px-3.5 flex items-start gap-2.5 max-w-[85%] md:max-w-[70%] w-fit shadow-sm">
+          <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-white flex flex-shrink-0 items-center justify-center mt-0.5 p-0.5">
+            <img src="/images/projects/ia/icono-ia.svg" alt="AgenteKIT" class="w-3.5 h-3.5 md:w-4 md:h-4 object-contain" />
+          </div>
+          <p class="text-xs md:text-sm font-normal leading-relaxed break-words min-w-0 text-left" style="text-align: left;">${text}</p>
+        </div>
+      `;
+      return wrapper;
+    };
+
+    const scrollToBottom = () => {
+      chatBody.scrollTo({
+        top: chatBody.scrollHeight,
+        behavior: 'smooth'
+      });
+    };
+
+    const hideSuggestions = () => {
+      if (suggestionsContainer && suggestionsContainer.style.display !== 'none') {
+        suggestionsContainer.style.transition = 'opacity 0.3s ease';
+        suggestionsContainer.style.opacity = '0';
+        setTimeout(() => {
+          suggestionsContainer.style.display = 'none';
+        }, 300);
+      }
+    };
+
+    const processMessage = (userText: string, isAudio: boolean = false) => {
+      hideSuggestions();
+
+      if (isAudio) {
+        chatBody.appendChild(createUserAudioMessage());
+      } else {
+        chatBody.appendChild(createUserMessage(userText));
+      }
+
+      if (chatInput) {
+        chatInput.value = '';
+        chatInput.style.height = '42px';
+        updateInputPadding();
+      }
+      scrollToBottom();
+
+      setTimeout(() => {
+        const typingEl = createTypingIndicator();
+        chatBody.appendChild(typingEl);
+        scrollToBottom();
+
+        setTimeout(() => {
+          typingEl.remove();
+
+          let responseText = "¡Excelente consulta! AgenteKit puede automatizar las respuestas de tus clientes 24/7 y derivar a tu equipo únicamente a los prospectos calificados.";
+          
+          if (isAudio) {
+            responseText = "¡Gracias por el audio! Nuestro AgenteKit procesa notas de voz y responde instantáneamente a tus clientes.";
+          } else {
+            const clean = userText.toLowerCase().trim();
+            if (botResponses[clean]) {
+              responseText = botResponses[clean];
+            } else if (clean.includes("precio") || clean.includes("costo") || clean.includes("cotizar")) {
+              responseText = "Los proyectos web se adaptan a las necesidades de tu negocio. Haz clic en 'Hablar con un experto' para darte una cotización exacta.";
+            }
+          }
+
+          chatBody.appendChild(createBotMessage(responseText));
+          scrollToBottom();
+        }, 1000);
+      }, 400);
+    };
+
+    // Eventos para los chips
+    chips.forEach(chip => {
+      const newChip = chip.cloneNode(true) as HTMLElement;
+      chip.parentNode?.replaceChild(newChip, chip);
+
+      newChip.addEventListener('click', () => {
+        const userText = newChip.textContent?.trim() || '';
+        processMessage(userText);
+      });
+    });
+
+    // Evento para enviar audio simulado
+    if (chatMic) {
+      const newMic = chatMic.cloneNode(true) as HTMLElement;
+      chatMic.parentNode?.replaceChild(newMic, chatMic);
+
+      newMic.addEventListener('click', () => {
+        processMessage('', true);
+      });
+    }
+
+    // Eventos para enviar texto escrito
+    if (chatSubmit && chatInput) {
+      const handleSend = () => {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        processMessage(text);
+      };
+
+      chatSubmit.addEventListener('click', handleSend);
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          handleSend();
+        }
+      });
+    }
+  };
+
+  // --- BACKGROUND ANIMATED ORBS LOGIC ---
+  const setupBotOrbs = () => {
+    const section = document.getElementById('diseno-web-bot-section');
+    if (!section) return;
+    const orbs = section.querySelectorAll('.interactive-orb');
+    if (orbs.length === 0) return;
+    
+    let orbStates = Array.from(orbs).map((orb) => {
+      const rect = orb.getBoundingClientRect();
+      return {
+        element: orb as HTMLElement,
+        cx: (rect.left + rect.right) / 2,
+        cy: (rect.top + rect.bottom) / 2,
+        x: (rect.left + rect.right) / 2,
+        y: (rect.top + rect.bottom) / 2,
+        vx: (Math.random() - 0.5) * 2.0,
+        vy: (Math.random() - 0.5) * 2.0,
+        radius: rect.width * 0.9,
+      };
+    });
+
+    let mouseX = -1000;
+    let mouseY = -1000;
+    let isHovered = false;
+
+    const updateDimensions = () => {
+      orbStates.forEach((state) => {
+        const prevTransform = state.element.style.transform;
+        state.element.style.transform = 'none';
+        const rect = state.element.getBoundingClientRect();
+        state.element.style.transform = prevTransform;
+        
+        const newCx = (rect.left + rect.right) / 2;
+        const newCy = (rect.top + rect.bottom) / 2;
+        
+        state.x += (newCx - state.cx);
+        state.y += (newCy - state.cy);
+        state.cx = newCx;
+        state.cy = newCy;
+        state.radius = rect.width * 0.9;
+      });
+    };
+
+    window.addEventListener('resize', updateDimensions);
+    section.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      isHovered = true;
+    });
+    section.addEventListener('mouseleave', () => { isHovered = false; });
+
+    const animate = () => {
+      orbStates.forEach((state) => {
+        const dxCenter = state.cx - state.x;
+        const dyCenter = state.cy - state.y;
+        state.vx += dxCenter * 0.00008; 
+        state.vy += dyCenter * 0.00008;
+        
+        if (isHovered) {
+          const dxMouse = state.x - mouseX;
+          const dyMouse = state.y - mouseY;
+          const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+          const mouseRadius = 600;
+          if (distMouse < mouseRadius && distMouse > 0) {
+            const force = Math.pow((mouseRadius - distMouse) / mouseRadius, 2);
+            state.vx += (dxMouse / distMouse) * force * 1.5;
+            state.vy += (dyMouse / distMouse) * force * 1.5;
+          }
+        }
+
+        state.vx += (Math.random() - 0.5) * 0.35;
+        state.vy += (Math.random() - 0.5) * 0.35;
+
+        state.vx *= 0.98;
+        state.vy *= 0.98;
+        
+        const speed = Math.sqrt(state.vx * state.vx + state.vy * state.vy);
+        const maxSpeed = 4.0;
+        if (speed > maxSpeed) {
+          state.vx = (state.vx / speed) * maxSpeed;
+          state.vy = (state.vy / speed) * maxSpeed;
+        }
+
+        state.x += state.vx;
+        state.y += state.vy;
+      });
+
+      // Collision detection between the two orbs
+      if (orbStates.length >= 2) {
+        const a = orbStates[0];
+        const b = orbStates[1];
+        const dx = b.x - a.x;
+        const dy = b.y - a.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const minD = a.radius + b.radius;
+
+        if (dist < minD && dist > 0) {
+          const overlap = minD - dist;
+          const nx = dx / dist;
+          const ny = dy / dist;
+
+          const separationX = nx * (overlap / 2);
+          const separationY = ny * (overlap / 2);
+          
+          a.x -= separationX;
+          a.y -= separationY;
+          b.x += separationX;
+          b.y += separationY;
+
+          const rvx = b.vx - a.vx;
+          const rvy = b.vy - a.vy;
+          const velAlongNormal = rvx * nx + rvy * ny;
+          
+          if (velAlongNormal < 0) {
+            const restitution = 0.5;
+            const impulse = -(1 + restitution) * velAlongNormal;
+            const impulseX = nx * impulse * 0.5;
+            const impulseY = ny * impulse * 0.5;
+
+            a.vx -= impulseX;
+            a.vy -= impulseY;
+            b.vx += impulseX;
+            b.vy += impulseY;
+          }
+        }
+      }
+
+      orbStates.forEach((state) => {
+        const tx = state.x - state.cx;
+        const ty = state.y - state.cy;
+        state.element.style.transform = `translate3d(${tx.toFixed(2)}px, ${ty.toFixed(2)}px, 0)`;
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    setTimeout(updateDimensions, 100);
+    requestAnimationFrame(animate);
+  };
+
+  // Run initializers
+  setupChat();
+  setupBotOrbs();
+  
+  document.addEventListener('astro:page-load', () => {
+    setupChat();
+    setupBotOrbs();
+  });
+</script>

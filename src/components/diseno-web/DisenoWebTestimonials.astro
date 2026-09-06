@@ -1,0 +1,91 @@
+---
+// DisenoWebTestimonials.astro
+const features = [
+  {
+    title: 'Identidad visual inmersiva',
+    description: 'Diseñamos interfaces que respiran el ADN de tu marca. Sin plantillas genéricas; aplicamos dirección de arte y narrativa visual de alto impacto.'
+  },
+  {
+    title: 'Ingeniería a medida',
+    description: 'Desarrollo técnico enfocado en tus objetivos comerciales. Implementamos soluciones específicas, modulares y escalables para crecer sin límites.'
+  },
+  {
+    title: 'Adaptabilidad fluida',
+    description: 'Garantizamos una navegación intuitiva y ultra rápida en cualquier entorno. Tu web se adapta a la perfección a cada pantalla y dispositivo móvil.'
+  },
+  {
+    title: 'Rendimiento estratégico',
+    description: 'Entregamos una plataforma optimizada para posicionar en los primeros lugares de Google y transformar visitantes en clientes reales.'
+  }
+];
+---
+<section class="relative w-full bg-black text-white py-20 md:py-28 lg:py-32 px-6 overflow-hidden">
+  
+  <!-- Subtle Ambient Glows -->
+  <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute right-1/4 top-1/3 w-[600px] h-[600px] bg-[#f8a5c2]/15 rounded-full blur-[160px]"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-7xl mx-auto">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
+      
+      <!-- Left Column: Title, Subtitle & 4 Features Grid -->
+      <div class="lg:col-span-7 flex flex-col justify-center">
+        <!-- Title -->
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-[50px] xl:text-[56px] font-extrabold text-white leading-[1.12] tracking-tight mb-6 text-balance">
+          Tu marca, <br class="hidden sm:inline" />convertida en <br class="hidden sm:inline" />experiencia digital.
+        </h2>
+        
+        <!-- Subtitle -->
+        <p class="text-gray-400 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl mb-8 md:mb-10 text-balance">
+          Diseño estratégico y desarrollo técnico sin ataduras. Construimos plataformas web que fusionan estética inmersiva con funcionalidad de alto rendimiento.
+        </p>
+
+        <!-- Mockup: Visible here on mobile/tablet screens for great flow -->
+        <div class="block lg:hidden mb-10 w-full">
+          <div class="relative w-full max-w-md mx-auto flex items-center justify-center">
+            <!-- Pastel Pink Glow behind image on mobile -->
+            <div class="absolute w-[280px] h-[280px] bg-[#f8a5c2]/35 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
+            <img 
+              src="/images/diseno-web/img-diseno-web-1.webp" 
+              alt="Tu marca convertida en experiencia digital" 
+              class="w-full h-auto object-contain drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)]"
+            />
+          </div>
+        </div>
+
+        <!-- 2x2 Feature Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full">
+          {features.map((item) => (
+            <div class="bg-[#121214]/90 hover:bg-[#18181c] border border-white/10 hover:border-white/20 rounded-2xl md:rounded-3xl p-6 md:p-7 flex flex-col justify-start transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:-translate-y-0.5 group">
+              <h3 class="text-[17px] md:text-lg font-bold text-white mb-2 leading-snug tracking-tight group-hover:text-white transition-colors">
+                {item.title}
+              </h3>
+              <p class="text-gray-400 text-[13px] md:text-sm leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right Column: Mockup Image (Desktop) -->
+      <div class="hidden lg:flex lg:col-span-5 items-center justify-center">
+        <div class="relative w-full max-w-xl flex items-center justify-center">
+          <!-- Pastel Pink Sphere Glow behind Mockup -->
+          <div class="absolute w-[480px] h-[480px] bg-[#f8a5c2]/30 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+          <div class="absolute w-[300px] h-[300px] bg-[#ffb3c6]/40 rounded-full blur-[70px] -z-10 pointer-events-none"></div>
+          
+          <img 
+            src="/images/diseno-web/img-diseno-web-1.webp" 
+            alt="Tu marca convertida en experiencia digital" 
+            class="w-full h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.9)] hover:scale-[1.02] transition-transform duration-500 cursor-pointer"
+          />
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

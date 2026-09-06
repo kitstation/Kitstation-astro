@@ -1,0 +1,33 @@
+---
+// DisenoWebCTA.astro
+---
+<section class="w-full bg-white py-24 flex flex-col items-center justify-center text-center px-6 border-t border-gray-100">
+  <h2 class="text-2xl leading-[1.3] md:text-4xl md:leading-[1.3] lg:text-[45px] lg:leading-[1.3] font-bold text-black text-balance mx-auto max-w-4xl">
+    Haz que tu negocio crezca conectando tu presencia digital <br class="hidden md:block" />
+    con automatizaciones que cierran ventas.
+  </h2>
+  
+  <div class="mt-10 mb-6">
+    <!-- Contenedor para la imagen de los avatares superpuestos -->
+    <div class="flex justify-center items-center">
+      <img 
+        src="/grupo-circulos/grupo-circulos.png" 
+        alt="Equipo de avatares" 
+        class="h-16 md:h-20 object-contain"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <!-- Fallback en caso de que la imagen no exista aún -->
+      <div class="hidden justify-center items-center -space-x-4">
+        <div class="w-12 h-12 rounded-full bg-[#1b85ce] border-2 border-white z-[1]"></div>
+        <div class="w-12 h-12 rounded-full bg-[#9f7aea] border-2 border-white z-[2]"></div>
+        <div class="w-14 h-14 rounded-full bg-[#3b82f6] border-2 border-white z-[3] shadow-md"></div>
+        <div class="w-12 h-12 rounded-full bg-[#4ade80] border-2 border-white z-[2]"></div>
+        <div class="w-12 h-12 rounded-full bg-[#f97316] border-2 border-white z-[1]"></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="/diseno-desarrollo-web" class="mt-6 inline-block px-8 py-3 bg-transparent border-2 border-black rounded-lg text-black font-semibold text-sm hover:bg-black hover:text-white transition-colors duration-300 shadow-sm">
+    Empezar ahora
+  </a>
+</section>

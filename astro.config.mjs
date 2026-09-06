@@ -1,11 +1,11 @@
-import { defineConfig } from "astro/config";
-import vercel from "@astrojs/vercel";
+// @ts-check
+import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
 
+import sitemap from '@astrojs/sitemap';
+
+// https://astro.build/config
 export default defineConfig({
-  site: "https://kitstation.pe",
-  output: "server",
-  adapter: vercel(),
-  server: {
-    host: true
-  }
+  site: 'https://kitstation.pe',
+  integrations: [tailwind(), sitemap()]
 });
