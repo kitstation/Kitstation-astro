@@ -34,6 +34,7 @@
 
     const images: HTMLImageElement[] = [];
     const sequence = { frame: 0 };
+    let lastTextChars = -1;
 
     // El texto completo que queremos tipear
     const fullText = "Tu ecosistema digital en\nun solo lugar.";
@@ -58,6 +59,10 @@
         const endFrame = 110;
         const progress = Math.max(0, Math.min(1, (sequence.frame - startFrame) / (endFrame - startFrame)));
         const charsToShow = Math.round(progress * fullText.length);
+
+        // Evitar escrituras repetidas del DOM durante cada actualización de GSAP.
+        if (charsToShow === lastTextChars) return;
+        lastTextChars = charsToShow;
         const currentText = fullText.slice(0, charsToShow).replace(/\n/g, '<br />');
         
         // Cursor tildante mientras escribe
@@ -82,6 +87,7 @@
 
     for (let i = 0; i <= frameCount; i++) {
       const img = new Image();
+      img.decoding = "async";
       images.push(img);
       
       // Renderizar la primera imagen una vez que cargue
