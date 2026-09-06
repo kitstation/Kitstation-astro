@@ -64,7 +64,6 @@ const structuredDataItems = Array.isArray(structuredData)
     {structuredDataItems.map((item) => (
       <script type="application/ld+json" set:html={JSON.stringify(item)} />
     ))}
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeOxWotAAAAAMu4G5IjcT3_inO9D1eq3o1Fkc1Y" async defer></script>
   </head>
   <body>
     <slot />
@@ -73,7 +72,7 @@ const structuredDataItems = Array.isArray(structuredData)
         <strong><span>protección de</span> reCAPTCHA</strong>
       </div>
       <div class="recaptcha-disclosure__icon" aria-hidden="true">
-        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="" loading="lazy" />
+        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="" width="48" height="48" loading="lazy" />
       </div>
     </div>
     <section class="cookie-banner" data-cookie-banner aria-label="Aviso de cookies" hidden>

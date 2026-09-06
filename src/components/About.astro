@@ -206,7 +206,7 @@ const serviceHubCards = [
                 aria-pressed="false"
               >
                 <span class="solutions-topic__icon" data-icon={topic.icon}>
-                  <img src={`/icons/solutions/${topic.icon}.svg`} alt="" aria-hidden="true" loading="lazy" />
+                  <img src={`/icons/solutions/${topic.icon}.svg`} alt="" aria-hidden="true" width="32" height="32" loading="lazy" />
                 </span>
                 <span class="solutions-topic__label">{topic.label}</span>
               </button>
@@ -229,7 +229,7 @@ const serviceHubCards = [
           <article class="solutions-panel" data-topic-panel data-topic-index={index}>
             <picture>
               <source media="(max-width: 768px)" srcset={panel.mobileImage} />
-              <img src={panel.image} alt={panel.alt} loading="lazy" />
+              <img src={panel.image} alt={panel.alt} width="1300" height="555" loading="lazy" decoding="async" />
             </picture>
           </article>
         ))}
@@ -298,13 +298,13 @@ const serviceHubCards = [
           {card.href ? (
             <a class="hub-card__link ripple-image" href={card.href} aria-label={`Ver ${card.title}`}>
               <div class="hub-card__media">
-                <img src={card.image} alt={card.alt} loading="lazy" />
+                <img src={card.image} alt={card.alt} width="800" height="600" loading="lazy" decoding="async" />
               </div>
             </a>
           ) : (
             <label class="hub-card__link ripple-image" for={card.key} aria-label={`Ver ${card.title}`}>
               <div class="hub-card__media">
-                <img src={card.image} alt={card.alt} loading="lazy" />
+                <img src={card.image} alt={card.alt} width="800" height="600" loading="lazy" decoding="async" />
               </div>
             </label>
           )}
@@ -332,7 +332,7 @@ const serviceHubCards = [
                   <source src={card.video} type="video/mp4" />
                 </video>
               ) : (
-                <img src={card.image} alt={card.alt} loading="lazy" />
+                <img src={card.image} alt={card.alt} width="800" height="600" loading="lazy" decoding="async" />
               )}
             </div>
           </article>

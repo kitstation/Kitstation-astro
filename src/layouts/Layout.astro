@@ -47,13 +47,9 @@ const {
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL('/images/likstation-preview.jpg', Astro.site)} />
 		
-		<!-- Google Fonts: Poppins -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-		
-		<!-- Bootstrap Icons CDN -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+		<!-- Bootstrap Icons: no bloquea el renderizado inicial -->
+		<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+		<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
 	</head>
 	<body class={`${bodyClass} font-sans antialiased selection:bg-[#0066ff] selection:text-white flex flex-col min-h-screen`}>
 		<main class="flex-grow w-full overflow-x-clip">
@@ -66,6 +62,34 @@ const {
 </html>
 
 <style is:global>
+	@font-face {
+		font-family: 'Poppins';
+		src: url('/fonts/poppins-400.woff2') format('woff2');
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Poppins';
+		src: url('/fonts/poppins-500.woff2') format('woff2');
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Poppins';
+		src: url('/fonts/poppins-600.woff2') format('woff2');
+		font-weight: 600;
+		font-style: normal;
+		font-display: swap;
+	}
+	@font-face {
+		font-family: 'Poppins';
+		src: url('/fonts/poppins-700.woff2') format('woff2');
+		font-weight: 700 900;
+		font-style: normal;
+		font-display: swap;
+	}
 	body {
 		font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	}
