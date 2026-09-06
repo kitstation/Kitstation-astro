@@ -1,10 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import imgWeb from '../assets/carrusel/img-carru-desarrollo-web.jpg';
-import imgIA from '../assets/carrusel/img-carru-inteligencia-artificial.jpg';
-import imgCampanas from '../assets/carrusel/img-carru-campañas.jpg';
-import imgAudiovisual from '../assets/carrusel/img-carru-audiovisual.jpg';
-import imgSoftware from '../assets/carrusel/img-carru-desarrollo-software.jpg';
 ---
 
 <section class="py-10 md:py-12 bg-white overflow-hidden">
@@ -23,7 +17,7 @@ import imgSoftware from '../assets/carrusel/img-carru-desarrollo-software.jpg';
       <!-- Cards -->
       <!-- Card 1 -->
       <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#c099eb] overflow-hidden relative group cursor-pointer">
-        <Image src={imgWeb} alt="Diseño y desarrollo web" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[200px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        <img src="/images/carrusel/img-carru-desarrollo-web.jpg" alt="Diseño y desarrollo web" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[200px] group-[.is-open]:-translate-y-[180px]" width="400" height="400" loading="lazy" />
         
         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
           <span>Ver detalles</span>
@@ -62,7 +56,7 @@ import imgSoftware from '../assets/carrusel/img-carru-desarrollo-software.jpg';
       
       <!-- Card 2 -->
       <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#2e8ffc] overflow-hidden relative group cursor-pointer">
-        <Image src={imgIA} alt="Automatizaciones con inteligencia artificial" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[220px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        <img src="/images/carrusel/img-carru-inteligencia-artificial.jpg" alt="Automatizaciones con inteligencia artificial" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[220px] group-[.is-open]:-translate-y-[180px]" width="400" height="400" loading="lazy" />
         
         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
           <span>Ver detalles</span>
@@ -101,7 +95,7 @@ import imgSoftware from '../assets/carrusel/img-carru-desarrollo-software.jpg';
       
       <!-- Card 3 -->
       <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#5fd3b0] overflow-hidden relative group cursor-pointer">
-        <Image src={imgCampanas} alt="Estrategias y campañas digitales" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[180px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        <img src="/images/carrusel/img-carru-campañas.jpg" alt="Estrategias y campañas digitales" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[180px] group-[.is-open]:-translate-y-[180px]" width="400" height="400" loading="lazy" />
         
         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
           <span>Ver detalles</span>
@@ -140,7 +134,7 @@ import imgSoftware from '../assets/carrusel/img-carru-desarrollo-software.jpg';
       
       <!-- Card 4 -->
       <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#fd8b57] overflow-hidden relative group cursor-pointer">
-        <Image src={imgAudiovisual} alt="Identidad de marca y contenido audiovisual" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[180px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        <img src="/images/carrusel/img-carru-audiovisual.jpg" alt="Identidad de marca y contenido audiovisual" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[180px] group-[.is-open]:-translate-y-[180px]" width="400" height="400" loading="lazy" />
         
         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
           <span>Ver detalles</span>
@@ -179,7 +173,7 @@ import imgSoftware from '../assets/carrusel/img-carru-desarrollo-software.jpg';
       
       <!-- Card 5 -->
       <div class="shrink-0 w-[280px] h-[320px] md:w-[320px] md:h-[360px] rounded-[2rem] bg-[#0b709b] overflow-hidden relative group cursor-pointer">
-        <Image src={imgSoftware} alt="Soporte técnico y desarrollo de software" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[190px] group-[.is-open]:-translate-y-[180px]" width={400} height={400} />
+        <img src="/images/carrusel/img-carru-desarrollo-software.jpg" alt="Soporte técnico y desarrollo de software" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] ease-in-out md:group-hover:-translate-y-[190px] group-[.is-open]:-translate-y-[180px]" width="400" height="400" loading="lazy" />
         
         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full pointer-events-none group-hover:opacity-0 group-[.is-open]:opacity-0 transition-opacity flex items-center gap-1.5 z-10 md:hidden">
           <span>Ver detalles</span>
