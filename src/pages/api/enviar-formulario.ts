@@ -18,6 +18,7 @@ const ALLOWED_FORMS = new Set([
   "Creación de Contenido",
   "Animación Digital",
   "Diagnóstico de Proyecto",
+  "Suscripción al newsletter",
   "Libro de Reclamaciones"
 ]);
 

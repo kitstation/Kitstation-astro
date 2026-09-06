@@ -162,7 +162,7 @@ const soluciones = [
       </div>
 
       <div
-        class="w-full bg-[#1e2025]/60 backdrop-blur-xl border border-white/10 rounded-[32px] p-8 md:p-12 md:h-[736px] flex flex-col md:flex-row gap-8 items-stretch relative overflow-hidden"
+        class="w-full p-8 md:p-12 md:h-[736px] flex flex-col md:flex-row gap-8 items-stretch relative"
       >
         <!-- Left Side: Accordions -->
         <div
@@ -171,7 +171,7 @@ const soluciones = [
         >
           <!-- Item 1 -->
           <button
-            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[24px] px-4 py-3 transition-all duration-300 text-left active"
+            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[8px] px-4 py-3 transition-all duration-300 text-left active"
             data-target="0"
           >
             <div class="flex items-center gap-4 w-full">
@@ -205,7 +205,7 @@ const soluciones = [
 
           <!-- Item 2 -->
           <button
-            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[24px] px-4 py-3 transition-all duration-300 text-left"
+            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[8px] px-4 py-3 transition-all duration-300 text-left"
             data-target="1"
           >
             <div class="flex items-center gap-4 w-full">
@@ -239,7 +239,7 @@ const soluciones = [
 
           <!-- Item 3 -->
           <button
-            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[24px] px-4 py-3 transition-all duration-300 text-left"
+            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[8px] px-4 py-3 transition-all duration-300 text-left"
             data-target="2"
           >
             <div class="flex items-center gap-4 w-full">
@@ -273,7 +273,7 @@ const soluciones = [
 
           <!-- Item 4 -->
           <button
-            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[24px] px-4 py-3 transition-all duration-300 text-left"
+            class="priority-btn group flex flex-col bg-white/5 hover:bg-white/10 border border-white/5 rounded-[8px] px-4 py-3 transition-all duration-300 text-left"
             data-target="3"
           >
             <div class="flex items-center gap-4 w-full">
@@ -310,11 +310,11 @@ const soluciones = [
         <div class="w-full md:w-6/12 flex-1 flex flex-col z-10 relative md:px-16">
             
             <!-- Left arrow (absolute) -->
-            <button id="slider-prev" class="hidden md:flex absolute top-1/2 left-0 -translate-y-1/2 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 items-center justify-center transition-colors z-20">
-              <i class="bi bi-arrow-left text-white/50 text-sm"></i>
+            <button id="slider-prev" class="hidden md:flex absolute top-1/2 left-0 -translate-y-1/2 w-8 h-8 rounded-full bg-white hover:bg-gray-200 items-center justify-center transition-colors z-20">
+              <i class="bi bi-arrow-left text-black text-sm"></i>
             </button>
 
-            <div class="w-full flex-1 relative overflow-hidden rounded-[24px] bg-white/5 border border-white/10 pb-4">
+            <div class="w-full flex-1 relative overflow-hidden rounded-[16px] bg-white/5 border border-white/10 pb-4">
                 <div id="priority-slides-wrapper" class="flex transition-transform duration-500 ease-in-out w-full h-full">
                     <!-- Slides will be injected here via JS -->
                 </div>
@@ -326,8 +326,8 @@ const soluciones = [
             </div>
 
             <!-- Right arrow (absolute) -->
-            <button id="slider-next" class="hidden md:flex absolute top-1/2 right-0 -translate-y-1/2 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 items-center justify-center transition-colors z-20">
-              <i class="bi bi-arrow-right text-white/50 text-sm"></i>
+            <button id="slider-next" class="hidden md:flex absolute top-1/2 right-0 -translate-y-1/2 w-8 h-8 rounded-full bg-white hover:bg-gray-200 items-center justify-center transition-colors z-20">
+              <i class="bi bi-arrow-right text-black text-sm"></i>
             </button>
         </div>
       </div>
@@ -404,6 +404,11 @@ const soluciones = [
 
   .card-wrapper.is-open #sol-card-inner {
     transform: translateY(0) !important;
+  }
+
+  .priority-btn.active {
+    background-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.22);
   }
 
   /* Z-index management to prevent clipping */
@@ -696,7 +701,7 @@ const soluciones = [
              ${slide.desc}
           </p>
           <div class="flex justify-end w-full mt-auto">
-            <a href="${slide.link}" class="shrink-0 px-6 py-2.5 border border-white/20 rounded-xl text-gray-400 text-sm font-medium hover:bg-white hover:text-black hover:border-white transition-colors duration-300">
+            <a href="${slide.link}" class="shrink-0 px-6 py-2.5 border border-[#0066ff] rounded-xl bg-[#0066ff] text-white text-sm font-medium hover:bg-[#0052cc] hover:border-[#0052cc] transition-colors duration-300">
               Empezar ahora
             </a>
           </div>

@@ -27,7 +27,10 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content, viewport-fit=cover" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preload" href="/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/poppins-500.woff2" as="font" type="font/woff2" crossorigin />
 		<link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin />
+		<link rel="preload" href="/fonts/bootstrap-icons-subset.woff2" as="font" type="font/woff2" crossorigin />
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- SEO Meta Tags -->
@@ -49,9 +52,6 @@ const {
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL('/images/likstation-preview.jpg', Astro.site)} />
 		
-		<!-- Bootstrap Icons: no bloquea el renderizado inicial -->
-		<link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-		<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"></noscript>
 	</head>
 	<body class={`${bodyClass} font-sans antialiased selection:bg-[#0066ff] selection:text-white flex flex-col min-h-screen`}>
 		<main class="flex-grow w-full overflow-x-clip">
@@ -64,6 +64,54 @@ const {
 </html>
 
 <style is:global>
+	@font-face {
+		font-family: 'bootstrap-icons';
+		src: url('/fonts/bootstrap-icons-subset.woff2') format('woff2');
+		font-weight: normal;
+		font-style: normal;
+		font-display: swap;
+	}
+	.bi::before,
+	[class^='bi-']::before,
+	[class*=' bi-']::before {
+		display: inline-block;
+		font-family: 'bootstrap-icons' !important;
+		font-style: normal;
+		font-weight: normal !important;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+		vertical-align: -0.125em;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	.bi-arrow-left::before { content: '\f12f'; }
+	.bi-arrow-right::before { content: '\f138'; }
+	.bi-arrows-angle-contract::before { content: '\f149'; }
+	.bi-arrows-angle-expand::before { content: '\f14a'; }
+	.bi-arrows-fullscreen::before { content: '\f14d'; }
+	.bi-arrows-move::before { content: '\f14e'; }
+	.bi-chat-dots::before { content: '\f24a'; }
+	.bi-check2::before { content: '\f272'; }
+	.bi-chevron-down::before { content: '\f282'; }
+	.bi-chevron-left::before { content: '\f284'; }
+	.bi-chevron-right::before { content: '\f285'; }
+	.bi-chevron-up::before { content: '\f286'; }
+	.bi-dash::before { content: '\f2ea'; }
+	.bi-earbuds::before { content: '\f30e'; }
+	.bi-image::before { content: '\f42a'; }
+	.bi-inboxes::before { content: '\f42f'; }
+	.bi-instagram::before { content: '\f437'; }
+	.bi-linkedin::before { content: '\f472'; }
+	.bi-list::before { content: '\f479'; }
+	.bi-mic-fill::before { content: '\f48d'; }
+	.bi-pause-fill::before { content: '\f4c3'; }
+	.bi-person-fill::before { content: '\f4da'; }
+	.bi-phone::before { content: '\f4e7'; }
+	.bi-play-fill::before { content: '\f4f4'; }
+	.bi-plus::before { content: '\f4fe'; }
+	.bi-whatsapp::before { content: '\f618'; }
+	.bi-x-lg::before { content: '\f659'; }
 	@font-face {
 		font-family: 'Poppins';
 		src: url('/fonts/poppins-400.woff2') format('woff2');

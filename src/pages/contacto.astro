@@ -7,28 +7,38 @@ import FooterKit from '../components/FooterKit.astro';
 <Layout title="Contacto - KitStation" bodyClass="bg-white text-black relative overflow-x-hidden min-h-screen">
   <HeaderKit />
   
-  <main class="relative z-10 pt-[120px] md:pt-[140px] pb-12 md:pb-24 px-0 min-h-screen flex items-center justify-center overflow-x-hidden bg-white">
+  <main class="relative z-10 pt-[120px] md:pt-[140px] pb-12 md:pb-24 min-h-screen flex items-center justify-center overflow-x-hidden bg-white">
     
     <!-- Main Container (Full Width Split) -->
-    <div class="w-full flex flex-col lg:flex-row relative">
+    <div class="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row relative">
       
       <!-- Left Column (Interactive Panel Area) -->
-      <div class="w-full lg:w-1/2 p-4 md:p-8 lg:pl-10 lg:pr-6 xl:pl-[max(2.5rem,calc((100vw-1500px)/2))] flex flex-col justify-end relative min-h-[400px] lg:min-h-[650px] z-0">
+      <div class="w-full lg:w-1/2 lg:pr-6 flex flex-col justify-end relative min-h-[400px] lg:min-h-0 lg:h-[650px] z-0">
         
         <!-- The Blue Background Box -->
-        <div id="interactive-panel" class="absolute inset-4 md:inset-8 lg:inset-y-6 lg:left-10 lg:right-6 xl:left-[max(2.5rem,calc((100vw-1500px)/2))] rounded-[1.5rem] md:rounded-[2rem] overflow-hidden pointer-events-auto bg-white -z-10 shadow-[0_8px_30px_rgb(0,0,0,0.03)]">
+        <div id="interactive-panel" class="absolute inset-0 lg:right-6 rounded-[1.25rem] md:rounded-[1.5rem] overflow-hidden pointer-events-auto bg-white -z-10 shadow-[0_8px_30px_rgb(0,0,0,0.03)]">
+          <video
+            class="absolute inset-0 w-full h-full object-cover"
+            src="/videos/cielo.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+          ></video>
           
           <!-- Interactive Glow Background -->
           <div 
             id="interactive-glow" 
-            class="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] rounded-full bg-[#38bdf8] opacity-[0.55] blur-[80px] pointer-events-none transition-all duration-500 ease-out"
+            class="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] rounded-full bg-[#38bdf8] opacity-20 blur-[80px] pointer-events-none transition-all duration-500 ease-out"
             style="left: 80%; top: 100%; transform: translate(-50%, -70%);"
           ></div>
-          <div class="absolute inset-0 bg-white/30 backdrop-blur-[2px] pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-white/75 via-white/20 to-transparent pointer-events-none"></div>
         </div>
         
         <!-- Bottom Text -->
-        <div class="relative z-10 px-6 py-6 md:px-10 md:py-8 lg:p-12">
+        <div class="relative z-10 px-6 py-6 md:px-10 md:py-8 lg:p-12 lg:mr-6">
           <p class="text-gray-700 font-medium text-sm md:text-base mb-2">Estas a un paso de</p>
           <h2 class="text-black font-semibold text-4xl md:text-[45px] lg:text-[50px] leading-[1.05] tracking-tight">
             Digitalizar tu<br />negocio y escalar<br />tus resultados.
@@ -37,15 +47,12 @@ import FooterKit from '../components/FooterKit.astro';
       </div>
 
       <!-- Right Column (Form Area) -->
-      <div class="w-full lg:w-1/2 p-4 md:p-8 lg:pr-10 lg:pl-10 xl:pr-[max(2.5rem,calc((100vw-1500px)/2))] flex flex-col justify-center relative z-10">
+      <div class="w-full lg:w-1/2 mt-10 lg:mt-0 lg:pl-10 lg:translate-y-6 flex flex-col justify-center relative z-10">
         
         <div class="w-full max-w-[550px] mx-auto lg:mx-0">
           
-          <!-- Asterisk Icon -->
-          <div class="text-[#38bdf8] text-4xl mb-2 leading-none font-sans font-medium">*</div>
-          
-          <h1 class="text-3xl md:text-4xl font-semibold text-black mb-3 tracking-tight">Hablemos de tu proyecto</h1>
-          <p class="text-gray-500 text-sm md:text-base mb-10 leading-relaxed max-w-md">
+          <h1 class="text-3xl md:text-4xl font-semibold text-black mb-3 tracking-tight text-center">Hablemos de tu proyecto</h1>
+          <p class="text-gray-500 text-sm md:text-base mb-10 leading-relaxed max-w-md mx-auto text-center">
             Cuéntanos qué necesitas y nuestro equipo se pondrá en contacto contigo lo antes posible para asesorarte.
           </p>
 
@@ -65,9 +72,9 @@ import FooterKit from '../components/FooterKit.astro';
                 <input 
                   type="text" 
                 name="name"
-                  placeholder="Ej. Rodrigo García"
+                  placeholder="Ingresa tu nombre"
                   maxlength="80"
-                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300"
+                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0052CC] focus:border-[#0052CC] transition-all duration-300"
                   required
                 />
                 <p class="text-red-500 text-xs mt-1 hidden error-message">Este campo es obligatorio.</p>
@@ -82,7 +89,7 @@ import FooterKit from '../components/FooterKit.astro';
                   placeholder="hola@empresa.com"
                   maxlength="100"
                   pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
-                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300"
+                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0052CC] focus:border-[#0052CC] transition-all duration-300"
                   required
                 />
                 <p class="text-red-500 text-xs mt-1 hidden error-message">Ingresa un correo válido.</p>
@@ -99,7 +106,7 @@ import FooterKit from '../components/FooterKit.astro';
                 name="phone"
                   placeholder="+51 "
                   maxlength="13"
-                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300"
+                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0052CC] focus:border-[#0052CC] transition-all duration-300"
                   required
                 />
                 <p class="text-red-500 text-xs mt-1 hidden error-message">Celular válido (9 dígitos).</p>
@@ -112,7 +119,7 @@ import FooterKit from '../components/FooterKit.astro';
                 <button 
                   type="button" 
                   id="provincia-trigger"
-                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-xl px-4 py-3.5 text-sm text-gray-500 flex justify-between items-center focus:outline-none focus:border-[#38bdf8] focus:ring-1 focus:ring-[#38bdf8] transition-all"
+                  class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-xl px-4 py-3.5 text-sm text-gray-500 flex justify-between items-center focus:outline-none focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] transition-all"
                 >
                   <span id="provincia-text" class="pointer-events-none">Selecciona</span>
                   <svg id="provincia-arrow" class="fill-current h-4 w-4 text-gray-400 transition-transform duration-200 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -141,7 +148,7 @@ import FooterKit from '../components/FooterKit.astro';
                 placeholder="Hola, me gustaría cotizar una web para mi empresa..."
                 rows="3"
                 maxlength="300"
-                class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-black transition-all duration-300 custom-scrollbar resize-none"
+                class="w-full bg-white border border-gray-200 hover:border-gray-300 rounded-lg px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0052CC] focus:border-[#0052CC] transition-all duration-300 custom-scrollbar resize-none"
                 required
               ></textarea>
               <p class="text-red-500 text-xs mt-1 hidden error-message">El mensaje no puede estar vacío.</p>
@@ -150,7 +157,7 @@ import FooterKit from '../components/FooterKit.astro';
             <div class="pt-2">
               <button 
                 type="submit"
-                class="w-full bg-[#050505] hover:bg-[#1a1a1a] text-white font-semibold text-sm py-3 px-5 rounded-lg transition-colors shadow-lg shadow-black/10 min-h-[44px]"
+                class="w-full bg-[#0066FF] hover:bg-[#0052CC] text-white font-semibold text-sm py-3 px-5 rounded-lg transition-colors shadow-lg shadow-blue-600/20 min-h-[44px]"
               >
                 Enviar mensaje
               </button>

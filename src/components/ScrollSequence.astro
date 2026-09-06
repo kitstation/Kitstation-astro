@@ -37,8 +37,13 @@
 
     // Configuración de la secuencia
     const frameCount = 120;
-    const currentFrame = (index: number) => 
-      `/frames-webp/frame${String(index).padStart(3, "0")}.webp`;
+    const useMobileFrames = window.matchMedia("(max-width: 767px)").matches;
+    const currentFrame = (index: number) => {
+      const frameNumber = String(index).padStart(3, "0");
+      return useMobileFrames
+        ? `/frames-webp/frame${frameNumber}.webp`
+        : `/frames/frame${frameNumber}.jpg`;
+    };
 
     const images: HTMLImageElement[] = [];
     const sequence = { frame: 0 };

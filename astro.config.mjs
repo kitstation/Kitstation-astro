@@ -10,6 +10,9 @@ export default defineConfig({
   security: {
     checkOrigin: false,
   },
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [tailwind(), sitemap()],
   adapter: vercel(),
 });

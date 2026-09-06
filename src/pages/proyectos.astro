@@ -94,7 +94,7 @@ const allProjects = services.flatMap(service =>
 
     <!-- Header Section -->
     <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl lg:text-[56px] font-bold mb-5 tracking-tight text-white">Nuestros proyectos</h1>
+      <h1 class="text-4xl md:text-5xl lg:text-[56px] font-semibold mb-5 tracking-tight text-white">Nuestros proyectos</h1>
       <p class="text-gray-300 text-sm md:text-base max-w-2xl mx-auto font-light">
         Descubre nuestros proyectos y como hemos ayudado a empresas a digitalizarse.
       </p>
@@ -148,7 +148,7 @@ const allProjects = services.flatMap(service =>
             </div>
             
             <div class="flex flex-col flex-grow">
-              <h3 class="text-white font-bold text-lg sm:text-xl mb-1.5 tracking-wide">{project.title}</h3>
+              <h3 class="text-white font-semibold text-lg sm:text-xl mb-1.5 tracking-wide">{project.title}</h3>
               <p class="text-[#888] text-xs sm:text-sm leading-[1.6] mb-4 flex-grow">
                 {project.description}
               </p>
@@ -165,7 +165,7 @@ const allProjects = services.flatMap(service =>
                   </div>
                 ) : (
                   <div class="flex justify-end gap-2">
-                    <a href={project.url} target={project.url !== '#' ? '_blank' : '_self'} rel="noopener noreferrer" class={`text-sm font-semibold ${project.textColor} hover:brightness-125 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 px-6 py-2.5 rounded-lg transition-all tracking-wider`}>
+                    <a href={project.url} target={project.url !== '#' ? '_blank' : '_self'} rel="noopener noreferrer" class="text-sm font-semibold text-white bg-[#0066FF] hover:bg-[#0052CC] border border-[#0066FF] hover:border-[#0052CC] px-6 py-2.5 rounded-lg transition-all tracking-wider">
                       {project.linkText}
                     </a>
                   </div>
@@ -640,4 +640,3 @@ const allProjects = services.flatMap(service =>
     requestAnimationFrame(animate);
   }
 </script>
-
