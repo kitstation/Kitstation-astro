@@ -2,49 +2,49 @@
 // SpecificSolutions.astro
 const soluciones = [
   {
-    file: "solu-mayor-alcance.png",
+    file: "solu-mayor-alcance.webp",
     label: "Mayor alcance",
     color: "rgba(74, 222, 128, 0.8)",
     detalle: "1-ALCANCE.png",
     detalleMobile: "1-ALCANCE-movil.png",
   },
   {
-    file: "solu-cero-tareas-manuales.png",
+    file: "solu-cero-tareas-manuales.webp",
     label: "Cero tareas manuales",
     color: "rgba(192, 132, 252, 0.8)",
     detalle: "2-IA.png",
     detalleMobile: "2-IA-movil.png",
   },
   {
-    file: "solu-más-ventas.png",
+    file: "solu-más-ventas.webp",
     label: "Más ventas",
     color: "rgba(251, 191, 36, 0.8)",
     detalle: "3-VENTAS.png",
     detalleMobile: "3-VENTAS-movil.png",
   },
   {
-    file: "solu-alto-impacto.png",
+    file: "solu-alto-impacto.webp",
     label: "Alto impacto",
     color: "rgba(244, 63, 94, 0.8)",
     detalle: "4-IMPACTO.png",
     detalleMobile: "4-IMPACTO-movil.png",
   },
   {
-    file: "solu-campañas-rentables.png",
+    file: "solu-campañas-rentables.webp",
     label: "Campañas rentables",
     color: "rgba(59, 130, 246, 0.8)",
     detalle: "5-CAMPAÑA.png",
     detalleMobile: "5-CAMPAÑA-movil.png",
   },
   {
-    file: "solu-tecnología-escalable.png",
+    file: "solu-tecnología-escalable.webp",
     label: "Tecnología escalable",
     color: "rgba(6, 182, 212, 0.8)",
     detalle: "6-DESARROLLO.png",
     detalleMobile: "6-DESARROLLO-movil.png",
   },
   {
-    file: "solu-experiencia-de-usuario.png",
+    file: "solu-experiencia-de-usuario.webp",
     label: "Experiencia de usuario",
     color: "rgba(239, 68, 68, 0.8)",
     detalle: "7-BRANDING.png",
@@ -113,6 +113,10 @@ const soluciones = [
                   <img
                     src={`/soluciones/${sol.file}`}
                     alt={sol.label}
+                    width="240"
+                    height="240"
+                    loading="lazy"
+                    decoding="async"
                     class="w-full h-full object-contain drop-shadow-md"
                   />
                 </div>
